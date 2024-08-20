@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { VendorListingComponent } from "./components/vendor-listing.component";
+import { VendorListingComponent } from './components/vendor-listing.component';
 
 @Component({
   standalone: true,
@@ -11,5 +11,5 @@ import { VendorListingComponent } from "./components/vendor-listing.component";
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'backroads';
+  title = 'Backroads';
 }
