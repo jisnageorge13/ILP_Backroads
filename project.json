@@ -3,7 +3,7 @@
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "includedScripts": [],
   "projectType": "application",
-  "prefix": "app",
+  "prefix": "r2q",
   "sourceRoot": "./src",
   "tags": [],
   "targets": {
@@ -23,16 +23,14 @@
             "input": "public"
           }
         ],
-        "styles": ["./src/styles.scss",
-      "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-    "node_modules/primeng/resources/primeng.min.css"],
-        
+        "styles": [
+          "./src/styles.scss",
+          "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+          "node_modules/primeng/resources/primeng.min.css"
+        ],
+
         "scripts": [],
-        "server": "src/main.server.ts",
-        "prerender": true,
-        "ssr": {
-          "entry": "server.ts"
-        }
+        "prerender": false
       },
       "configurations": {
         "production": {
