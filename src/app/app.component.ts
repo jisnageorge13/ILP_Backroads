@@ -11,5 +11,5 @@ import { VendorListingComponent } from './components/vendor-listing.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'Backroads';
+  title = 'ILP_Backroads';
 }
