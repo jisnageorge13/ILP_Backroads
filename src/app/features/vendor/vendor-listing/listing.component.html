@@ -1,1 +1,35 @@
-<p>listing works!</p>
+<div class="page-container">
+  <div class="header-container">
+    <h2>All Vendors</h2>
+    <button class="add-vendor-button" [routerLink]="['/vendor/creation']">+ Add New Vendor</button>
+  </div>
+  <div class="card">
+    <p-table
+      [value]="vendors"
+      [paginator]="true"
+      [rows]="5"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [rowsPerPageOptions]="[5, 10, 20]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 25%">Vendor Name</th>
+          <th style="width: 25%">Markets</th>
+          <th style="width: 25%">Service Categories</th>
+          <th style="width: 25%">Email</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-vendor>
+        <tr>
+          <td>
+            {{ vendor.name }}
+            <span *ngIf="!vendor.isApproved" class="pending-tag">Pending</span>
+          </td>
+          <td>{{ vendor.markets }}</td>
+          <td>{{ vendor.serviceCategories }}</td>
+          <td>{{ vendor.email }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
