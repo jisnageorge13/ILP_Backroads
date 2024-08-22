@@ -35,28 +35,17 @@ import { IVendor } from '../models/vendor.model';
  *      - /vendor: Default route to list vendors.
  *      - /vendor/creation: Route to vendor creation page.
  *
- * Data Model
- *
- * - Vendor Interface:
- *      - Fields used: `name`, `markets`, `serviceCategories`, `email`, `isApproved`.
- *
  * Component Design
  *
  * - HTML Structure:
  *      - Header Section: Contains "All Vendors" heading and "Add New Vendor" button with a plus sign.
  *      - Table: Displays vendors with columns for `Vendor Name`, `Markets`, `Service Categories`, and `Email`. Adds a "Pending" tag for unapproved vendors.
  *
- * - Styling:
- *      - The header section has a light gray background.
- *      - The "Add New Vendor" button is styled with a blue background and white text.
- *
  * Behavior & Logic
  *
  * - Initialization: The `vendors` array is populated with hardcoded data.
  * - Add New Vendor Button: Navigates to the `/vendor/creation` route when clicked.
  */
-
-
 
 @Component({
   selector: 'app-listing',
@@ -119,5 +108,7 @@ export class ListingComponent implements OnInit {
       isApproved: false,
     },
 ];
+  // Sort vendors by name in ascending order
+    this.vendors.sort((a, b) => a.name.localeCompare(b.name));
   }
 }
