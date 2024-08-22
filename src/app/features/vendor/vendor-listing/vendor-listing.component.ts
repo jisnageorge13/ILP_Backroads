@@ -25,7 +25,7 @@ import { IVendor } from '../models/vendor.model';
  */
 
 @Component({
-  selector: 'app-listing',
+  selector: 'app-vendor-listing',
   standalone: false,
   templateUrl: './vendor-listing.component.html',
   styleUrl: './vendor-listing.component.scss',
@@ -85,6 +85,7 @@ export class VendorListingComponent implements OnInit {
         isApproved: false,
       },
     ];
+
     // Sort vendors by name in ascending order
     this.vendors.sort((a, b) => a.name.localeCompare(b.name));
   }
