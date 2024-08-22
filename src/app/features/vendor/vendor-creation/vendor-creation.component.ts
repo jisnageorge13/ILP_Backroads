@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IVendor } from '../models/vendor.model';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // LLD
 
@@ -48,6 +48,8 @@ export class VendorCreationComponent {
 
 addVendorForm!: FormGroup;
 vendor!: IVendor[] ;
+
+constructor(private readonly fb: FormBuilder) {}
 
 ngOnInit(){
   this.vendor = [
@@ -101,35 +103,25 @@ ngOnInit(){
     },
 ];
 
-this.addVendorForm=new FormGroup({
-  vendorName:new FormControl('',[Validators.required]),
-  state: new FormControl(''),
-  code: new FormControl(''),
-  country: new FormControl('',[Validators.required]),
-  markets:new FormControl('',[Validators.required]),
-  email:new FormControl('',[Validators.required]),
-  phone:new FormControl('',[Validators.required]),
-  website:new FormControl(''),
-  service:new FormControl('',[Validators.required])
-});
+this.createAddVendorForm();
+}
+
+//method for doing proper validation of the form using formbuilder
+ createAddVendorForm(): void {
+  this.addVendorForm = this.fb.group({
+    vendorName: ['', Validators.required],
+    state: [''],
+    country: ['', Validators.required],
+    markets: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]], 
+    phone: [ '', [Validators.required,Validators.pattern(/^[1-9][0-9]{9}$/)] ],
+    website: [''],
+    service: ['', Validators.required],
+  });
 }
 
  //function for submitting the entered vendor data
- submitVendor() {
-  const selectedState = this.addVendorForm.value.state?.state || '';
-  const selectedCountry = this.addVendorForm.value.country?.country || '';
-  const selectedService = this.addVendorForm.value.service?.serviceCategories || '';
-  const selectedCode=this.addVendorForm.value.code?.code||'';
-  const processedForm = {
-    vendorName: this.addVendorForm.value.vendorName,
-    state: selectedState,
-    country: selectedCountry,
-    service: selectedService,
-    markets: this.addVendorForm.value,
-    email: this.addVendorForm.value.email,
-    code:selectedCode,
-    phone: this.addVendorForm.value.phone,
-    website: this.addVendorForm.value.website,
-  };
+ submitVendor():void {
+  const vendorData = this.addVendorForm.value;
 }
 }

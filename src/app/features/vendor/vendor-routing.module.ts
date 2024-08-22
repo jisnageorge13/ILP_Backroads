@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListingComponent } from './vendor-listing/listing.component';
+import { VendorListingComponent } from './vendor-listing/vendor-listing.component';
 import { VendorCreationComponent } from './vendor-creation/vendor-creation.component';
 
 const routes: Routes = [
-  { path: '', component: ListingComponent },
+  { path: '', component: VendorListingComponent },
   { path: 'creation', component: VendorCreationComponent },
   { path: '', redirectTo: 'listing', pathMatch: 'full' },
 ];

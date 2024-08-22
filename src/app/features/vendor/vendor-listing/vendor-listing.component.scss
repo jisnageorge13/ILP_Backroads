@@ -1,0 +1,52 @@
+.page-container {
+    padding: 1rem;
+    padding-top: 4rem;
+    /* Space for the top bar */
+    padding-left: 5rem;
+    /* Space for the sidebar */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-decoration: underline;
+}
+
+.add-vendor-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.add-vendor-button:hover {
+    background-color: #0056b3;
+}
+
+.pending-tag {
+    background-color: #c5ab27;
+    color: #fff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.card {
+    min-width: 50rem;
+}
