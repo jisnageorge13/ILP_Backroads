@@ -1,7 +1,9 @@
 <div class="page-container">
   <div class="header-container">
     <h2>All Vendors</h2>
-    <button class="add-vendor-button" [routerLink]="['/vendor/creation']">+ Add New Vendor</button>
+    <button id="add-new-vendor-btn" type="button" class="add-vendor-button" [routerLink]="['/vendor/creation']">
+      + Add New Vendor
+    </button>
   </div>
   <div class="card">
     <p-table
@@ -13,10 +15,10 @@
     >
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 25%">Vendor Name</th>
-          <th style="width: 25%">Markets</th>
-          <th style="width: 25%">Service Categories</th>
-          <th style="width: 25%">Email</th>
+          <th class="column">Vendor Name</th>
+          <th class="column">Markets</th>
+          <th class="column">Service Categories</th>
+          <th class="column">Email</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-vendor>
