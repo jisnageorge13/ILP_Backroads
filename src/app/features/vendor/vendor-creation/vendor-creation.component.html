@@ -37,8 +37,7 @@
             <div class="card flex justify-content-center">
               <p-dropdown
                 formControlName="state"
-                [options]="vendor"
-                optionLabel="state"
+                [options]="states"
                 placeholder="Select State"
                 id="state"
               />
@@ -51,8 +50,7 @@
             <div class="card flex justify-content-center">
               <p-dropdown
                 formControlName="country"
-                [options]="vendor"
-                optionLabel="country"
+                [options]="countries"
                 placeholder="Select Country"
                 id="country"
                 [ngClass]="{
@@ -72,8 +70,7 @@
           <div class="card flex justify-content-center">
             <p-multiSelect
               formControlName="markets"
-              [options]="vendor"
-              optionLabel="markets"
+              [options]="markets"
               placeholder="Select Markets"
               id="markets"
               [ngClass]="{
@@ -115,6 +112,7 @@
                   <input
                     formControlName="phone"
                     pInputText
+                    type="string"
                     placeholder="Enter Number"
                     [class.invalidInput]="
                       addVendorForm.get('phone')?.invalid &&
@@ -143,8 +141,7 @@
           <div class="card flex justify-content-center">
             <p-dropdown
               formControlName="service"
-              [options]="vendor"
-              optionLabel="serviceCategories"
+              [options]="services"
               placeholder="Select Service"
               id="service"
               [scrollHeight]="'9.375rem'"

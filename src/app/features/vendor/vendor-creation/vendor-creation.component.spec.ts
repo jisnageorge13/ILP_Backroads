@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VendorCreationComponent } from './vendor-creation.component';
 
-describe('CreationComponent', () => {
+describe('VendorCreationComponent', () => {
   let component: VendorCreationComponent;
   let fixture: ComponentFixture<VendorCreationComponent>;
 
