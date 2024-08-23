@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VendorConfig } from '../config/vendor-config';
+import { phonePattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // LLD
@@ -52,7 +52,6 @@ states: string[] = ['California', 'Berlin', 'Sydney', 'Rio de Janeiro'];
 markets: string[] = ['North America', 'Europe', 'Asia-Pacific', 'South America', 'Africa'];
 services: string[] = ['Consulting', 'Software Development', 'Customer Support', 'Cloud Services', 'Marketing'];
 
-
 constructor(private readonly fb: FormBuilder) {}
 
 ngOnInit(){
@@ -67,7 +66,7 @@ ngOnInit(){
     country: ['', Validators.required],
     markets: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]], 
-    phone: [ '', [Validators.required,Validators.pattern(VendorConfig.phonePattern)] ],
+    phone: [ '', [Validators.required, Validators.pattern(phonePattern)] ],
     website: [''],
     service: ['', Validators.required],
   });
