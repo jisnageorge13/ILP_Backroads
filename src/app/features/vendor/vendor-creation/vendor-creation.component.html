@@ -5,13 +5,10 @@
     <form
       class="add-vendor-page"
       [formGroup]="addVendorForm"
-      (ngSubmit)="submitVendor()"
-    >
+      (ngSubmit)="submitVendor()">
       <div class="form-heading">
-        <p><span>All Vendors</span>/<span>New vendors</span></p>
         <h2>New vendor</h2>
       </div>
-      <hr />
       <div class="form-body">
         <div>
           <label for="vendorName" class="vendorName"
@@ -27,9 +24,22 @@
             required
             [class.invalidInput]="
               addVendorForm.get('vendorName')?.invalid &&
-              addVendorForm.get('vendorName')?.touched
-            "
+              addVendorForm.get('vendorName')?.touched"
           />
+          <div
+            *ngIf="
+              addVendorForm.get('vendorName')?.invalid &&
+              addVendorForm.get('vendorName')?.touched"
+            class="error-message"
+          >
+            <small *ngIf="addVendorForm.get('vendorName')?.errors?.['required']"
+              >Vendor Name is required.</small
+            >
+            <small
+              *ngIf="addVendorForm.get('vendorName')?.errors?.['maxlength']"
+              >Vendor Name cannot exceed 100 characters.</small
+            >
+          </div>
         </div>
         <div class="state-country">
           <div class="vendor-place">
@@ -45,8 +55,7 @@
           </div>
           <div class="vendor-place">
             <label id="country" class="selectedCity"
-              >Country<span class="requiredSymbol">*</span></label
-            >
+              >Country<span class="requiredSymbol">*</span></label>
             <div class="card flex justify-content-center">
               <p-dropdown
                 formControlName="country"
@@ -61,25 +70,81 @@
                 }"
               />
             </div>
+            <div
+              *ngIf="
+                addVendorForm.get('country')?.invalid &&
+                addVendorForm.get('country')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="addVendorForm.get('country')?.errors?.['required']"
+                >Country is required.</small
+              >
+            </div>
           </div>
         </div>
-        <div class="market-name">
-          <label for="markets" class="marketlabel"
-            >Markets<span class="requiredSymbol">*</span></label
-          >
-          <div class="card flex justify-content-center">
-            <p-multiSelect
-              formControlName="markets"
-              [options]="markets"
-              placeholder="Select Markets"
-              id="markets"
-              [ngClass]="{
-                'ng-dirty ng-invalid':
-                  addVendorForm.get('markets')?.invalid &&
-                  addVendorForm.get('markets')?.touched &&
-                  addVendorForm.get('markets')?.hasError('required')
-              }"
-            />
+        <div class="state-country">
+          <div class="market-name">
+            <label for="markets" class="marketlabel">
+              Markets<span class="requiredSymbol">*</span>
+            </label>
+            <div class="card flex justify-content-center">
+              <p-multiSelect
+                formControlName="markets"
+                [options]="markets"
+                optionLabel="name"
+                showHeader="false"
+                optionValue="id"
+                placeholder="Select Markets"
+                id="markets"
+                [ngClass]="{
+                  'ng-dirty ng-invalid':
+                    addVendorForm.get('markets')?.invalid &&
+                    addVendorForm.get('markets')?.touched &&
+                    addVendorForm.get('markets')?.hasError('required')
+                }">
+              </p-multiSelect>
+            </div>
+            <div
+              *ngIf="
+                addVendorForm.get('markets')?.invalid &&
+                addVendorForm.get('markets')?.touched"
+              class="error-message">
+              <small *ngIf="addVendorForm.get('markets')?.errors?.['required']"
+                >At least one Market is required.</small>
+            </div>
+          </div>
+          <div class="service-category">
+            <label for="service">
+              Service Category<span class="requiredSymbol">*</span>
+            </label>
+            <div class="card flex justify-content-center">
+              <p-dropdown
+                formControlName="service"
+                [options]="services"
+                optionLabel="name"
+                optionValue="id"
+                placeholder="Select Service"
+                id="service"
+                [scrollHeight]="'9.375rem'"
+                [ngClass]="{
+                  'ng-dirty ng-invalid':
+                    addVendorForm.get('service')?.invalid &&
+                    addVendorForm.get('service')?.touched &&
+                    addVendorForm.get('service')?.hasError('required')
+                }"
+              ></p-dropdown>
+            </div>
+            <div
+              *ngIf="
+                addVendorForm.get('service')?.invalid &&
+                addVendorForm.get('service')?.touched
+              "
+              class="error-message"
+            >
+              <small *ngIf="addVendorForm.get('service')?.errors?.['required']"
+                >Service Category is required.</small>
+            </div>
           </div>
         </div>
         <div class="contact-info">
@@ -87,8 +152,7 @@
           <div class="contact">
             <div class="contact-options">
               <label for="email"
-                >Email<span class="requiredSymbol">*</span></label
-              >
+                >Email<span class="requiredSymbol">*</span></label>
               <input
                 pInputText
                 type="email"
@@ -98,10 +162,22 @@
                 formControlName="email"
                 [class.invalidInput]="
                   addVendorForm.get('email')?.invalid &&
-                  addVendorForm.get('email')?.touched
-                "
+                  addVendorForm.get('email')?.touched"
                 required
               />
+              <div
+                *ngIf="
+                  addVendorForm.get('email')?.invalid &&
+                  addVendorForm.get('email')?.touched"
+                class="error-message"
+              >
+                <small *ngIf="addVendorForm.get('email')?.errors?.['required']"
+                  >Email is required.</small
+                >
+                <small *ngIf="addVendorForm.get('email')?.errors?.['email']"
+                  >Invalid email address.</small
+                >
+              </div>
             </div>
             <div class="phone-website">
               <div class="contact-options">
@@ -116,10 +192,23 @@
                     placeholder="Enter Number"
                     [class.invalidInput]="
                       addVendorForm.get('phone')?.invalid &&
-                      addVendorForm.get('phone')?.touched
-                    "
+                      addVendorForm.get('phone')?.touched"
                   />
                 </p-inputGroup>
+                <div
+                  *ngIf="
+                    addVendorForm.get('phone')?.invalid &&
+                    addVendorForm.get('phone')?.touched"
+                  class="error-message"
+                >
+                  <small
+                    *ngIf="addVendorForm.get('phone')?.errors?.['required']"
+                    >Phone number is required.</small
+                  >
+                  <small *ngIf="addVendorForm.get('phone')?.errors?.['pattern']"
+                    >Invalid phone number.</small
+                  >
+                </div>
               </div>
               <div class="contact-options">
                 <label for="website">Website(Optional)</label>
@@ -134,37 +223,15 @@
             </div>
           </div>
         </div>
-        <div class="service-category">
-          <label for="service"
-            >Service Category<span class="requiredSymbol">*</span></label
-          >
-          <div class="card flex justify-content-center">
-            <p-dropdown
-              formControlName="service"
-              [options]="services"
-              placeholder="Select Service"
-              id="service"
-              [scrollHeight]="'9.375rem'"
-              [ngClass]="{
-                'ng-dirty ng-invalid':
-                  addVendorForm.get('service')?.invalid &&
-                  addVendorForm.get('service')?.touched &&
-                  addVendorForm.get('service')?.hasError('required')
-              }"
-            />
-          </div>
-        </div>
       </div>
-      <hr />
       <div class="card submit-cancel">
-        <button
+        <p-button
           type="submit"
           id="submit-btn"
+          label="Submit for Approval"
           [disabled]="addVendorForm.invalid"
           class="submit-btn"
-        >
-          Submit for Approval
-        </button>
+        />
         <button id="cancel-btn" type="button" class="cancel-btn">Cancel</button>
       </div>
     </form>

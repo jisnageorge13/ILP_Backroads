@@ -16,16 +16,9 @@
   display: flex;
   flex-direction: column;
   padding-left: 6.25rem;
-  height: 5rem;
+  padding-top: .5rem;
 }
 
-.form-heading p {
-  margin: 0.375rem;
-}
-
-.form-heading h2 {
-  margin: 0.375rem;
-}
 .requiredSymbol{
   color:red
 }
@@ -53,7 +46,7 @@
   width: 27.5rem;
 }
 
- label {
+label {
    margin-bottom: 0.625rem;
 }
 
@@ -104,7 +97,8 @@
 }
 
 .contact-options {
-  display: grid;
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-options label {
@@ -139,14 +133,6 @@
   border-color: rgb(243, 120, 120) !important;
 }
 
-.submit-btn {
-  border-radius: .5rem;
-  background-color: #1a4870;
-  color: white;
-  font-weight: bold;
-  height: 3.125rem;
-}
-
 .cancel-btn {
   border-radius: .5rem;
   border: 0.063rem solid red;
@@ -155,6 +141,19 @@
   font-weight: bold;
   height: 3.125rem;
   width: 5rem;
+}
+
+.error-message{
+  color:red;
+  font-size: .8rem;
+}
+
+::ng-deep .p-button{
+  border-radius: .5rem;
+  background-color: #1a4870;
+  color: white;
+  font-weight: bold;
+  height: 3.125rem;
 }
 
 ::ng-deep .p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
@@ -196,4 +195,28 @@
 ::ng-deep .p-float-label .p-element .p-multiselect,
 ::ng-deep .p-inputgroup .p-element .p-dropdown {
   border: 0.063rem solid #bbb8b8;
+}
+
+::ng-deep .p-dropdown-items-wrapper
+{
+  max-height: 7rem !important;
+}
+
+::ng-deep .p-dropdown-items-wrapper::-webkit-scrollbar {
+  width: 0.3rem; 
+}
+
+::ng-deep .p-dropdown-items-wrapper::-webkit-scrollbar-thumb {
+  background-color: #c7c6c6;
+}
+
+::ng-deep .p-dropdown-items-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #a3a1a1;
+  cursor: pointer;
+}
+
+.form-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem; 
 }

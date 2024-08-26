@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 //import { NxWelcomeComponent } from './nx-welcome.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
     provideClientHydration(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent],
 })

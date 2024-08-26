@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { phonePattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IMarket } from '../models/vendor.model';
+import { IService } from '../models/vendor.model';
+import { IVendorCreation } from '../models/vendor.model';
+import { VendorService } from '../services/vendor.service';
 
 // LLD
 
@@ -47,21 +51,21 @@ export class VendorCreationComponent {
 addVendorForm!: FormGroup;
 countries: string[] = ['USA', 'Germany', 'Australia', 'Brazil'];
 states: string[] = ['California', 'Berlin', 'Sydney', 'Rio de Janeiro'];
+markets!: IMarket[];
+services!: IService[];
 
-//just for temporarily fetching market and service names onto dropdown
-markets: string[] = ['North America', 'Europe', 'Asia-Pacific', 'South America', 'Africa'];
-services: string[] = ['Consulting', 'Software Development', 'Customer Support', 'Cloud Services', 'Marketing'];
-
-constructor(private readonly fb: FormBuilder) {}
+constructor(private readonly fb: FormBuilder,private vendorService: VendorService) {}
 
 ngOnInit(){
+ this.fetchMarkets();
+ this.fetchServices();
  this.createAddVendorForm();
 }
 
 //method for doing proper validation of the form using formbuilder
  createAddVendorForm(): void {
   this.addVendorForm = this.fb.group({
-    vendorName: ['', Validators.required],
+    vendorName: ['', [Validators.required, Validators.maxLength(100)]],
     state: [''],
     country: ['', Validators.required],
     markets: ['', Validators.required],
@@ -72,8 +76,35 @@ ngOnInit(){
   });
 }
 
+//function for fetching markets form table
+fetchMarkets() {
+  this.vendorService.getMarkets().subscribe((data:IMarket[]) => {
+    this.markets = data;
+  });
+}
+
+//function for fetching services form table
+fetchServices() {
+  this.vendorService.getServices().subscribe((data:IService[]) => {
+    this.services = data;
+  });
+}
+
  //function for submitting the entered vendor data
  submitVendor(): void {
-  const vendorData = this.addVendorForm.value;
+  const formValue = this.addVendorForm.value;
+  const vendorData: IVendorCreation = {
+    name: formValue.vendorName,
+    city: formValue.state,
+    stateProvinceRegion: formValue.state,
+    country: formValue.country,
+    email: formValue.email,
+    phone: formValue.phone,
+    website: formValue.website,
+    serviceId: formValue.service,
+    isApproved: false,
+    marketIds: formValue.markets
+  };
+  this.vendorService.addVendor(vendorData).subscribe();
 }
 }
