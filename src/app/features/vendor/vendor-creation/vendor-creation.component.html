@@ -26,7 +26,7 @@
               addVendorForm.get('vendorName')?.invalid &&
               addVendorForm.get('vendorName')?.touched"
           />
-          <r2q-error-message [control]="addVendorForm.get('vendorName')" class="error-message"></r2q-error-message>
+          <r2q-error-message [control]="addVendorForm.get('vendorName')"></r2q-error-message>
         </div>
         <div class="state-country">
           <div class="vendor-place">
@@ -57,7 +57,7 @@
                 }"
               />
             </div>
-          <r2q-error-message [control]="addVendorForm.get('country')" class="error-message"></r2q-error-message>
+          <r2q-error-message [control]="addVendorForm.get('country')"></r2q-error-message>
           </div>
         </div>
         <div class="state-country">
@@ -82,7 +82,7 @@
                 }">
               </p-multiSelect>
             </div>
-          <r2q-error-message [control]="addVendorForm.get('markets')" class="error-message"></r2q-error-message>
+          <r2q-error-message [control]="addVendorForm.get('markets')"></r2q-error-message>
           </div>
           <div class="service-category">
             <label for="service">
@@ -105,7 +105,7 @@
                 }"
               ></p-dropdown>
             </div>
-          <r2q-error-message [control]="addVendorForm.get('service')" class="error-message"></r2q-error-message>
+          <r2q-error-message [control]="addVendorForm.get('service')"></r2q-error-message>
           </div>
         </div>
         <div class="contact-info">
@@ -126,7 +126,7 @@
                   addVendorForm.get('email')?.touched"
                 required
               />
-          <r2q-error-message [control]="addVendorForm.get('email')" class="error-message"></r2q-error-message>
+          <r2q-error-message [control]="addVendorForm.get('email')"></r2q-error-message>
             </div>
             <div class="phone-website">
               <div class="contact-options">
@@ -144,7 +144,7 @@
                       addVendorForm.get('phone')?.touched"
                   />
                 </p-inputGroup>
-          <r2q-error-message [control]="addVendorForm.get('phone')" class="error-message"></r2q-error-message>
+          <r2q-error-message [control]="addVendorForm.get('phone')"></r2q-error-message>
               </div>
               <div class="contact-options">
                 <label for="website">Website(Optional)</label>

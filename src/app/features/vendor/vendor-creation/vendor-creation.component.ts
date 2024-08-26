@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { phonePattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IMarket } from '../models/vendor.model';
-import { IService } from '../models/vendor.model';
-import { IVendorCreation } from '../models/vendor.model';
+import { IVendorCreation,IDropDownFields} from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
-import { ErrorMessageComponent } from 'src/app/shared/error-message/error-message.component';
 
 /**  LLD
  * This component is to add new vendors
@@ -45,10 +42,10 @@ export class VendorCreationComponent {
 addVendorForm!: FormGroup;
 countries: string[] = ['USA', 'Germany', 'Australia', 'Brazil'];
 states: string[] = ['California', 'Berlin', 'Sydney', 'Rio de Janeiro'];
-markets!: IMarket[];
-services!: IService[];
+markets!: IDropDownFields[];
+services!: IDropDownFields[];
 
-constructor(private readonly fb: FormBuilder,private vendorService: VendorService) {}
+constructor(private readonly fb: FormBuilder, private vendorService: VendorService) {}
 
 ngOnInit(){
  this.fetchMarkets();
@@ -71,15 +68,15 @@ ngOnInit(){
 }
 
 //function for fetching markets form table
-fetchMarkets() {
-  this.vendorService.getMarkets().subscribe((data:IMarket[]) => {
+fetchMarkets(): void {
+  this.vendorService.getMarkets().subscribe((data:IDropDownFields[]) => {
     this.markets = data;
   });
 }
 
 //function for fetching services form table
-fetchServices() {
-  this.vendorService.getServices().subscribe((data:IService[]) => {
+fetchServices(): void {
+  this.vendorService.getServices().subscribe((data:IDropDownFields[]) => {
     this.services = data;
   });
 }

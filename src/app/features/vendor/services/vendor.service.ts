@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IMarket } from '../models/vendor.model';
-import { IService } from '../models/vendor.model';
-import { IVendorCreation } from '../models/vendor.model';
+import { IVendorCreation, IDropDownFields} from '../models/vendor.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +13,13 @@ export class VendorService {
   constructor(private http: HttpClient) {}
 
   // Fetching markets from the backend
-  getMarkets(): Observable<IMarket[]> {
-    return this.http.get<IMarket[]>(`${this.baseUrl}/Market/GetMarkets`);
+  getMarkets(): Observable<IDropDownFields[]> {
+    return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Market/GetMarkets`);
   }
 
   // Fetching services from the backend
-  getServices(): Observable<IService[]> {
-    return this.http.get<IService[]>(`${this.baseUrl}/Service/GetService`);
+  getServices(): Observable<IDropDownFields[]> {
+    return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Service/GetService`);
   }
 
   // Posting vendor data to the backend

@@ -24,12 +24,12 @@ export interface IVendorCreation {
   marketIds: number[];
 }
 
-export interface IService {
+export interface IDropDownFields {
   id: number;
   name: string;
 }
 
-export interface IMarket {
-  id: number;
-  name: string;
-}
+// export interface IMarket {
+//   id: number;
+//   name: string;
+// }
