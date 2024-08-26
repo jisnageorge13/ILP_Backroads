@@ -5,39 +5,33 @@ import { IMarket } from '../models/vendor.model';
 import { IService } from '../models/vendor.model';
 import { IVendorCreation } from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
+import { ErrorMessageComponent } from 'src/app/shared/error-message/error-message.component';
 
-// LLD
-
-// This component is to add new vendors
-
-// it has the fields:
-
-// Profile Info:
-// Vendor Name: Required text input.
-// State: Required input Dropdown with state options.
-// Country: Required input Dropdown with country options.
-// Markets: Required input Multi-select dropdown with  options.
-// Contact Info:
-// Email: Required email input.
-// Phone: Required Input with country code dropdown.
-// Website: Optional text input.
-// Service Category:
-// Service: Required input Dropdown with  options.
-
-// It has the buttons:
-// Submit for approval
-// Cancel
-
-// This screen contains following actions:
-// Input values to different fields.
-// Submitting the data and going to View Profile page.
-// Cancelling the changes made and going back to Vendor Listing Page.
-
-// Submit:
-// When the user clicks on the submit for approval button , user will be directed to view profile page.
-
-// Cancel:
-// When the user clicks on cancel button, user will be directed back to Vendor Listing page.
+/**  LLD
+ * This component is to add new vendors
+ * it has the fields:
+ * Profile Info:
+ * Vendor Name: Required text input.
+ * State: Required input Dropdown with state options.
+ * Country: Required input Dropdown with country options.
+ * Markets: Required input Multi-select dropdown with  options.
+ * Contact Info:
+ * Email: Required email input.
+ * Phone: Required Input with country code dropdown.
+ * Website: Optional text input.
+ * Service Category:
+ * Service: Required input Dropdown with  options.
+ * It has the buttons:
+      *    Submit for approval
+      *    Cancel
+* This screen contains following actions:
+      * Input values to different fields.
+      * Submitting the data and going to View Profile page.
+      * Cancelling the changes made and going back to Vendor Listing Page.
+* Submit:
+      * When the user clicks on the submit for approval button , user will be directed to view profile page.
+* Cancel:
+      * When the user clicks on cancel button, user will be directed back to Vendor Listing page. */
 
 @Component({
   selector: 'app-vendor-creation',

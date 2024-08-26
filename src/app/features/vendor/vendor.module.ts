@@ -15,10 +15,11 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FloatLabelModule } from "primeng/floatlabel"
 import { TableModule } from 'primeng/table';
+import { ErrorMessageComponent } from "../../shared/error-message/error-message.component";
 
 @NgModule({
   declarations: [VendorListingComponent, VendorCreationComponent],
-  imports: [CommonModule,VendorRoutingModule,TableModule,FormsModule,FloatLabelModule,ReactiveFormsModule,DropdownModule,ConfirmDialogModule, ToastModule, ButtonModule,MultiSelectModule,InputTextModule,InputGroupModule,InputGroupAddonModule],
+  imports: [CommonModule, VendorRoutingModule, TableModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule, ErrorMessageComponent],
   
 })
 export class VendorModule {}
