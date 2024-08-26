@@ -29,7 +29,3 @@ export interface IDropDownFields {
   name: string;
 }
 
-// export interface IMarket {
-//   id: number;
-//   name: string;
-// }

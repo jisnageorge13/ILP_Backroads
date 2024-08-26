@@ -15,7 +15,6 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FloatLabelModule } from "primeng/floatlabel"
 import { TableModule } from 'primeng/table';
-import { ErrorMessageComponent } from "../../shared/error-message/error-message.component";
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({

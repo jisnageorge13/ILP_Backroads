@@ -53,7 +53,12 @@ ngOnInit(){
  this.createAddVendorForm();
 }
 
-//method for doing proper validation of the form using formbuilder
+/**
+  * Creates and validates the vendor creation form using FormBuilder.
+  * 
+  * This method sets up the form with fields like vendorName, state, country, markets, email,
+  * phone, website, and service, along with appropriate validation rules.
+  */
  createAddVendorForm(): void {
   this.addVendorForm = this.fb.group({
     vendorName: ['', [Validators.required, Validators.maxLength(100)]],
@@ -67,21 +72,36 @@ ngOnInit(){
   });
 }
 
-//function for fetching markets form table
+/**
+ * Fetches the list of markets from the backend.
+ * 
+ * This method retrieves the available markets and populates the `markets` array.
+ */
 fetchMarkets(): void {
   this.vendorService.getMarkets().subscribe((data:IDropDownFields[]) => {
     this.markets = data;
   });
 }
 
-//function for fetching services form table
+ /**
+ * Fetches the list of services from the backend.
+ * 
+ * This method retrieves the available services and populates the `services` array.
+ */
 fetchServices(): void {
   this.vendorService.getServices().subscribe((data:IDropDownFields[]) => {
     this.services = data;
   });
 }
 
- //function for submitting the entered vendor data
+ /**
+ * Submits the vendor data entered in the form.
+ * 
+ * This method collects the form data, maps it to the `IVendorCreation` interface, 
+ * and sends it to the backend for submission.
+ * 
+ * @param {FormGroup} addVendorForm - The form group containing vendor details.
+ */
  submitVendor(): void {
   const formValue = this.addVendorForm.value;
   const vendorData: IVendorCreation = {
