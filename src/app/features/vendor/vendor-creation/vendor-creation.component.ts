@@ -84,7 +84,7 @@ export class VendorCreationComponent implements OnInit {
     this.fetchServices();
     this.createAddVendorForm();
     if (this.isEdit) {
-      this.selectedVendorId = Number(history.state.id);
+      this.selectedVendorId = Number(this.route.snapshot.paramMap.get('id'));
       this.fetchVendorData();
     }
   }
