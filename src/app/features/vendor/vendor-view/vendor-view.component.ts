@@ -28,13 +28,11 @@ import { IVendor } from '../models/vendor.model';
  * Navigate to the edit vendor profile page when clicked on the Edit profile button.
  * Approve the vendor's status from pending to approved when the user clicks the Approve Vendor button. 
  */
-
 @Component({
   selector: 'r2q-vendor-view',
   standalone: false,
   templateUrl: './vendor-view.component.html',
   styleUrl: './vendor-view.component.scss',
-  providers: [ConfirmationService],
 })
 
 export class VendorViewComponent {
@@ -44,7 +42,7 @@ export class VendorViewComponent {
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private vendorService: VendorService,
-    private router: Router
+    private router: Router,
   ) {}
 
   /**
@@ -63,17 +61,15 @@ export class VendorViewComponent {
    *  @param id - The ID of the vendor to be edited.
    */
   getVendorById(id: number): void {
-    this.vendorService.getVendorById(id).subscribe({
-      next: (data) => {
+    this.vendorService.getVendorById(id).subscribe((data) => {
         this.vendor = data;
-      },
     });
   }
 
   /**
    * Method to show confirm pop up to approve the vendor.
    */
-  confirmApproval() {
+  confirmApproval():void {
     this.confirmationService.confirm({
       message: 'Are you sure you want to approve this vendor?',
       accept: () => {
@@ -86,11 +82,9 @@ export class VendorViewComponent {
    * Function to approve the vendor by updating their status to approved.
    */
   approveVendor(): void {
-    this.vendorService.approveVendor(this.vendor.id).subscribe({
-      next: () => {
-        (this.vendor.isApproved = true);
-      },
-    });
+    this.vendorService.approveVendor(this.vendor.id).subscribe(() => {
+      this.getVendorById(this.vendor.id);
+      });
   }
 
   /**
@@ -98,6 +92,6 @@ export class VendorViewComponent {
    * @param id - The ID of the vendor to be edited.
    */
   navigateToEdit(id: number) {
-    this.router.navigate(['/vendor/edit'], { state: { id: id } });
+    this.router.navigate(['/vendor/edit/'+ id]);
   }
 }

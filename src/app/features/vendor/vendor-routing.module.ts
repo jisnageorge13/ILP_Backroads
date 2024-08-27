@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', component: VendorListingComponent },
   { path: 'creation', component: VendorCreationComponent },
   { path: 'view/:id', component: VendorViewComponent },
+  { path: 'edit/:id', component: VendorCreationComponent },
   { path: '', redirectTo: 'listing', pathMatch: 'full' },
 ];
 

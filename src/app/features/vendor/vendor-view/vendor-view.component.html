@@ -1,13 +1,14 @@
 <p-confirmDialog
   header="Confirmation"
   icon="pi pi-exclamation-triangle"
-></p-confirmDialog>
+>
+</p-confirmDialog>
 <div class="home">
   <div class="nav"></div>
   <div class="header">
     <h1>
       {{ vendor.name }}
-      <span *ngIf="!vendor?.isApproved" class="status-label pending">
+      <span *ngIf="!vendor.isApproved" class="status-label pending">
         PENDING
       </span>
     </h1>
@@ -35,7 +36,7 @@
   </div>
   <div class="vendor-country">
     <span class="pi pi-map-marker"></span>
-    <span>{{ vendor.country }},&nbsp;{{ vendor.stateProvinceRegion }}</span>
+    <span>{{ vendor.country + ', ' + vendor.stateProvinceRegion }}</span>
   </div>
   <div class="content">
     <h5>Basic Info</h5>
@@ -53,12 +54,12 @@
         <div class="info-item">
           <strong>Website:</strong>
           <p>
-            <a [href]="vendor?.website" target="_blank">{{ vendor.website }}</a>
+            <a [href]="vendor.website" target="_blank">{{ vendor.website | slice:0:50 }}...</a>
           </p>
         </div>
         <div class="info-item market">
           <strong>Market:</strong><br />
-          <ng-container *ngFor="let market of vendor?.markets; let i = index">
+          <ng-container *ngFor="let market of vendor.markets; let i = index">
             <span>{{ market.name }} </span>
           </ng-container>
         </div>

@@ -1,14 +1,13 @@
-
 interface ICommonVendorFields {
   name: string;
-  stateProvinceRegion?: string;
+  stateProvinceRegion?: string; 
   country: string;
   email: string;
   phone: string;
-  website?: string;
+  website?: string; 
   isApproved: boolean;
 }
- 
+
 export interface IVendorCreation extends ICommonVendorFields {
   serviceId: number;
   marketIds: number[];
@@ -24,11 +23,6 @@ export interface IVendorData extends ICommonVendorFields {
   markets: IDropDownFields[];
 }
 
-export interface IVendor extends ICommonVendorFields,IVendorData {
+export interface IVendor extends IVendorData {
   id:number;
 }
-
-
-
-
-
