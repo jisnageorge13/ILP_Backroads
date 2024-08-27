@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IVendor } from '../models/vendor.model';
+import { IVendorListing } from '../models/vendor.model';
+import { VendorService } from '../services/vendor.service';
 
 /**
  * VendorListingComponent
@@ -31,62 +32,26 @@ import { IVendor } from '../models/vendor.model';
   styleUrl: './vendor-listing.component.scss',
 })
 export class VendorListingComponent implements OnInit {
-  vendors!: IVendor[];
+  vendors!: IVendorListing[];
 
+  constructor(private vendorService: VendorService) {}
   ngOnInit() {
-    //dummy data for vendor listing
-    this.vendors = [
-      {
-        id: '1',
-        name: 'Vendor A',
-        state: 'California',
-        country: 'USA',
-        code: '+1',
-        markets: ['USA', 'Canada'],
-        serviceCategories: 'IT Services',
-        email: 'vendorA@example.com',
-        phone: '123-456-7890',
-        website: 'https://vendorA.com',
-        isApproved: true,
-      },
-      {
-        id: '2',
-        name: 'Vendor B',
-        state: 'Berlin',
-        country: 'Germany',
-        code: '+49',
-        markets: ['Europe'],
-        serviceCategories: 'Manufacturing',
-        email: 'vendorB@example.com',
-        phone: '234-567-8901',
-        isApproved: false,
-      },
-      {
-        id: '3',
-        name: 'Vendor C',
-        country: 'Australia',
-        code: '+61',
-        markets: ['Asia', 'Australia'],
-        serviceCategories: 'Healthcare',
-        email: 'vendorC@example.com',
-        phone: '345-678-9012',
-        website: 'https://vendorC.com',
-        isApproved: true,
-      },
-      {
-        id: '4',
-        name: 'Vendor D',
-        country: 'Brazil',
-        code: '+55',
-        markets: ['South America'],
-        serviceCategories: 'Construction',
-        email: 'vendorD@example.com',
-        phone: '456-789-0123',
-        isApproved: false,
-      },
-    ];
+    this.vendorService.getVendors().subscribe((vendors) => {
+      // Transform API response to match the IVendor interface
+      this.vendors = vendors.map((vendor: any) => {
+        const transformedVendor: IVendorListing = {
+          id: vendor.id.toString(),
+          name: vendor.name,
+          markets: vendor.markets.map((market: any) => market.name),
+          serviceCategories: vendor.service.name, // Map service.name to serviceCategories
+          email: vendor.email,
+          isApproved: vendor.isApproved,
+        };
+        return transformedVendor;
+      });
 
-    // Sort vendors by name in ascending order
-    this.vendors.sort((a, b) => a.name.localeCompare(b.name));
+      // Sort vendors by name in ascending order
+      this.vendors.sort((a, b) => a.name.localeCompare(b.name));
+    });
   }
 }
