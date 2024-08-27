@@ -12,27 +12,37 @@ export class VendorService {
 
   constructor(private http: HttpClient) {}
 
-  // Fetching markets from the backend
+  /**
+   * method to fetch markets from backend using GET method
+   */
   getMarkets(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Market/GetMarkets`);
   }
 
-  // Fetching services from the backend
+  /**
+   * method to fetch services from backend using GET method
+   */
   getServices(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Service/GetService`);
   }
 
-  // Posting vendor data to the backend
+  /**
+   * method to add  vendor  to backend using POST method
+   */
   addVendor(vendorData: IVendorCreation): Observable<IVendorCreation> {
     return this.http.post<IVendorCreation>(`${this.baseUrl}/Vendor/CreateVendor`, vendorData);
   }
 
-  // update vendor data to the backend
+  /**
+   * method to sending the updated vendor details to backend using PUT method
+   */
   updateVendor(vendorData: IVendorCreation): Observable<IVendorCreation> {
     return this.http.post<IVendorCreation>(`${this.baseUrl}/Vendor/CreateVendor`, vendorData);
   }
 
-  // Fetching details of particular data
+  /**
+   * method to fetch the particular vendor details from backend
+   */
   getVendorById(id: number): Observable<IVendorData> {
     return this.http.get<IVendorData>(`${this.baseUrl}/Vendor/GetVendorById/${id}`);
   }

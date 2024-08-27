@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IVendor } from '../models/vendor.model';
 import { Router } from '@angular/router';
 
-
 /**
  * VendorListingComponent
  *
