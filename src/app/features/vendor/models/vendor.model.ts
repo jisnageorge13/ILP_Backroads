@@ -1,4 +1,4 @@
-export interface ICommonVendorFields {
+interface ICommonVendorFields {
   name: string;
   stateProvinceRegion?: string; 
   country: string;
