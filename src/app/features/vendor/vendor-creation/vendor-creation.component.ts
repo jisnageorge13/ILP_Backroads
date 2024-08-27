@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-inferrable-types */
+
 import { Component, OnInit } from '@angular/core';
 import { phonePattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -57,7 +57,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VendorCreationComponent implements OnInit {
   addVendorForm!: FormGroup;
-  isEdit: boolean = false;
+  isEdit = false;
   vendorData?: IVendorData;
   countries: string[] = ['USA', 'Germany', 'Australia', 'Brazil', 'India'];
   states: string[] = [
@@ -130,7 +130,7 @@ export class VendorCreationComponent implements OnInit {
     if (this.selectedVendorId) {
       this.vendorService.getVendorById(this.selectedVendorId).subscribe((data: IVendorData) => {
           this.vendorData = data;
-          this.populateForm();
+          this.bindVendorDetails();
         });
     }
   }
@@ -138,7 +138,7 @@ export class VendorCreationComponent implements OnInit {
   /**
    * method to populate the form with retrieved deatails of vendor.
    */
-  populateForm(): void {
+  bindVendorDetails(): void {
     if (this.vendorData) {
       this.addVendorForm.patchValue({
         vendorName: this.vendorData.name,
@@ -169,7 +169,6 @@ export class VendorCreationComponent implements OnInit {
       isApproved: false,
       marketIds: formValue.markets,
     };
-    console.log(vendorData);
     if (this.isEdit) {
       this.vendorService.updateVendor(vendorData).subscribe();
     } else {

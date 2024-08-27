@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IVendorCreation, IDropDownFields, IVendor, IVendorData} from '../models/vendor.model';
+import { IVendorCreation, IDropDownFields, IVendorData} from '../models/vendor.model';
 
 @Injectable({
   providedIn: 'root',

@@ -8,16 +8,7 @@ interface ICommonVendorFields {
   isApproved: boolean;
 }
 
-export interface IVendor extends ICommonVendorFields {
-  id: string;
-  state?: string;
-  markets: string[];
-  serviceCategories: string;
-}
-
 export interface IVendorCreation extends ICommonVendorFields {
-  stateProvinceRegion: string;
-  website: string;
   serviceId: number;
   marketIds: number[];
 }
@@ -28,8 +19,6 @@ export interface IDropDownFields {
 }
 
 export interface IVendorData extends ICommonVendorFields {
-  stateProvinceRegion: string;
-  website: string;
   service: IDropDownFields;
   markets: IDropDownFields[];
 }

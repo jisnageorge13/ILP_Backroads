@@ -5,9 +5,14 @@
     <form
       class="add-vendor-page"
       [formGroup]="addVendorForm"
-      (ngSubmit)="submitVendor()">
+      (ngSubmit)="submitVendor()"
+    >
       <div class="form-heading">
+        @if(isEdit) {
+        <h2>Edit vendor</h2>
+        } @else {
         <h2>New vendor</h2>
+        }
       </div>
       <div class="form-body">
         <div>
@@ -24,10 +29,13 @@
             required
             [class.invalidInput]="
               addVendorForm.get('vendorName')?.invalid &&
-              addVendorForm.get('vendorName')?.touched"
+              addVendorForm.get('vendorName')?.touched
+            "
             [disabled]="isEdit"
           />
-          <r2q-error-message [control]="addVendorForm.get('vendorName')"></r2q-error-message>
+          <r2q-error-message
+            [control]="addVendorForm.get('vendorName')"
+          ></r2q-error-message>
         </div>
         <div class="state-country">
           <div class="vendor-place">
@@ -43,7 +51,8 @@
           </div>
           <div class="vendor-place">
             <label id="country" class="selectedCity"
-              >Country<span class="requiredSymbol">*</span></label>
+              >Country<span class="requiredSymbol">*</span></label
+            >
             <div class="card flex justify-content-center">
               <p-dropdown
                 formControlName="country"
@@ -58,7 +67,9 @@
                 }"
               />
             </div>
-          <r2q-error-message [control]="addVendorForm.get('country')"></r2q-error-message>
+            <r2q-error-message
+              [control]="addVendorForm.get('country')"
+            ></r2q-error-message>
           </div>
         </div>
         <div class="state-country">
@@ -80,10 +91,13 @@
                     addVendorForm.get('markets')?.invalid &&
                     addVendorForm.get('markets')?.touched &&
                     addVendorForm.get('markets')?.hasError('required')
-                }">
+                }"
+              >
               </p-multiSelect>
             </div>
-          <r2q-error-message [control]="addVendorForm.get('markets')"></r2q-error-message>
+            <r2q-error-message
+              [control]="addVendorForm.get('markets')"
+            ></r2q-error-message>
           </div>
           <div class="service-category">
             <label for="service">
@@ -106,7 +120,9 @@
                 }"
               ></p-dropdown>
             </div>
-          <r2q-error-message [control]="addVendorForm.get('service')"></r2q-error-message>
+            <r2q-error-message
+              [control]="addVendorForm.get('service')"
+            ></r2q-error-message>
           </div>
         </div>
         <div class="contact-info">
@@ -114,7 +130,8 @@
           <div class="contact">
             <div class="contact-options">
               <label for="email"
-                >Email<span class="requiredSymbol">*</span></label>
+                >Email<span class="requiredSymbol">*</span></label
+              >
               <input
                 pInputText
                 type="email"
@@ -124,10 +141,13 @@
                 formControlName="email"
                 [class.invalidInput]="
                   addVendorForm.get('email')?.invalid &&
-                  addVendorForm.get('email')?.touched"
+                  addVendorForm.get('email')?.touched
+                "
                 required
               />
-          <r2q-error-message [control]="addVendorForm.get('email')"></r2q-error-message>
+              <r2q-error-message
+                [control]="addVendorForm.get('email')"
+              ></r2q-error-message>
             </div>
             <div class="phone-website">
               <div class="contact-options">
@@ -142,10 +162,13 @@
                     placeholder="Enter Number"
                     [class.invalidInput]="
                       addVendorForm.get('phone')?.invalid &&
-                      addVendorForm.get('phone')?.touched"
+                      addVendorForm.get('phone')?.touched
+                    "
                   />
                 </p-inputGroup>
-          <r2q-error-message [control]="addVendorForm.get('phone')"></r2q-error-message>
+                <r2q-error-message
+                  [control]="addVendorForm.get('phone')"
+                ></r2q-error-message>
               </div>
               <div class="contact-options">
                 <label for="website">Website(Optional)</label>
@@ -169,7 +192,14 @@
           [disabled]="addVendorForm.invalid"
           class="submit-btn"
         />
-        <button id="cancel-btn" type="button" [routerLink]="['/ ']" class="cancel-btn">Cancel</button>
+        <button
+          id="cancel-btn"
+          type="button"
+          [routerLink]="['/ ']"
+          class="cancel-btn"
+        >
+          Cancel
+        </button>
       </div>
     </form>
   </div>

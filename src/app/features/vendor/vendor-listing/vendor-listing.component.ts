@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IVendor } from '../models/vendor.model';
 import { Router } from '@angular/router';
 
 /**
@@ -31,59 +30,7 @@ import { Router } from '@angular/router';
   templateUrl: './vendor-listing.component.html',
   styleUrl: './vendor-listing.component.scss',
 })
-export class VendorListingComponent implements OnInit {
-  vendors!: IVendor[];
+export class VendorListingComponent  {
+  vendors!: any[];
  constructor(private router : Router){}
-  ngOnInit() {
-    //dummy data for vendor listing
-    this.vendors = [
-      {
-        id: '1',
-        name: 'Vendor A',
-        state: 'California',
-        country: 'USA',
-        markets: ['USA', 'Canada'],
-        serviceCategories: 'IT Services',
-        email: 'vendorA@example.com',
-        phone: '123-456-7890',
-        website: 'https://vendorA.com',
-        isApproved: true,
-      },
-      {
-        id: '2',
-        name: 'Vendor B',
-        state: 'Berlin',
-        country: 'Germany',
-        markets: ['Europe'],
-        serviceCategories: 'Manufacturing',
-        email: 'vendorB@example.com',
-        phone: '234-567-8901',
-        isApproved: false,
-      },
-      {
-        id: '3',
-        name: 'Vendor C',
-        country: 'Australia',
-        markets: ['Asia', 'Australia'],
-        serviceCategories: 'Healthcare',
-        email: 'vendorC@example.com',
-        phone: '345-678-9012',
-        website: 'https://vendorC.com',
-        isApproved: true,
-      },
-      {
-        id: '4',
-        name: 'Vendor D',
-        country: 'Brazil',
-        markets: ['South America'],
-        serviceCategories: 'Construction',
-        email: 'vendorD@example.com',
-        phone: '456-789-0123',
-        isApproved: false,
-      },
-    ];
-
-    // Sort vendors by name in ascending order
-    this.vendors.sort((a, b) => a.name.localeCompare(b.name));
-  }
 }
