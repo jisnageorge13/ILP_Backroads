@@ -1,30 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IVendorListing } from '../models/vendor.model';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { IVendorCreation, IDropDownFields,IVendorListing} from '../models/vendor.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VendorService {
-  private apiUrl = 'http://localhost:5255/api/Vendor/GetVendors';
+  private baseUrl = 'http://localhost:5255/api';
 
   constructor(private http: HttpClient) {}
 
   getVendors(): Observable<IVendorListing[]> {
-    return this.http.get<IVendorListing[]>(this.apiUrl);
+    return this.http.get<IVendorListing[]>(`${this.baseUrl}/Vendor/GetVendors`);
+  }
+  // Fetching markets from the backend
+  getMarkets(): Observable<IDropDownFields[]> {
+    return this.http.get<IDropDownFields[]>(
+      `${this.baseUrl}/Market/GetMarkets`
+    );
   }
 
-  getVendorById(id: string): Observable<IVendorListing> {
-    return this.http.get<IVendorListing>(`${this.apiUrl}/${id}`);
+  // Fetching services from the backend
+  getServices(): Observable<IDropDownFields[]> {
+    return this.http.get<IDropDownFields[]>(
+      `${this.baseUrl}/Service/GetService`
+    );
   }
 
-  createVendor(vendor: IVendorListing): Observable<IVendorListing> {
-    return this.http.post<IVendorListing>(this.apiUrl, vendor);
-  }
-
-  updateVendor(id: string, vendor: IVendorListing): Observable<IVendorListing> {
-    return this.http.put<IVendorListing>(`${this.apiUrl}/${id}`, vendor);
+  // Posting vendor data to the backend
+  addVendor(vendorData: IVendorCreation): Observable<IVendorCreation> {
+    return this.http.post<IVendorCreation>(
+      `${this.baseUrl}/Vendor/CreateVendor`,
+      vendorData
+    );
   }
 }

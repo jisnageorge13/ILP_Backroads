@@ -1,1 +1,175 @@
-<p>creation works!</p>
+<div class="container">
+  <div class="header"></div>
+  <div class="row">
+    <div class="col-1"></div>
+    <form
+      class="add-vendor-page"
+      [formGroup]="addVendorForm"
+      (ngSubmit)="submitVendor()">
+      <div class="form-heading">
+        <h2>New vendor</h2>
+      </div>
+      <div class="form-body">
+        <div>
+          <label for="vendorName" class="vendorName"
+            >Vendor Name<span class="requiredSymbol">*</span></label
+          >
+          <input
+            pInputText
+            id="vendorName"
+            type="text"
+            class="vendorNameInput"
+            formControlName="vendorName"
+            placeholder="Enter Vendor Name"
+            required
+            [class.invalidInput]="
+              addVendorForm.get('vendorName')?.invalid &&
+              addVendorForm.get('vendorName')?.touched"
+          />
+          <r2q-error-message [control]="addVendorForm.get('vendorName')"></r2q-error-message>
+        </div>
+        <div class="state-country">
+          <div class="vendor-place">
+            <label id="state" class="selectedCity">State</label>
+            <div class="card flex justify-content-center">
+              <p-dropdown
+                formControlName="state"
+                [options]="states"
+                placeholder="Select State"
+                id="state"
+              />
+            </div>
+          </div>
+          <div class="vendor-place">
+            <label id="country" class="selectedCity"
+              >Country<span class="requiredSymbol">*</span></label>
+            <div class="card flex justify-content-center">
+              <p-dropdown
+                formControlName="country"
+                [options]="countries"
+                placeholder="Select Country"
+                id="country"
+                [ngClass]="{
+                  'ng-dirty ng-invalid':
+                    addVendorForm.get('country')?.invalid &&
+                    addVendorForm.get('country')?.touched &&
+                    addVendorForm.get('country')?.hasError('required')
+                }"
+              />
+            </div>
+          <r2q-error-message [control]="addVendorForm.get('country')"></r2q-error-message>
+          </div>
+        </div>
+        <div class="state-country">
+          <div class="market-name">
+            <label for="markets" class="marketlabel">
+              Markets<span class="requiredSymbol">*</span>
+            </label>
+            <div class="card flex justify-content-center">
+              <p-multiSelect
+                formControlName="markets"
+                [options]="markets"
+                optionLabel="name"
+                showHeader="false"
+                optionValue="id"
+                placeholder="Select Markets"
+                id="markets"
+                [ngClass]="{
+                  'ng-dirty ng-invalid':
+                    addVendorForm.get('markets')?.invalid &&
+                    addVendorForm.get('markets')?.touched &&
+                    addVendorForm.get('markets')?.hasError('required')
+                }">
+              </p-multiSelect>
+            </div>
+          <r2q-error-message [control]="addVendorForm.get('markets')"></r2q-error-message>
+          </div>
+          <div class="service-category">
+            <label for="service">
+              Service Category<span class="requiredSymbol">*</span>
+            </label>
+            <div class="card flex justify-content-center">
+              <p-dropdown
+                formControlName="service"
+                [options]="services"
+                optionLabel="name"
+                optionValue="id"
+                placeholder="Select Service"
+                id="service"
+                [scrollHeight]="'9.375rem'"
+                [ngClass]="{
+                  'ng-dirty ng-invalid':
+                    addVendorForm.get('service')?.invalid &&
+                    addVendorForm.get('service')?.touched &&
+                    addVendorForm.get('service')?.hasError('required')
+                }"
+              ></p-dropdown>
+            </div>
+          <r2q-error-message [control]="addVendorForm.get('service')"></r2q-error-message>
+          </div>
+        </div>
+        <div class="contact-info">
+          <p>General Contact Info</p>
+          <div class="contact">
+            <div class="contact-options">
+              <label for="email"
+                >Email<span class="requiredSymbol">*</span></label>
+              <input
+                pInputText
+                type="email"
+                id="email"
+                class="email"
+                placeholder="Enter Email"
+                formControlName="email"
+                [class.invalidInput]="
+                  addVendorForm.get('email')?.invalid &&
+                  addVendorForm.get('email')?.touched"
+                required
+              />
+          <r2q-error-message [control]="addVendorForm.get('email')"></r2q-error-message>
+            </div>
+            <div class="phone-website">
+              <div class="contact-options">
+                <label for="phone">
+                  Phone<span class="requiredSymbol">*</span></label
+                >
+                <p-inputGroup>
+                  <input
+                    formControlName="phone"
+                    pInputText
+                    type="string"
+                    placeholder="Enter Number"
+                    [class.invalidInput]="
+                      addVendorForm.get('phone')?.invalid &&
+                      addVendorForm.get('phone')?.touched"
+                  />
+                </p-inputGroup>
+          <r2q-error-message [control]="addVendorForm.get('phone')"></r2q-error-message>
+              </div>
+              <div class="contact-options">
+                <label for="website">Website(Optional)</label>
+                <input
+                  pInputText
+                  type="text"
+                  id="website"
+                  placeholder="Enter Website"
+                  formControlName="website"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card submit-cancel">
+        <p-button
+          type="submit"
+          id="submit-btn"
+          label="Submit for Approval"
+          [disabled]="addVendorForm.invalid"
+          class="submit-btn"
+        />
+        <button id="cancel-btn" type="button" [routerLink]="['/ ']" class="cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

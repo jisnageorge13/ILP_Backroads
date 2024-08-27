@@ -17,7 +17,7 @@ import { provideHttpClient } from '@angular/common/http';
     provideClientHydration(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
-    provideHttpClient(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent],
 })
