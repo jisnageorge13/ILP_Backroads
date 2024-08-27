@@ -1,25 +1,15 @@
-export interface IVendor {
-  id: string;
+interface ICommonVendorFields {
   name: string;
-  state?: string;
+  stateProvinceRegion?: string; 
   country: string;
-  markets: string[];
-  serviceCategories: string;
   email: string;
   phone: string;
-  website?: string;
+  website?: string; 
   isApproved: boolean;
 }
 
-export interface IVendorCreation {
-  name: string;
-  stateProvinceRegion: string;
-  country: string;
-  email: string;
-  phone: string;
-  website: string;
+export interface IVendorCreation extends ICommonVendorFields {
   serviceId: number;
-  isApproved: boolean;
   marketIds: number[];
 }
 
@@ -28,3 +18,11 @@ export interface IDropDownFields {
   name: string;
 }
 
+export interface IVendorData extends ICommonVendorFields {
+  service: IDropDownFields;
+  markets: IDropDownFields[];
+}
+
+export interface IVendor extends IVendorData {
+  id: number;
+}
