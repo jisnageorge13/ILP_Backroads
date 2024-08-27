@@ -32,7 +32,7 @@ import { IVendor } from '../models/vendor.model';
   styleUrl: './vendor-listing.component.scss',
 })
 export class VendorListingComponent implements OnInit {
-  vendors!: IVendor[];
+  vendors!: any[];
  constructor(private router : Router){}
   ngOnInit() {
     //dummy data for vendor listing

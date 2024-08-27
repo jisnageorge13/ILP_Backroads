@@ -69,7 +69,7 @@ export class VendorCreationComponent implements OnInit {
   ];
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
-  selectedVendorId?: number;
+  selectedVendorId!: number;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -170,7 +170,7 @@ export class VendorCreationComponent implements OnInit {
       marketIds: formValue.markets,
     };
     if (this.isEdit) {
-      this.vendorService.updateVendor(vendorData).subscribe();
+      this.vendorService.updateVendor(this.selectedVendorId,vendorData).subscribe();
     } else {
       this.vendorService.addVendor(vendorData).subscribe();
     }
