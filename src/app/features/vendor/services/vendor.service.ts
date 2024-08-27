@@ -23,7 +23,7 @@ export class VendorService {
   }
 
   // Posting vendor data to the backend
-  addVendor(vendorData: any): Observable<IVendorCreation> {
+  addVendor(vendorData: IVendorCreation): Observable<IVendorCreation> {
     return this.http.post<IVendorCreation>(`${this.baseUrl}/Vendor/CreateVendor`, vendorData);
   }
 }

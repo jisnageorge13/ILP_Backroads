@@ -54,8 +54,8 @@ ngOnInit(){
 }
 
 /**
-  * Creates and validates the vendor creation form using FormBuilder.
-  */
+ * Creates and validates the vendor creation form using FormBuilder.
+ */
  createAddVendorForm(): void {
   this.addVendorForm = this.fb.group({
     vendorName: ['', [Validators.required, Validators.maxLength(100)]],
