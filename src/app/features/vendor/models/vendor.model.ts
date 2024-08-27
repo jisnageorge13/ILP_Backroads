@@ -13,7 +13,6 @@ export interface IVendor {
 
 export interface IVendorCreation {
   name: string;
-  city: string;
   stateProvinceRegion: string;
   country: string;
   email: string;

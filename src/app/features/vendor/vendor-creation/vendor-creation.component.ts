@@ -106,7 +106,6 @@ fetchServices(): void {
   const formValue = this.addVendorForm.value;
   const vendorData: IVendorCreation = {
     name: formValue.vendorName,
-    city: formValue.state,
     stateProvinceRegion: formValue.state,
     country: formValue.country,
     email: formValue.email,
