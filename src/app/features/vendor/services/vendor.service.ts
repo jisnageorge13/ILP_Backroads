@@ -41,5 +41,4 @@ export class VendorService {
     return this.http.patch<void>(`${this.baseUrl}/Vendor/ApproveVendor/${id}`, { isApproved: true });
   }
 }
-export { IVendor };
 

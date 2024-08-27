@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { IVendor, VendorService } from '../services/vendor.service';
-import { Router } from '@angular/router';
+import { VendorService } from '../services/vendor.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IVendor } from '../models/vendor.model';
 
 /**  LLD
 
@@ -33,43 +34,50 @@ import { Router } from '@angular/router';
   standalone: false,
   templateUrl: './vendor-view.component.html',
   styleUrl: './vendor-view.component.scss',
-  providers:[ConfirmationService]
+  providers: [ConfirmationService],
 })
 
 export class VendorViewComponent {
   vendor!: IVendor;
+
   constructor(
+    private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private vendorService: VendorService,
     private router: Router
   ) {}
 
-  /** 
+  /**
    * On component initialization, fetches the vendor details
    */
   ngOnInit(): void {
-    this.getVendorById(2);
+    this.route.paramMap.subscribe((params) => {
+      const id = Number(params.get('id'));
+      if (id) {
+        this.getVendorById(id);
+      }
+    });
   }
 
   /**  Function to fetch the details of a vendor by their ID.
    *  @param id - The ID of the vendor to be edited.
    */
   getVendorById(id: number): void {
-    this.vendorService.getVendorById(2).subscribe({
+    this.vendorService.getVendorById(id).subscribe({
       next: (data) => {
         this.vendor = data;
       },
     });
   }
 
-  /**  
-   * Prompt to the user to confirm if they want to approve the vendor.If confirmed, triggers the approval process.
+  /**
+   * Method to show confirm pop up to approve the vendor.
    */
   confirmApproval() {
     this.confirmationService.confirm({
       message: 'Are you sure you want to approve this vendor?',
       accept: () => {
-       this.approveVendor();
+        this.approveVendor();
       },
     });
   }
@@ -80,17 +88,16 @@ export class VendorViewComponent {
   approveVendor(): void {
     this.vendorService.approveVendor(this.vendor.id).subscribe({
       next: () => {
-        this.vendor.isApproved = true;
+        (this.vendor.isApproved = true);
       },
     });
   }
 
-  /** 
+  /**
    * Navigates to the edit vendor profile page.
    * @param id - The ID of the vendor to be edited.
    */
   navigateToEdit(id: number) {
-    console.log('edit');
     this.router.navigate(['/vendor/edit'], { state: { id: id } });
   }
 }

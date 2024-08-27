@@ -1,27 +1,28 @@
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+.home {
+  width: 100%;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-right: 1rem;
 }
 
 .nav {
-  height: 5rem;
+  height: 3rem;
   border: 0.063rem solid #d1d5db;
   background-color: #1a4870;
 }
+
 .vendor-country {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ccc;
   color: #555;
+  margin-left: 2rem;
 }
 
 .header h1 {
@@ -29,12 +30,13 @@
   margin: 0;
   display: flex;
   align-items: center;
+  margin-left: 2rem;
 }
 
 .status-label {
-  background-color: #ffd700; 
+  background-color: #ffd700;
   color: #333;
-  font-size: 14px;
+  font-size: 10px;
   padding: 4px 8px;
   margin-left: 10px;
   border-radius: 3px;
@@ -58,7 +60,8 @@
 }
 
 .content {
-  margin-top: 20px;
+  margin-top: 2rem;
+  margin-left: 2rem;
 }
 
 .profile-info {
@@ -121,4 +124,42 @@
 
 .info-item span {
   color: #555;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.info-item {
+  padding: 10px 0;
+  color: black;
+}
+
+.info-item strong {
+  display: inline-block;
+  font-weight: 600;
+  color: rgb(135, 135, 128);
+}
+
+.info-item:nth-child(1) {
+  grid-column: 1 / span 1;
+}
+
+.info-item:nth-child(2) {
+  grid-column: 2 / span 1;
+}
+
+.info-item:nth-child(3) {
+  grid-column: 3 / span 1;
+}
+
+.market {
+  grid-column: 1 / span 1;
+}
+
+.service-category {
+  grid-column: 2 / span 1;
 }

@@ -2,11 +2,11 @@
   header="Confirmation"
   icon="pi pi-exclamation-triangle"
 ></p-confirmDialog>
-<div class="container">
+<div class="home">
   <div class="nav"></div>
   <div class="header">
     <h1>
-      {{ vendor?.name }}
+      {{ vendor.name }}
       <span *ngIf="!vendor?.isApproved" class="status-label pending">
         PENDING
       </span>
@@ -14,7 +14,7 @@
     <div class="buttons">
       <button
         pButton
-        id="editProfileButton"
+        id="edit-profile-button"
         type="button"
         label="Edit Profile"
         icon="pi pi-pencil"
@@ -24,7 +24,7 @@
       ></button>
       <button
         pButton
-        id="approveVendorButton"
+        id="approve-vendor-button"
         type="button"
         label="Approve Vendor"
         icon="pi pi-check"
@@ -35,8 +35,7 @@
   </div>
   <div class="vendor-country">
     <span class="pi pi-map-marker"></span>
-    <span>{{ vendor?.country }},</span>
-    <span>&nbsp;{{ vendor?.stateProvinceRegion }}</span>
+    <span>{{ vendor.country }},&nbsp;{{ vendor.stateProvinceRegion }}</span>
   </div>
   <div class="content">
     <h5>Basic Info</h5>
@@ -45,31 +44,27 @@
       <div class="info-row">
         <div class="info-item">
           <strong>Email:</strong>
-          <p>{{ vendor?.email }}</p>
+          <p>{{ vendor.email }}</p>
         </div>
         <div class="info-item">
           <strong>Phone:</strong>
-          <p>{{ vendor?.phone }}</p>
+          <p>{{ vendor.phone }}</p>
         </div>
         <div class="info-item">
           <strong>Website:</strong>
-          <a [href]="vendor?.website" target="_blank">{{ vendor?.website }}</a>
+          <p>
+            <a [href]="vendor?.website" target="_blank">{{ vendor.website }}</a>
+          </p>
         </div>
-      </div>
-      <div class="info-row">
-        <div class="info-item">
-          <strong>Market:</strong><br>
+        <div class="info-item market">
+          <strong>Market:</strong><br />
           <ng-container *ngFor="let market of vendor?.markets; let i = index">
             <span>{{ market.name }} </span>
           </ng-container>
         </div>
-        <div class="info-item">
+        <div class="info-item service-category">
           <strong>Service Category:</strong>
-            <ng-container>
-              <p>{{ vendor.service.name }}</p>
-            </ng-container>
-        </div>
-        <div class="info-item">
+          <p>{{ vendor.service.name }}</p>
         </div>
       </div>
     </div>

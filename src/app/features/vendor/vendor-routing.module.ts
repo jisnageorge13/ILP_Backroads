@@ -7,7 +7,7 @@ import { VendorViewComponent } from './vendor-view/vendor-view.component';
 const routes: Routes = [
   { path: '', component: VendorListingComponent },
   { path: 'creation', component: VendorCreationComponent },
-  { path: 'view', component: VendorViewComponent },
+  { path: 'view/:id', component: VendorViewComponent },
   { path: '', redirectTo: 'listing', pathMatch: 'full' },
 ];
 
