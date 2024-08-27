@@ -6,6 +6,7 @@ import { VendorCreationComponent } from './vendor-creation/vendor-creation.compo
 const routes: Routes = [
   { path: '', component: VendorListingComponent },
   { path: 'creation', component: VendorCreationComponent },
+  { path: 'edit', component: VendorCreationComponent },
   { path: '', redirectTo: 'listing', pathMatch: 'full' },
 ];
 

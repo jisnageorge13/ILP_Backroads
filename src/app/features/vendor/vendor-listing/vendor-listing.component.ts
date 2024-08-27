@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IVendor } from '../models/vendor.model';
+import { Router } from '@angular/router';
+
 
 /**
  * VendorListingComponent
@@ -32,7 +34,7 @@ import { IVendor } from '../models/vendor.model';
 })
 export class VendorListingComponent implements OnInit {
   vendors!: IVendor[];
-
+ constructor(private router : Router){}
   ngOnInit() {
     //dummy data for vendor listing
     this.vendors = [

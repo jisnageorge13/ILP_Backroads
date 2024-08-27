@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IVendorCreation, IDropDownFields} from '../models/vendor.model';
+import { IVendorCreation, IDropDownFields, IVendor, IVendorData} from '../models/vendor.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +25,15 @@ export class VendorService {
   // Posting vendor data to the backend
   addVendor(vendorData: IVendorCreation): Observable<IVendorCreation> {
     return this.http.post<IVendorCreation>(`${this.baseUrl}/Vendor/CreateVendor`, vendorData);
+  }
+
+  // update vendor data to the backend
+  updateVendor(vendorData: IVendorCreation): Observable<IVendorCreation> {
+    return this.http.post<IVendorCreation>(`${this.baseUrl}/Vendor/CreateVendor`, vendorData);
+  }
+
+  // Fetching details of particular data
+  getVendorById(id: number): Observable<IVendorData> {
+    return this.http.get<IVendorData>(`${this.baseUrl}/Vendor/GetVendorById/${id}`);
   }
 }

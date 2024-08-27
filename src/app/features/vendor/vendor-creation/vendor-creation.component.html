@@ -25,6 +25,7 @@
             [class.invalidInput]="
               addVendorForm.get('vendorName')?.invalid &&
               addVendorForm.get('vendorName')?.touched"
+            [disabled]="isEdit"
           />
           <r2q-error-message [control]="addVendorForm.get('vendorName')"></r2q-error-message>
         </div>
@@ -35,6 +36,7 @@
               <p-dropdown
                 formControlName="state"
                 [options]="states"
+             
                 placeholder="Select State"
                 id="state"
               />

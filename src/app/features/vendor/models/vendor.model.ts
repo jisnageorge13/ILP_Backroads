@@ -28,3 +28,14 @@ export interface IDropDownFields {
   name: string;
 }
 
+export interface IVendorData{
+  name: string;
+  stateProvinceRegion: string;
+  country: string;
+  email: string;
+  phone: string;
+  website: string;
+  service: IDropDownFields;
+  isApproved: boolean;
+  markets: IDropDownFields[];
+}
