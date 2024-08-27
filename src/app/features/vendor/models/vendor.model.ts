@@ -22,8 +22,7 @@ export interface IVendorData extends ICommonVendorFields {
   service: IDropDownFields;
   markets: IDropDownFields[];
 }
-export interface IVendor extends ICommonVendorFields,IVendorData {
+
+export interface IVendor extends IVendorData {
   id: number;
 }
- 
- 
