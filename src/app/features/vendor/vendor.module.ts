@@ -16,9 +16,11 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FloatLabelModule } from "primeng/floatlabel"
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { VendorViewComponent } from './vendor-view/vendor-view.component';
+
 
 @NgModule({
-  declarations: [VendorListingComponent, VendorCreationComponent],
+  declarations: [VendorListingComponent, VendorCreationComponent,VendorViewComponent],
   imports: [CommonModule, SharedModule, VendorRoutingModule, TableModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
   
 })

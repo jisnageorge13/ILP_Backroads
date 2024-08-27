@@ -1,10 +1,10 @@
 export interface IVendor {
-  id: string;
+  id: number;
   name: string;
-  state?: string;
+  stateProvinceRegion?: string;
   country: string;
-  markets: string[];
-  serviceCategories: string;
+  markets: IDropDownFields[];
+  service: IDropDownFields;
   email: string;
   phone: string;
   website?: string;
@@ -27,4 +27,8 @@ export interface IDropDownFields {
   id: number;
   name: string;
 }
+
+
+
+
 

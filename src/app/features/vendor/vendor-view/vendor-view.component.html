@@ -1,0 +1,77 @@
+<p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+></p-confirmDialog>
+<div class="container">
+  <div class="nav"></div>
+  <div class="header">
+    <h1>
+      {{ vendor?.name }}
+      <span *ngIf="!vendor?.isApproved" class="status-label pending">
+        PENDING
+      </span>
+    </h1>
+    <div class="buttons">
+      <button
+        pButton
+        id="editProfileButton"
+        type="button"
+        label="Edit Profile"
+        icon="pi pi-pencil"
+        [rounded]="true"
+        [outlined]="true"
+        (click)="navigateToEdit(vendor.id)"
+      ></button>
+      <button
+        pButton
+        id="approveVendorButton"
+        type="button"
+        label="Approve Vendor"
+        icon="pi pi-check"
+        class="p-button-primary approve-btn"
+        (click)="confirmApproval()"
+      ></button>
+    </div>
+  </div>
+  <div class="vendor-country">
+    <span class="pi pi-map-marker"></span>
+    <span>{{ vendor?.country }},</span>
+    <span>&nbsp;{{ vendor?.stateProvinceRegion }}</span>
+  </div>
+  <div class="content">
+    <h5>Basic Info</h5>
+    <div class="profile-info">
+      <h3>Profile Info</h3>
+      <div class="info-row">
+        <div class="info-item">
+          <strong>Email:</strong>
+          <p>{{ vendor?.email }}</p>
+        </div>
+        <div class="info-item">
+          <strong>Phone:</strong>
+          <p>{{ vendor?.phone }}</p>
+        </div>
+        <div class="info-item">
+          <strong>Website:</strong>
+          <a [href]="vendor?.website" target="_blank">{{ vendor?.website }}</a>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-item">
+          <strong>Market:</strong><br>
+          <ng-container *ngFor="let market of vendor?.markets; let i = index">
+            <span>{{ market.name }} </span>
+          </ng-container>
+        </div>
+        <div class="info-item">
+          <strong>Service Category:</strong>
+            <ng-container>
+              <p>{{ vendor.service.name }}</p>
+            </ng-container>
+        </div>
+        <div class="info-item">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
