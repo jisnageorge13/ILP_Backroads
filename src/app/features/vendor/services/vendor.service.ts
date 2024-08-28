@@ -18,14 +18,14 @@ export class VendorService {
 
 /**
  * Method to fetch markets 
-*/
+ */
   getMarkets(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Market/GetMarkets`);
   }
 
 /**
  * Method to fetch services 
-*/
+ */
   getServices(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Service/GetService`);
   }
