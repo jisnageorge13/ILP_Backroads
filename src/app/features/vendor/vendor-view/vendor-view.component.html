@@ -54,11 +54,17 @@
         </div>
         <div class="info-item">
           <small>Website</small>
-          <p>
-            <a [href]="vendor.website" target="_blank"
-              >{{ vendor.website | slice : 0 : 50 }}...</a
-            >
-          </p>
+          @if(vendor.website)
+          {
+            <p>
+              <a [href]="vendor.website" target="_blank"
+                >{{ vendor.website | slice : 0 : 50 }}...</a
+              >
+            </p>
+          }
+           @else {
+            <p>---</p>
+           }
         </div>
         <div class="info-item market">
           <small>Market</small><br />

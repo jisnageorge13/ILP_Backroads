@@ -1,15 +1,13 @@
 <div class="header"></div>
+<p-toast />
     <form
       class="add-vendor-page"
       [formGroup]="addVendorForm"
       (ngSubmit)="submitVendor()"
     >
       <div class="form-heading">
-        @if(isEdit) {
-        <h2>Edit vendor</h2>
-        } @else {
-        <h2>New vendor</h2>
-        }
+        @if(isEdit) {<h2>Edit vendor</h2>} 
+        @else {<h2>New vendor</h2>}
       </div>
       <div class="form-body">
         <div>
@@ -28,7 +26,6 @@
               addVendorForm.get('vendorName')?.invalid &&
               addVendorForm.get('vendorName')?.touched
             "
-            [disabled]="isEdit"
           />
           <r2q-error-message
             [control]="addVendorForm.get('vendorName')"

@@ -5,7 +5,7 @@ interface ICommonVendorFields {
   email: string;
   phone: string;
   website?: string; 
-  isApproved: boolean;
+  isApproved?: boolean;
 }
 
 export interface IVendorCreation extends ICommonVendorFields {

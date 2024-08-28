@@ -1,3 +1,5 @@
+
+import { Message } from './../../../../../node_modules/esbuild/lib/main.d';
 import { Component, OnInit } from '@angular/core';
 import { phonePattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +10,7 @@ import {
 } from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 /**  LLD
  * This component is to add new vendors and update existing vendors.
@@ -62,12 +65,14 @@ export class VendorCreationComponent implements OnInit {
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
-
+  vendorName='';
+  
   constructor(
     private readonly fb: FormBuilder,
     private vendorService: VendorService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService :MessageService,
   ) {}
 
   ngOnInit() {
@@ -86,7 +91,7 @@ export class VendorCreationComponent implements OnInit {
    */
   createAddVendorForm(): void {
     this.addVendorForm = this.fb.group({
-      vendorName: ['', [Validators.required, Validators.maxLength(100)]],
+      vendorName: [{value:'',disabled: this.isEdit }, [Validators.required, Validators.maxLength(100)]],
       state: [''],
       country: ['', Validators.required],
       markets: ['', Validators.required],
@@ -122,6 +127,7 @@ export class VendorCreationComponent implements OnInit {
     if (this.selectedVendorId) {
       this.vendorService.getVendorById(this.selectedVendorId).subscribe((data: IVendorData) => {
           this.vendorData = data;
+          this.vendorName=data.name
           this.bindVendorDetails();
         });
     }
@@ -149,7 +155,7 @@ export class VendorCreationComponent implements OnInit {
    * Submits the vendor data entered in the form .
    */
   submitVendor(): void {
-    const formValue = this.addVendorForm.value;
+    const formValue = this.addVendorForm.getRawValue();
     const vendorData: IVendorCreation = {
       name: formValue.vendorName,
       stateProvinceRegion: formValue.state,
@@ -158,13 +164,54 @@ export class VendorCreationComponent implements OnInit {
       phone: formValue.phone,
       website: formValue.website,
       serviceId: formValue.service,
-      isApproved: false,
       marketIds: formValue.markets,
     };
     if (this.isEdit) {
-      this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe();
+
+      this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe((response) => {
+          this.showSuccess("Vendor Updated successfully");
+          this.router.navigate(['/vendor/view/'+this.selectedVendorId]);
+        },(error) => {
+          const serverErrors = error.error.errors || {};
+          let errorMsg = '';
+          Object.keys(serverErrors).forEach(key => {
+            errorMsg += `${serverErrors[key].join(';')} `;
+          });
+          if(errorMsg)
+            {
+              this.showError(errorMsg);
+            }
+            else{
+              this.showError(error.error.message);
+            }
+        });
     } else {
-      this.vendorService.addVendor(vendorData).subscribe();
+      this.vendorService.addVendor(vendorData).subscribe( (response) => {
+        this.showSuccess("Vendor Added successfully");
+        this.router.navigate(['']);
+        console.log(response);
+      },(error) => {
+        const serverErrors = error.error.errors || {};
+        let errorMsg = '';
+        Object.keys(serverErrors).forEach(key => {
+          errorMsg += ` ${serverErrors[key].join('; ')} `;
+        });
+        if(errorMsg)
+        {
+          this.showError(errorMsg);
+        }
+        else{
+          this.showError(error.error.message);
+        }
+      }
+    );
     }
+  }
+
+  showError(message : string) {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+  }
+  showSuccess(message : string) {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
   }
 }
