@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { IVendor } from '../models/vendor.model';
+import { VendorService } from '../services/vendor.service';
 
 /**
  * VendorListingComponent
@@ -31,61 +31,24 @@ import { IVendor } from '../models/vendor.model';
   styleUrl: './vendor-listing.component.scss',
 })
 export class VendorListingComponent implements OnInit {
-  vendors!: any[];
+  vendors!: IVendor[];
 
- constructor(private router : Router){}
- 
+  constructor(private vendorService: VendorService) {}
   ngOnInit() {
-    // dummy data for vendor listing
-    this.vendors = [
-      {
-        id: 1,
-        name: 'Vendor A',
-        stateProvinceRegion: 'California',
-        country: 'USA',
-        markets: ['USA', 'Canada'],
-        serviceCategories: 'IT Services',
-        email: 'vendorA@example.com',
-        phone: '123-456-7890',
-        website: 'https://vendorA.com',
-        isApproved: true,
-      },
-      {
-        id: 2,
-        name: 'Vendor B',
-        stateProvinceRegion: 'Berlin',
-        country: 'Germany',
-        markets: ['Europe'],
-        serviceCategories: 'Manufacturing',
-        email: 'vendorB@example.com',
-        phone: '234-567-8901',
-        isApproved: false,
-      },
-      {
-        id: 3,
-        name: 'Vendor C',
-        country: 'Australia',
-        markets: ['Asia', 'Australia'],
-        serviceCategories: 'Healthcare',
-        email: 'vendorC@example.com',
-        phone: '345-678-9012',
-        website: 'https://vendorC.com',
-        isApproved: true,
-      },
-      {
-        id: 4,
-        name: 'Vendor D',
-        country: 'Brazil',
-        markets: ['South America'],
-        serviceCategories: 'Construction',
-        email: 'vendorD@example.com',
-        phone: '456-789-0123',
-        isApproved: false,
-      },
-    ];
+    this.fetchVendors();
+  }
 
-      // Sort vendors by name in ascending order
-      this.vendors.sort((a, b) => a.name.localeCompare(b.name));
+/**
+ * Fetches the list of vendors from the backend and maps the API data to the `IVendorListing` interface.
+ */
+  private fetchVendors(): void {
+    this.vendorService.getVendors().subscribe((vendors: IVendor[]) => {
+      this.vendors = vendors;
     });
+
+/**
+ * Sort vendors by name in ascending order
+ */
+    this.vendors.sort((a, b) => a.name.localeCompare(b.name));
   }
 }
