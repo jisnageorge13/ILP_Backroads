@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VendorListingComponent } from './vendor-listing/vendor-listing.component';
 import { VendorCreationComponent } from './vendor-creation/vendor-creation.component';
+import { VendorViewComponent } from './vendor-view/vendor-view.component';
 
 const routes: Routes = [
   { path: '', component: VendorListingComponent },
   { path: 'creation', component: VendorCreationComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: 'view/:id', component: VendorViewComponent },
+  { path: 'edit/:id', component: VendorCreationComponent },
+  { path: '', redirectTo: 'listing', pathMatch: 'full' },
 ];
 
 @NgModule({

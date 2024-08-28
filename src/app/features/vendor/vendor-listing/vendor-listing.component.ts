@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IVendorListing } from '../models/vendor.model';
-import { VendorService } from '../services/vendor.service';
+import { Router } from '@angular/router';
+import { IVendor } from '../models/vendor.model';
 
 /**
  * VendorListingComponent
@@ -27,28 +27,62 @@ import { VendorService } from '../services/vendor.service';
 
 @Component({
   selector: 'app-vendor-listing',
-  standalone: false,
   templateUrl: './vendor-listing.component.html',
   styleUrl: './vendor-listing.component.scss',
 })
 export class VendorListingComponent implements OnInit {
-  vendors!: IVendorListing[];
+  vendors!: any[];
 
-  constructor(private vendorService: VendorService) {}
+ constructor(private router : Router){}
+ 
   ngOnInit() {
-    this.vendorService.getVendors().subscribe((vendors) => {
-      // Transform API response to match the IVendor interface
-      this.vendors = vendors.map((vendor: any) => {
-        const transformedVendor: IVendorListing = {
-          id: vendor.id.toString(),
-          name: vendor.name,
-          markets: vendor.markets.map((market: any) => market.name),
-          serviceCategories: vendor.service.name, // Map service.name to serviceCategories
-          email: vendor.email,
-          isApproved: vendor.isApproved,
-        };
-        return transformedVendor;
-      });
+    // dummy data for vendor listing
+    this.vendors = [
+      {
+        id: 1,
+        name: 'Vendor A',
+        stateProvinceRegion: 'California',
+        country: 'USA',
+        markets: ['USA', 'Canada'],
+        serviceCategories: 'IT Services',
+        email: 'vendorA@example.com',
+        phone: '123-456-7890',
+        website: 'https://vendorA.com',
+        isApproved: true,
+      },
+      {
+        id: 2,
+        name: 'Vendor B',
+        stateProvinceRegion: 'Berlin',
+        country: 'Germany',
+        markets: ['Europe'],
+        serviceCategories: 'Manufacturing',
+        email: 'vendorB@example.com',
+        phone: '234-567-8901',
+        isApproved: false,
+      },
+      {
+        id: 3,
+        name: 'Vendor C',
+        country: 'Australia',
+        markets: ['Asia', 'Australia'],
+        serviceCategories: 'Healthcare',
+        email: 'vendorC@example.com',
+        phone: '345-678-9012',
+        website: 'https://vendorC.com',
+        isApproved: true,
+      },
+      {
+        id: 4,
+        name: 'Vendor D',
+        country: 'Brazil',
+        markets: ['South America'],
+        serviceCategories: 'Construction',
+        email: 'vendorD@example.com',
+        phone: '456-789-0123',
+        isApproved: false,
+      },
+    ];
 
       // Sort vendors by name in ascending order
       this.vendors.sort((a, b) => a.name.localeCompare(b.name));
