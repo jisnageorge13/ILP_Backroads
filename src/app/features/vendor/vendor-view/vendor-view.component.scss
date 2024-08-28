@@ -8,38 +8,48 @@
   align-items: center;
   padding-bottom: 1rem;
   padding-top: 2rem;
+  margin-left: 1rem;
   padding-right: 1rem;
 }
 
 .nav {
   height: 3rem;
-  border: 0.063rem solid #d1d5db;
+  border: 1px solid #d1d5db;
   background-color: #1a4870;
 }
 
-.vendor-country {
+.basic-info {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ccc;
-  color: #555;
-  margin-left: 2rem;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(to left, #ccc 85%, #09b5fe 20%);
+  border-image-slice: 1;
+  margin: 1rem 0;
+}
+
+.basic-info h5 {
+  margin: 1rem;
+  padding-left: 1rem;
+  font-weight: bold;
 }
 
 .header h1 {
-  font-size: 24px;
+  font-size: 1.75rem;
   margin: 0;
   display: flex;
   align-items: center;
-  margin-left: 2rem;
+  margin-left: 1rem;
+  font-weight: bold;
 }
 
 .status-label {
   background-color: #ffd700;
   color: #333;
-  font-size: 10px;
-  padding: 4px 8px;
-  margin-left: 10px;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  margin-left: 0.5rem;
   border-radius: 3px;
+  margin-top: 0.2rem;
 }
 
 .buttons {
@@ -49,49 +59,47 @@
 }
 
 .buttons button {
-  margin-left: 10px;
+  margin-left: 0.5rem;
   border-radius: 8px;
 }
 
 .approve-btn {
-  margin-left: 10px;
+  margin-left: 0.5rem;
   border-radius: 8px;
   background-color: #1a4870;
 }
 
 .content {
   margin-top: 2rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 .profile-info {
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 
-.profile-info h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
+.profile-info h5 {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 .info-row {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 
-.info-row strong {
+.info-row small {
   width: 150px;
-  font-weight: 600;
-}
-
-.info-row span {
-  color: #555;
+  font-weight: 400;
+  color: #929292;
 }
 
 .flex-row .p-col-12 {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
   gap: 10px;
 }
 
@@ -103,14 +111,10 @@
   flex: 1;
 }
 
-.content {
-  margin-top: 20px;
-}
-
 .info-item {
-  flex: 1 1 20%;
-  margin-right: 10px;
-  padding: 10px 0 10px 0;
+  flex: 1 1 45%;
+  margin-right: 0.5rem;
+  padding: 0.5rem 0;
   box-sizing: border-box;
   color: black;
 }
@@ -123,25 +127,14 @@
 }
 
 .info-item span {
-  color: #555;
+  color: #000;
 }
 
 .info-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
   margin-bottom: 10px;
-}
-
-.info-item {
-  padding: 10px 0;
-  color: black;
-}
-
-.info-item strong {
-  display: inline-block;
-  font-weight: 600;
-  color: rgb(135, 135, 128);
 }
 
 .info-item:nth-child(1) {
@@ -169,14 +162,92 @@
   display: inline-flex;
   cursor: pointer;
   border-radius: 8px;
-margin-left: 1rem;
+  margin-left: 1rem;
   height: 2rem;
 }
-::ng-deep .p-confirm-dialog-reject 
-{
+
+::ng-deep .p-confirm-dialog-reject {
   background-color: white;
   color: red;
 }
-::ng-deep .p-confirm-dialog .p-dialog-content i{
+
+::ng-deep .p-confirm-dialog .p-dialog-content i {
   color: orange;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 1rem;
+    margin-left: 0;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+    margin-left: 0;
+  }
+
+  .status-label {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .buttons {
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .buttons button {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .content {
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .profile-info h3 {
+    font-size: 1.25rem;
+  }
+
+  .info-item {
+    flex: 1 1 100%;
+    margin-right: 0;
+    padding: 0.5rem 0;
+  }
+
+  .info-row {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.25rem;
+  }
+
+  .basic-info h5 {
+    margin: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .content {
+    padding-left: 0;
+  }
+
+  .buttons {
+    gap: 5px;
+  }
+
+  .buttons button {
+    font-size: 0.75rem;
+  }
+
+  .profile-info h3 {
+    font-size: 1rem;
+  }
 }

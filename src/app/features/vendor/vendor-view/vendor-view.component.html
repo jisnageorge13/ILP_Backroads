@@ -1,7 +1,4 @@
-<p-confirmDialog
-  header="Confirmation"
-  icon="pi pi-exclamation-triangle"
->
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle">
 </p-confirmDialog>
 <div class="home">
   <div class="nav"></div>
@@ -34,37 +31,46 @@
       ></button>
     </div>
   </div>
-  <div class="vendor-country">
-    <span class="pi pi-map-marker"></span>
-    <span>{{ vendor.country + ', ' + vendor.stateProvinceRegion }}</span>
+  <div class="basic-info">
+    <h5>Basic Info</h5>
   </div>
   <div class="content">
-    <h5>Basic Info</h5>
     <div class="profile-info">
-      <h3>Profile Info</h3>
+      <h5>Profile Info</h5>
       <div class="info-row">
         <div class="info-item">
-          <strong>Email:</strong>
+          <small>Address</small>
+          <p>{{ vendor.country + ', ' + vendor.stateProvinceRegion }}</p>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-item">
+          <small>Email</small>
           <p>{{ vendor.email }}</p>
         </div>
         <div class="info-item">
-          <strong>Phone:</strong>
+          <small>Phone</small>
           <p>{{ vendor.phone }}</p>
         </div>
         <div class="info-item">
-          <strong>Website:</strong>
+          <small>Website</small>
           <p>
-            <a [href]="vendor.website" target="_blank">{{ vendor.website | slice:0:50 }}...</a>
+            <a [href]="vendor.website" target="_blank"
+              >{{ vendor.website | slice : 0 : 50 }}...</a
+            >
           </p>
         </div>
         <div class="info-item market">
-          <strong>Market:</strong><br />
+          <small>Market</small><br />
           <ng-container *ngFor="let market of vendor.markets; let i = index">
-            <span>{{ market.name }} </span>
+            <span
+              >{{ market.name
+              }}<span *ngIf="i < vendor.markets.length - 1">, </span></span
+            >
           </ng-container>
         </div>
         <div class="info-item service-category">
-          <strong>Service Category:</strong>
+          <small>Service Category</small>
           <p>{{ vendor.service.name }}</p>
         </div>
       </div>

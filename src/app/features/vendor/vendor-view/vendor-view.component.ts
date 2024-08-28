@@ -69,7 +69,7 @@ export class VendorViewComponent {
   /**
    * Method to show confirm pop up to approve the vendor.
    */
-  confirmApproval():void {
+  confirmApproval(): void {
     this.confirmationService.confirm({
       message: 'Are you sure you want to approve this vendor?',
       accept: () => {
@@ -79,7 +79,7 @@ export class VendorViewComponent {
   }
 
   /**
-   * Function to approve the vendor by updating their status to approved.
+   * Method to approve the vendor by updating their status to approved.
    */
   approveVendor(): void {
     this.vendorService.approveVendor(this.vendor.id).subscribe(() => {
