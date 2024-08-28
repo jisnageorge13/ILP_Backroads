@@ -166,51 +166,52 @@ export class VendorCreationComponent implements OnInit {
       serviceId: formValue.service,
       marketIds: formValue.markets,
     };
+  
     if (this.isEdit) {
-
-      this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe((response) => {
+      this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe(
+        (response) => {
           this.showSuccess("Vendor Updated successfully");
-          this.router.navigate(['/vendor/view/'+this.selectedVendorId]);
-        },(error) => {
-          const serverErrors = error.error.errors || {};
-          let errorMsg = '';
-          Object.keys(serverErrors).forEach(key => {
-            errorMsg += `${serverErrors[key].join(';')} `;
-          });
-          if(errorMsg)
-            {
-              this.showError(errorMsg);
-            }
-            else{
-              this.showError(error.error.message);
-            }
-        });
+          this.router.navigate(['/vendor/view/' + this.selectedVendorId]);
+        },
+        (error) => this.handleError(error)
+      );
     } else {
-      this.vendorService.addVendor(vendorData).subscribe( (response) => {
-        this.showSuccess("Vendor Added successfully");
-        this.router.navigate(['']);
-        console.log(response);
-      },(error) => {
-        const serverErrors = error.error.errors || {};
-        let errorMsg = '';
-        Object.keys(serverErrors).forEach(key => {
-          errorMsg += ` ${serverErrors[key].join('; ')} `;
-        });
-        if(errorMsg)
-        {
-          this.showError(errorMsg);
-        }
-        else{
-          this.showError(error.error.message);
-        }
-      }
-    );
+      this.vendorService.addVendor(vendorData).subscribe(
+        (response) => {
+          this.showSuccess("Vendor Added successfully");
+          this.router.navigate(['']);
+        },
+        (error) => this.handleError(error)
+      );
     }
   }
 
+  /**
+   * method to handle the errors during submit .
+   */
+  private handleError(error: any): void {
+    const serverErrors = error.error.errors || {};
+    let errorMsg = '';
+    Object.keys(serverErrors).forEach((key) => {
+      errorMsg += `${serverErrors[key].join('; ')} `;
+    });
+    if (errorMsg) {
+      this.showError(errorMsg);
+    } else {
+      this.showError(error.error.message);
+    }
+  }
+  
+  /**
+   * method to show error message .
+   */
   showError(message : string) {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
+
+  /**
+   * method to show success message .
+   */
   showSuccess(message : string) {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
   }
