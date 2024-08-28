@@ -22,7 +22,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [VendorListingComponent, VendorCreationComponent, VendorViewComponent],
-  imports: [CommonModule, SharedModule, VendorRoutingModule, TableModule,ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
-  providers: [ConfirmationService,MessageService],
+  imports: [CommonModule, SharedModule, VendorRoutingModule, TableModule, ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
+  providers: [ConfirmationService, MessageService],
 })
 export class VendorModule {}

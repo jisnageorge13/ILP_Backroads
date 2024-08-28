@@ -28,7 +28,7 @@ import { Router } from '@angular/router';
 export class VendorListingComponent implements OnInit {
   vendors!: IVendor[];
 
-  constructor(private vendorService: VendorService,private router : Router) {}
+  constructor(private vendorService: VendorService, private router : Router) {}
 
   ngOnInit() {
     this.fetchVendors();
@@ -49,7 +49,6 @@ fetchVendors(): void {
    */
   navigateToView(event: IVendor)
   {
-    console.log(event);
    this.router.navigate(['/vendor/view/'+event.id]);
   }
 }
