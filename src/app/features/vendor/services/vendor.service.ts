@@ -47,8 +47,7 @@ export class VendorService {
  * Method to sending the updated vendor details to backend using PUT method
  */
   updateVendor(id: number, vendorData: IVendorCreation): Observable<IVendorCreation> {
-    return this.http.post<IVendorCreation>(`${this.baseUrl}/Vendor/updateVendor/${id}`,vendorData
-);
+    return this.http.put<IVendorCreation>(`${this.baseUrl}/Vendor/EditVendor/${id}`,vendorData);
   }
 
 /**
