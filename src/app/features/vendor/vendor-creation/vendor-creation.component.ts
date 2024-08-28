@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { phonePattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -51,7 +50,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-creation',
-  standalone: false,
   templateUrl: './vendor-creation.component.html',
   styleUrl: './vendor-creation.component.scss',
 })
@@ -60,13 +58,7 @@ export class VendorCreationComponent implements OnInit {
   isEdit = false;
   vendorData?: IVendorData;
   countries: string[] = ['USA', 'Germany', 'Australia', 'Brazil', 'India'];
-  states: string[] = [
-    'California',
-    'Berlin',
-    'Sydney',
-    'Rio de Janeiro',
-    'Kerala',
-  ];
+  states: string[] = ['California','Berlin','Sydney','Rio de Janeiro','Kerala',];
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
@@ -170,7 +162,7 @@ export class VendorCreationComponent implements OnInit {
       marketIds: formValue.markets,
     };
     if (this.isEdit) {
-      this.vendorService.updateVendor(this.selectedVendorId,vendorData).subscribe();
+      this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe();
     } else {
       this.vendorService.addVendor(vendorData).subscribe();
     }

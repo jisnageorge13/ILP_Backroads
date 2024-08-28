@@ -1,0 +1,79 @@
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle">
+</p-confirmDialog>
+<div class="home">
+  <div class="nav"></div>
+  <div class="header">
+    <h1>
+      {{ vendor.name }}
+      <span *ngIf="!vendor.isApproved" class="status-label pending">
+        PENDING
+      </span>
+    </h1>
+    <div class="buttons">
+      <button
+        pButton
+        id="edit-profile-button"
+        type="button"
+        label="Edit Profile"
+        icon="pi pi-pencil"
+        [rounded]="true"
+        [outlined]="true"
+        (click)="navigateToEdit(vendor.id)"
+      ></button>
+      <button
+        pButton
+        id="approve-vendor-button"
+        type="button"
+        label="Approve Vendor"
+        icon="pi pi-check"
+        class="p-button-primary approve-btn"
+        (click)="confirmApproval()"
+      ></button>
+    </div>
+  </div>
+  <div class="basic-info">
+    <h5>Basic Info</h5>
+  </div>
+  <div class="content">
+    <div class="profile-info">
+      <h5>Profile Info</h5>
+      <div class="info-row">
+        <div class="info-item">
+          <small>Address</small>
+          <p>{{ vendor.country + ', ' + vendor.stateProvinceRegion }}</p>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-item">
+          <small>Email</small>
+          <p>{{ vendor.email }}</p>
+        </div>
+        <div class="info-item">
+          <small>Phone</small>
+          <p>{{ vendor.phone }}</p>
+        </div>
+        <div class="info-item">
+          <small>Website</small>
+          <p>
+            <a [href]="vendor.website" target="_blank"
+              >{{ vendor.website | slice : 0 : 50 }}...</a
+            >
+          </p>
+        </div>
+        <div class="info-item market">
+          <small>Market</small><br />
+          <ng-container *ngFor="let market of vendor.markets; let i = index">
+            <span
+              >{{ market.name
+              }}<span *ngIf="i < vendor.markets.length - 1">, </span></span
+            >
+          </ng-container>
+        </div>
+        <div class="info-item service-category">
+          <small>Service Category</small>
+          <p>{{ vendor.service.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

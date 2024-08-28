@@ -27,20 +27,21 @@ import { IVendor } from '../models/vendor.model';
 
 @Component({
   selector: 'app-vendor-listing',
-  standalone: false,
   templateUrl: './vendor-listing.component.html',
   styleUrl: './vendor-listing.component.scss',
 })
 export class VendorListingComponent implements OnInit {
   vendors!: any[];
+
  constructor(private router : Router){}
+ 
   ngOnInit() {
-    //dummy data for vendor listing
+    // dummy data for vendor listing
     this.vendors = [
       {
-        id: '1',
+        id: 1,
         name: 'Vendor A',
-        state: 'California',
+        stateProvinceRegion: 'California',
         country: 'USA',
         markets: ['USA', 'Canada'],
         serviceCategories: 'IT Services',
@@ -50,9 +51,9 @@ export class VendorListingComponent implements OnInit {
         isApproved: true,
       },
       {
-        id: '2',
+        id: 2,
         name: 'Vendor B',
-        state: 'Berlin',
+        stateProvinceRegion: 'Berlin',
         country: 'Germany',
         markets: ['Europe'],
         serviceCategories: 'Manufacturing',
@@ -61,7 +62,7 @@ export class VendorListingComponent implements OnInit {
         isApproved: false,
       },
       {
-        id: '3',
+        id: 3,
         name: 'Vendor C',
         country: 'Australia',
         markets: ['Asia', 'Australia'],
@@ -72,7 +73,7 @@ export class VendorListingComponent implements OnInit {
         isApproved: true,
       },
       {
-        id: '4',
+        id: 4,
         name: 'Vendor D',
         country: 'Brazil',
         markets: ['South America'],
