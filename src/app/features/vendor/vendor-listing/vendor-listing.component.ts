@@ -35,6 +35,7 @@ export class VendorListingComponent implements OnInit {
   vendors!: IVendor[];
 
   constructor(private vendorService: VendorService) {}
+  
   ngOnInit() {
     this.fetchVendors();
   }

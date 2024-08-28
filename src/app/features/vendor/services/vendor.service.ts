@@ -12,20 +12,20 @@ import {
 })
 export class VendorService {
   
-    private baseUrl = 'http://localhost:5255/api';
+ private baseUrl = 'http://localhost:5255/api';
 
-  constructor(private http: HttpClient) {}
+ constructor(private http: HttpClient) {}
 
 /**
- * Method to fetch markets from backend using GET method
- */
+ * Method to fetch markets 
+*/
   getMarkets(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Market/GetMarkets`);
   }
 
-  /**
-   * Method to fetch services 
-   */
+/**
+ * Method to fetch services 
+*/
   getServices(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Service/GetService`);
   }
