@@ -11,49 +11,52 @@ import {
   providedIn: 'root',
 })
 export class VendorService {
+  
+ private baseUrl = 'http://localhost:5255/api';
+
 
 private baseUrl = 'http://localhost:5255/api';
 
 constructor(private http: HttpClient) {}
 
 /**
-* Method to fetch markets 
-*/
+ * Method to fetch markets 
+ */
   getMarkets(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Market/GetMarkets`);
   }
 
 /**
-* Method to fetch services 
-*/
+ * Method to fetch services 
+ */
   getServices(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Service/GetService`);
   }
 
 /**
-* Method to fetch vendors 
-*/
+ * Method to fetch vendors 
+ */
   getVendors(): Observable<IVendor[]> {
     return this.http.get<IVendor[]>(`${this.baseUrl}/Vendor/GetVendors`);
   }
 
 /**
-* Method to add  vendor  
-*/
+ * Method to add  vendor  
+ */
   addVendor(vendorData: IVendorCreation): Observable<IVendorCreation> {
     return this.http.post<IVendorCreation>(`${this.baseUrl}/Vendor/CreateVendor`, vendorData);
   }
 
 /**
-* Method to sending the updated vendor details 
-*/
+ * Method to sending the updated vendor details 
+ */
   updateVendor(id: number, vendorData: IVendorCreation): Observable<IVendorCreation> {
     return this.http.put<IVendorCreation>(`${this.baseUrl}/Vendor/EditVendor/${id}`,vendorData);
   }
 
 /**
-* Method to fetch the particular vendor details 
-*/
+ * Method to fetch the particular vendor details 
+ */
   getVendorById(id: number): Observable<IVendor> {
     return this.http.get<IVendor>(`${this.baseUrl}/Vendor/GetVendorData?id=${id}`);
   }
