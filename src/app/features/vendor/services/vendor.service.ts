@@ -14,9 +14,6 @@ export class VendorService {
   
  private baseUrl = 'http://localhost:5255/api';
 
-
-private baseUrl = 'http://localhost:5255/api';
-
 constructor(private http: HttpClient) {}
 
 /**
