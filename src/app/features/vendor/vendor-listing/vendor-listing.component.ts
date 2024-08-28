@@ -31,6 +31,7 @@ import { VendorService } from '../services/vendor.service';
   styleUrl: './vendor-listing.component.scss',
 })
 export class VendorListingComponent implements OnInit {
+ 
   vendors!: IVendor[];
 
   constructor(private vendorService: VendorService) {}
@@ -39,7 +40,7 @@ export class VendorListingComponent implements OnInit {
   }
 
 /**
- * Fetches the list of vendors from the backend and maps the API data to the `IVendorListing` interface.
+ * Fetches the list of vendors 
  */
   private fetchVendors(): void {
     this.vendorService.getVendors().subscribe((vendors: IVendor[]) => {

@@ -11,7 +11,8 @@ import {
   providedIn: 'root',
 })
 export class VendorService {
-  private baseUrl = 'http://localhost:5255/api';
+  
+    private baseUrl = 'http://localhost:5255/api';
 
   constructor(private http: HttpClient) {}
 
@@ -23,42 +24,42 @@ export class VendorService {
   }
 
   /**
-   * Method to fetch services from backend using GET method
+   * Method to fetch services 
    */
   getServices(): Observable<IDropDownFields[]> {
     return this.http.get<IDropDownFields[]>(`${this.baseUrl}/Service/GetService`);
   }
 
 /**
- * Method to fetch vendors from backend using GET method
+ * Method to fetch vendors 
  */
   getVendors(): Observable<IVendor[]> {
     return this.http.get<IVendor[]>(`${this.baseUrl}/Vendor/GetVendors`);
   }
 
 /**
- * Method to add  vendor  to backend using POST method
+ * Method to add  vendor  
  */
   addVendor(vendorData: IVendorCreation): Observable<IVendorCreation> {
     return this.http.post<IVendorCreation>(`${this.baseUrl}/Vendor/CreateVendor`, vendorData);
   }
 
 /**
- * Method to sending the updated vendor details to backend using PUT method
+ * Method to sending the updated vendor details 
  */
   updateVendor(id: number, vendorData: IVendorCreation): Observable<IVendorCreation> {
     return this.http.put<IVendorCreation>(`${this.baseUrl}/Vendor/EditVendor/${id}`,vendorData);
   }
 
 /**
- * Method to fetch the particular vendor details from backend
+ * Method to fetch the particular vendor details 
  */
   getVendorById(id: number): Observable<IVendor> {
     return this.http.get<IVendor>(`${this.baseUrl}/Vendor/GetVendorData?id=${id}`);
   }
 
 /**
- * Method to approve the vendor using PATCH method
+ * Method to approve the vendor 
  */
   approveVendor(id: number): Observable<void> {
     return this.http.patch<void>(`${this.baseUrl}/Vendor/ApproveVendor/${id}`, {
