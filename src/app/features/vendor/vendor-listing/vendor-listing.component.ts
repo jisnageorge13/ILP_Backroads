@@ -39,17 +39,13 @@ export class VendorListingComponent implements OnInit {
     this.fetchVendors();
   }
 
-/**
- * Fetches the list of vendors 
- */
-  private fetchVendors(): void {
-    this.vendorService.getVendors().subscribe((vendors: IVendor[]) => {
-      this.vendors = vendors;
-    });
-
-/**
- * Sort vendors by name in ascending order
- */
+  /**
+   * Method to get the list of vendors 
+   */
+  fetchVendors(): void {
+   this.vendorService.getVendors().subscribe((vendors: IVendor[]) => {
+    this.vendors = vendors;
     this.vendors.sort((a, b) => a.name.localeCompare(b.name));
-  }
+   });
+ }
 }
