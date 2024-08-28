@@ -3,6 +3,7 @@ import { IVendor } from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
 import { Router } from '@angular/router';
 
+
 /**
 * VendorListingComponent
 *
@@ -32,7 +33,6 @@ import { Router } from '@angular/router';
   styleUrl: './vendor-listing.component.scss',
 })
 export class VendorListingComponent implements OnInit {
-
   vendors!: IVendor[];
 
   constructor(private vendorService: VendorService,private router : Router) {}
@@ -41,23 +41,23 @@ export class VendorListingComponent implements OnInit {
     this.fetchVendors();
   }
 
-  /**
-   * Method to get the list of vendors 
-   */
-  fetchVendors(): void {
+/**
+ * Method to get the list of vendors 
+ */
+fetchVendors(): void {
    this.vendorService.getVendors().subscribe((vendors: IVendor[]) => {
     this.vendors = vendors;
     this.vendors.sort((a, b) => a.name.localeCompare(b.name));
    });
 }
 
-/**
- * Method to get the list of vendors 
- */
-navigateToView(event: IVendor)
-{
-  console.log(event);
- this.router.navigate(['/vendor/view/'+event.id]);
+  /**
+   * Method to get the list of vendors 
+   */
+  navigateToView(event: IVendor)
+  {
+    console.log(event);
+   this.router.navigate(['/vendor/view/'+event.id]);
+  }
 }
-}
- 
+
