@@ -32,8 +32,10 @@
             {{ vendor.name }}
             <span *ngIf="!vendor.isApproved" class="pending-tag">Pending</span>
           </td>
-          <td>{{ vendor.markets }}</td>
-          <td>{{ vendor.serviceCategories }}</td>
+          <td> <ng-container *ngFor="let market of vendor.markets; let i = index">
+              {{ market.name }}<span *ngIf="i < vendor.markets.length - 1">, </span>
+            </ng-container></td>
+          <td>{{ vendor.service.name }}</td>
           <td>{{ vendor.email }}</td>
         </tr>
       </ng-template>
