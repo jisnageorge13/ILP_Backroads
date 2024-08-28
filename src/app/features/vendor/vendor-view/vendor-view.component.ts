@@ -29,8 +29,7 @@ import { IVendor } from '../models/vendor.model';
  * Approve the vendor's status from pending to approved when the user clicks the Approve Vendor button. 
  */
 @Component({
-  selector: 'r2q-vendor-view',
-  standalone: false,
+  selector: 'app-vendor-view',
   templateUrl: './vendor-view.component.html',
   styleUrl: './vendor-view.component.scss',
 })

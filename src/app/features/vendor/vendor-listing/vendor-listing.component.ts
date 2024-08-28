@@ -27,7 +27,6 @@ import { IVendor } from '../models/vendor.model';
 
 @Component({
   selector: 'app-vendor-listing',
-  standalone: false,
   templateUrl: './vendor-listing.component.html',
   styleUrl: './vendor-listing.component.scss',
 })
