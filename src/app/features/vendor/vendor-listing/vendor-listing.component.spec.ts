@@ -9,6 +9,14 @@ import { of } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('VendorListingComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [VendorListingComponent],
+      imports: [HttpClientTestingModule, TableModule, RouterTestingModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [VendorService],
+    }).compileComponents();
+  });
   const mockVendors: IVendor[] = [
     {
       id: 1,
@@ -72,24 +80,16 @@ describe('VendorListingComponent', () => {
     return { fixture, component, spyObj };
   };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [VendorListingComponent],
-      imports: [HttpClientTestingModule, TableModule, RouterTestingModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [VendorService],
-    }).compileComponents();
-  });
 
   it('should create', () => {
     const { component } = setup();
     expect(component).toBeTruthy();
   });
 
-  it('should list all the vendors when the user navige to the page', () => {
+  it('should list all the vendors when the user navigate to the page', () => {
     const { component} = setup();
     component.ngOnInit();
     expect(component.vendors).toEqual(mockVendors);
   });
-  
+
 });
