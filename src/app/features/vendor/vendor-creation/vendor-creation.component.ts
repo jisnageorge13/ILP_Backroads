@@ -166,7 +166,7 @@ export class VendorCreationComponent implements OnInit {
     if (this.isEdit) {
       this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe(
         (response) => {
-          this.showSuccess("Vendor Updated successfully");
+          this.showSuccess("Vendor Updated Successfully");
           this.router.navigate(['/vendor/view/' + this.selectedVendorId]);
         },
         (error) => this.handleError(error)
@@ -174,7 +174,7 @@ export class VendorCreationComponent implements OnInit {
     } else {
       this.vendorService.addVendor(vendorData).subscribe(
         (response) => {
-          this.showSuccess("Vendor Added successfully");
+          this.showSuccess("Vendor Added Successfully");
           this.router.navigate(['/vendor/view/' + response.id]);
         },
         (error) => this.handleError(error)
