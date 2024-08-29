@@ -85,6 +85,11 @@ describe('VendorListingComponent', () => {
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    ({ fixture, component } = setup());
+    fixture.detectChanges();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
