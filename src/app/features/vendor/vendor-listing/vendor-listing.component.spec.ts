@@ -79,16 +79,14 @@ describe('VendorListingComponent', () => {
     return { fixture, component, spyObj };
   };
 
-
   it('should create', () => {
     const { component } = setup();
     expect(component).toBeTruthy();
   });
 
   it('should list all the vendors when the user navigate to the page', () => {
-    const { component} = setup();
+    const { component } = setup();
     component.ngOnInit();
     expect(component.vendors).toEqual(mockVendors);
   });
-
 });
