@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { phonePattern } from '../config/vendor-config';
+import { phonePattern, urlPattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IVendorCreation,
@@ -94,7 +94,7 @@ export class VendorCreationComponent implements OnInit {
       markets: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(phonePattern)]],
-      website: [''],
+      website: ['', Validators.pattern(urlPattern)],
       service: ['', Validators.required],
     });
   }
@@ -175,7 +175,7 @@ export class VendorCreationComponent implements OnInit {
       this.vendorService.addVendor(vendorData).subscribe(
         (response) => {
           this.showSuccess("Vendor Added successfully");
-          this.router.navigate(['']);
+          this.router.navigate(['/vendor/view/' + response.id]);
         },
         (error) => this.handleError(error)
       );

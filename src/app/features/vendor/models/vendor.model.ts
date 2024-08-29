@@ -5,10 +5,10 @@ interface ICommonVendorFields {
   email: string;
   phone: string;
   website?: string; 
-  isApproved?: boolean;
 }
 
 export interface IVendorCreation extends ICommonVendorFields {
+  id?:number
   serviceId: number;
   marketIds: number[];
 }
@@ -25,4 +25,5 @@ export interface IVendorData extends ICommonVendorFields {
 
 export interface IVendor extends IVendorData {
   id:number;
+  isApproved: boolean;
 }

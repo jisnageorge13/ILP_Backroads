@@ -27,9 +27,9 @@
               addVendorForm.get('vendorName')?.touched
             "
           />
-          <r2q-error-message
+          <app-error-message
             [control]="addVendorForm.get('vendorName')"
-          ></r2q-error-message>
+          ></app-error-message>
         </div>
         <div class="state-country">
           <div class="vendor-place">
@@ -61,9 +61,9 @@
                 }"
               />
             </div>
-            <r2q-error-message
+            <app-error-message
               [control]="addVendorForm.get('country')"
-            ></r2q-error-message>
+            ></app-error-message>
           </div>
         </div>
         <div class="state-country">
@@ -89,9 +89,9 @@
               >
               </p-multiSelect>
             </div>
-            <r2q-error-message
+            <app-error-message
               [control]="addVendorForm.get('markets')"
-            ></r2q-error-message>
+            ></app-error-message>
           </div>
           <div class="service-category">
             <label for="service">
@@ -114,9 +114,9 @@
                 }"
               ></p-dropdown>
             </div>
-            <r2q-error-message
+            <app-error-message
               [control]="addVendorForm.get('service')"
-            ></r2q-error-message>
+            ></app-error-message>
           </div>
         </div>
         <div class="contact-info">
@@ -139,9 +139,9 @@
                 "
                 required
               />
-              <r2q-error-message
+              <app-error-message
                 [control]="addVendorForm.get('email')"
-              ></r2q-error-message>
+              ></app-error-message>
             </div>
             <div class="phone-website">
               <div class="contact-options">
@@ -160,9 +160,7 @@
                     "
                   />
                 </p-inputGroup>
-                <r2q-error-message
-                  [control]="addVendorForm.get('phone')"
-                ></r2q-error-message>
+                <app-error-message [control]="addVendorForm.get('phone')" controlName="phone"></app-error-message>
               </div>
               <div class="contact-options">
                 <label for="website">Website(Optional)</label>
@@ -173,6 +171,7 @@
                   placeholder="Enter Website"
                   formControlName="website"
                 />
+                <app-error-message [control]="addVendorForm.get('website')" controlName="website"></app-error-message>
               </div>
             </div>
           </div>
