@@ -1,18 +1,14 @@
 import { TableModule } from 'primeng/table';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { VendorListingComponent } from './vendor-listing.component';
 import { IVendor } from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
-import { RouterTestingModule } from '@angular/router/testing'; // Import RouterTestingModule
+import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('VendorListingComponent', () => {
-  let component: VendorListingComponent;
-  let fixture: ComponentFixture<VendorListingComponent>;
-  let vendorService: VendorService;
-
   const mockVendors: IVendor[] = [
     {
       id: 1,
@@ -69,9 +65,9 @@ describe('VendorListingComponent', () => {
   };
 
   const setup = () => {
-    fixture = TestBed.createComponent(VendorListingComponent);
-    component = fixture.componentInstance;
-    vendorService = TestBed.inject(VendorService);
+    const fixture = TestBed.createComponent(VendorListingComponent);
+    const component = fixture.componentInstance;
+    const vendorService = TestBed.inject(VendorService);
     const spyObj = setMockSpy(vendorService);
     return { fixture, component, spyObj };
   };
@@ -79,28 +75,26 @@ describe('VendorListingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [VendorListingComponent],
-      imports: [HttpClientTestingModule, TableModule, RouterTestingModule], 
+      imports: [HttpClientTestingModule, TableModule, RouterTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [VendorService],
     }).compileComponents();
   });
 
-  beforeEach(() => {
-    ({ fixture, component } = setup());
-    fixture.detectChanges();
-  });
-
   it('should create', () => {
+    const { component } = setup();
     expect(component).toBeTruthy();
   });
 
-  it('should fetch vendors on component initialization', () => {
-    const { getVendorsSpy } = setup().spyObj;
+  it('should list all the vendors when the user navige to the page', () => {
+    const { component, spyObj } = setup();
     component.ngOnInit();
-    expect(getVendorsSpy).toHaveBeenCalled();
+    expect(spyObj.getVendorsSpy).toHaveBeenCalled();
+    expect(component.vendors).toEqual(mockVendors);
   });
 
   it('should fetch and sort vendors by name', () => {
+    const { component } = setup();
     component.fetchVendors();
     expect(component.vendors).toEqual(mockVendors);
     expect(component.vendors[0].name).toBe('Vendor A');
@@ -108,6 +102,7 @@ describe('VendorListingComponent', () => {
   });
 
   it('should display "Pending" tag for unapproved vendors', () => {
+    const { component } = setup();
     component.fetchVendors();
     const unapprovedVendor = component.vendors.find(
       (vendor) => !vendor.isApproved
