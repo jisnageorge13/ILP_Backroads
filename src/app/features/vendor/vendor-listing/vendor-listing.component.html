@@ -1,3 +1,4 @@
+<div class="header"></div>
 <div class="page-container">
   <div class="header-container">
     <h2>All Vendors</h2>
@@ -17,6 +18,8 @@
       [rows]="5"
       [tableStyle]="{ 'min-width': '50rem' }"
       [rowsPerPageOptions]="[5, 10, 20]"
+      (onRowSelect)="navigateToView($event.data)"
+      selectionMode="single"
     >
       <ng-template pTemplate="header">
         <tr>
@@ -27,14 +30,16 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-vendor>
-        <tr>
+        <tr [pSelectableRow]="vendor">
           <td>
             {{ vendor.name }}
             <span *ngIf="!vendor.isApproved" class="pending-tag">Pending</span>
           </td>
-          <td> <ng-container *ngFor="let market of vendor.markets; let i = index">
+          <td>
+            <ng-container *ngFor="let market of vendor.markets; let i = index">
               {{ market.name }}<span *ngIf="i < vendor.markets.length - 1">, </span>
-            </ng-container></td>
+            </ng-container>
+          </td>
           <td>{{ vendor.service.name }}</td>
           <td>{{ vendor.email }}</td>
         </tr>

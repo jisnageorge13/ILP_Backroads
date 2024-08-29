@@ -1,9 +1,13 @@
 .page-container {
     padding: 1rem;
     padding-top: 4rem;
-    /* Space for the top bar */
     padding-left: 5rem;
-    /* Space for the sidebar */
+}
+
+.header {
+    height: 3rem;
+    border: 0.063rem solid #d1d5db;
+    background-color: #1a4870;
 }
 
 .header-container {
