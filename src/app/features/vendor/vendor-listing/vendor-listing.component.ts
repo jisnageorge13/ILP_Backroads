@@ -47,7 +47,7 @@ fetchVendors(): void {
   /**
    * Method to get the list of vendors 
    */
-  navigateToView(event: IVendor)
+  navigateToView(event: IVendor):void
   {
    this.router.navigate(['/vendor/view/'+event.id]);
   }

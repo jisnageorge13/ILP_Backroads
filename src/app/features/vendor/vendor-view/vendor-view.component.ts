@@ -83,7 +83,7 @@ export class VendorViewComponent {
    */
    approveVendor(): void {
     this.vendorService.approveVendor(this.vendor.id).subscribe( () => {
-       this.showSuccess("Vendor Approves Successfully");
+       this.showSuccess("Vendor Approved Successfully");
       });
   }
 
