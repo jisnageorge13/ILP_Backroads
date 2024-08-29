@@ -14,7 +14,7 @@ export class VendorService {
   
  private baseUrl = 'http://localhost:5255/api';
 
- constructor(private http: HttpClient) {}
+constructor(private http: HttpClient) {}
 
 /**
  * Method to fetch markets 
@@ -62,8 +62,7 @@ export class VendorService {
  * Method to approve the vendor 
  */
   approveVendor(id: number): Observable<void> {
-    return this.http.patch<void>(`${this.baseUrl}/Vendor/ApproveVendor/${id}`, {
-      isApproved: true,
-    });
+    return this.http.patch<void>(`${this.baseUrl}/Vendor/ApproveVendor?id=${id}`,{});
   }
 }
+ 

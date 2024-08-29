@@ -1,5 +1,6 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle">
 </p-confirmDialog>
+<p-toast/>
 <div class="home">
   <div class="nav"></div>
   <div class="header">
@@ -20,6 +21,8 @@
         [outlined]="true"
         (click)="navigateToEdit(vendor.id)"
       ></button>
+      @if(!vendor.isApproved)
+      {
       <button
         pButton
         id="approve-vendor-button"
@@ -29,6 +32,7 @@
         class="p-button-primary approve-btn"
         (click)="confirmApproval()"
       ></button>
+     }
     </div>
   </div>
   <div class="basic-info">
@@ -54,11 +58,17 @@
         </div>
         <div class="info-item">
           <small>Website</small>
-          <p>
-            <a [href]="vendor.website" target="_blank"
-              >{{ vendor.website | slice : 0 : 50 }}...</a
-            >
-          </p>
+          @if(vendor.website)
+          {
+            <p>
+              <a [href]="vendor.website" target="_blank"
+                >{{ vendor.website | slice : 0 : 50 }}...</a
+              >
+            </p>
+          }
+           @else {
+            <p>---</p>
+           }
         </div>
         <div class="info-item market">
           <small>Market</small><br />

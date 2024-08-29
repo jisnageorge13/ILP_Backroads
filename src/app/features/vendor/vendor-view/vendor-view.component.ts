@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { VendorService } from '../services/vendor.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IVendor } from '../models/vendor.model';
@@ -42,6 +42,7 @@ export class VendorViewComponent {
     private confirmationService: ConfirmationService,
     private vendorService: VendorService,
     private router: Router,
+    private messageService : MessageService,
   ) {}
 
   /**
@@ -60,7 +61,7 @@ export class VendorViewComponent {
    *  @param id - The ID of the vendor to be edited.
    */
   getVendorById(id: number): void {
-    this.vendorService.getVendorById(id).subscribe((data) => {
+    this.vendorService.getVendorById(id).subscribe((data:IVendor) => {
         this.vendor = data;
     });
   }
@@ -80,9 +81,9 @@ export class VendorViewComponent {
   /**
    * Method to approve the vendor by updating their status to approved.
    */
-  approveVendor(): void {
-    this.vendorService.approveVendor(this.vendor.id).subscribe(() => {
-      this.getVendorById(this.vendor.id);
+   approveVendor(): void {
+    this.vendorService.approveVendor(this.vendor.id).subscribe( () => {
+       this.showSuccess("Vendor Approved Successfully");
       });
   }
 
@@ -90,7 +91,16 @@ export class VendorViewComponent {
    * Navigates to the edit vendor profile page.
    * @param id - The ID of the vendor to be edited.
    */
-  navigateToEdit(id: number) {
+  navigateToEdit(id: number): void {
     this.router.navigate(['/vendor/edit/'+ id]);
   }
+
+  /**
+   * method to show success message.
+   */
+  showSuccess(message: string): void {
+    this.getVendorById(this.vendor.id);
+    this.messageService.add({severity: 'success',summary: 'Success',detail: `${message}`,});
+  }
 }
+
