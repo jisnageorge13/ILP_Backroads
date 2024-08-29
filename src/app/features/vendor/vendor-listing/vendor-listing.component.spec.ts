@@ -16,6 +16,7 @@ describe('VendorListingComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
+  
   const mockVendors: IVendor[] = [
     {
       id: 1,
