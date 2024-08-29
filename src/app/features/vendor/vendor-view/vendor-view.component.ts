@@ -99,10 +99,6 @@ export class VendorViewComponent {
    */
   showSuccess(message: string): void {
     this.getVendorById(this.vendor.id);
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: `${message}`,
-    });
+    this.messageService.add({severity: 'success',summary: 'Success',detail: `${message}`,});
   }
 }
