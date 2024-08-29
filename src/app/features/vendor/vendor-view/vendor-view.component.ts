@@ -33,7 +33,6 @@ import { IVendor } from '../models/vendor.model';
   templateUrl: './vendor-view.component.html',
   styleUrl: './vendor-view.component.scss',
 })
-
 export class VendorViewComponent {
   vendor!: IVendor;
 
@@ -42,7 +41,7 @@ export class VendorViewComponent {
     private confirmationService: ConfirmationService,
     private vendorService: VendorService,
     private router: Router,
-    private messageService : MessageService,
+    private messageService: MessageService
   ) {}
 
   /**
@@ -61,8 +60,8 @@ export class VendorViewComponent {
    *  @param id - The ID of the vendor to be edited.
    */
   getVendorById(id: number): void {
-    this.vendorService.getVendorById(id).subscribe((data:IVendor) => {
-        this.vendor = data;
+    this.vendorService.getVendorById(id).subscribe((data: IVendor) => {
+      this.vendor = data;
     });
   }
 
@@ -81,10 +80,10 @@ export class VendorViewComponent {
   /**
    * Method to approve the vendor by updating their status to approved.
    */
-   approveVendor(): void {
-    this.vendorService.approveVendor(this.vendor.id).subscribe( () => {
-       this.showSuccess("Vendor Approved Successfully");
-      });
+  approveVendor(): void {
+    this.vendorService.approveVendor(this.vendor.id).subscribe(() => {
+      this.showSuccess('Vendor Approved Successfully');
+    });
   }
 
   /**
@@ -92,7 +91,7 @@ export class VendorViewComponent {
    * @param id - The ID of the vendor to be edited.
    */
   navigateToEdit(id: number): void {
-    this.router.navigate(['/vendor/edit/'+ id]);
+    this.router.navigate(['/vendor/edit/' + id]);
   }
 
   /**
@@ -103,4 +102,3 @@ export class VendorViewComponent {
     this.messageService.add({severity: 'success',summary: 'Success',detail: `${message}`,});
   }
 }
-
