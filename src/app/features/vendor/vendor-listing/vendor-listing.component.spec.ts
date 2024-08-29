@@ -14,7 +14,6 @@ describe('VendorListingComponent', () => {
       declarations: [VendorListingComponent],
       imports: [HttpClientTestingModule, TableModule, RouterTestingModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [VendorService],
     }).compileComponents();
   });
   const mockVendors: IVendor[] = [
