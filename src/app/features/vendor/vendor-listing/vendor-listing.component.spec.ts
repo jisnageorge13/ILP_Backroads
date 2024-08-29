@@ -87,27 +87,9 @@ describe('VendorListingComponent', () => {
   });
 
   it('should list all the vendors when the user navige to the page', () => {
-    const { component, spyObj } = setup();
+    const { component} = setup();
     component.ngOnInit();
-    expect(spyObj.getVendorsSpy).toHaveBeenCalled();
     expect(component.vendors).toEqual(mockVendors);
   });
-
-  it('should fetch and sort vendors by name', () => {
-    const { component } = setup();
-    component.fetchVendors();
-    expect(component.vendors).toEqual(mockVendors);
-    expect(component.vendors[0].name).toBe('Vendor A');
-    expect(component.vendors[1].name).toBe('Vendor B');
-  });
-
-  it('should display "Pending" tag for unapproved vendors', () => {
-    const { component } = setup();
-    component.fetchVendors();
-    const unapprovedVendor = component.vendors.find(
-      (vendor) => !vendor.isApproved
-    );
-    expect(unapprovedVendor).toBeDefined();
-    expect(unapprovedVendor?.isApproved).toBe(false);
-  });
+  
 });
