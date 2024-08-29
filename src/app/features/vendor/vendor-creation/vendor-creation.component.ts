@@ -201,14 +201,14 @@ export class VendorCreationComponent implements OnInit {
   /**
    * method to show error message .
    */
-  showError(message : string):void {
+  showError(message : string): void {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
 
   /**
    * method to show success message .
    */
-  showSuccess(message : string):void {
+  showSuccess(message : string): void {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
   }
 }
