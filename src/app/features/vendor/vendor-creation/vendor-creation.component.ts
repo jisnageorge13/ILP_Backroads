@@ -63,7 +63,6 @@ export class VendorCreationComponent implements OnInit {
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
-  vendorName='';
   
   constructor(
     private readonly fb: FormBuilder,
@@ -89,7 +88,7 @@ export class VendorCreationComponent implements OnInit {
    */
   createAddVendorForm(): void {
     this.addVendorForm = this.fb.group({
-      vendorName: [{value:'',disabled: this.isEdit }, [Validators.required, Validators.maxLength(100)]],
+      vendorName: [{value:'', disabled: this.isEdit }, [Validators.required, Validators.maxLength(100)]],
       state: [''],
       country: ['', Validators.required],
       markets: ['', Validators.required],
@@ -125,7 +124,6 @@ export class VendorCreationComponent implements OnInit {
     if (this.selectedVendorId) {
       this.vendorService.getVendorById(this.selectedVendorId).subscribe((data: IVendorData) => {
           this.vendorData = data;
-          this.vendorName=data.name
           this.bindVendorDetails();
         });
     }
