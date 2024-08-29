@@ -91,14 +91,14 @@ export class VendorViewComponent {
    * Navigates to the edit vendor profile page.
    * @param id - The ID of the vendor to be edited.
    */
-  navigateToEdit(id: number) {
+  navigateToEdit(id: number):void {
     this.router.navigate(['/vendor/edit/'+ id]);
   }
 
   /**
    * method to show success message.
    */
-  showSuccess(message: string) {
+  showSuccess(message: string):void {
     this.getVendorById(this.vendor.id);
     this.messageService.add({severity: 'success',summary: 'Success',detail: `${message}`,});
   }
