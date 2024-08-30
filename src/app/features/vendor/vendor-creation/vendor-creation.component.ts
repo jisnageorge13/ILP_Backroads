@@ -66,8 +66,9 @@ export class VendorCreationComponent implements OnInit {
   services!: IDropDownFields[];
   selectedVendorId!: number;
   confirmationMessage='';
-  @ViewChild('confirmDialog') confirmDialog!: ConfirmDialogComponent;
   
+  @ViewChild('confirmDialog') confirmDialog!: ConfirmDialogComponent;
+
   constructor(
     private readonly fb: FormBuilder,
     private vendorService: VendorService,
