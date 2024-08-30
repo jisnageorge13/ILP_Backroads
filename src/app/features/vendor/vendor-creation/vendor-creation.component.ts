@@ -188,19 +188,12 @@ export class VendorCreationComponent implements OnInit {
   }
 
   /**
-   * method to handle the errors during submit .
+   * method to handle the errors during clicking submit button .
    */
   handleError(error: any): void {
-    const serverErrors = error.error.errors || {};
-    let errorMsg = '';
-    Object.keys(serverErrors).forEach((key) => {
-      errorMsg += `${serverErrors[key].join('; ')} `;
-    });
-    if (errorMsg) {
-      this.showError(errorMsg);
-    } else {
+    if (error.error && error.error.message) {
       this.showError(error.error.message);
-    }
+    } 
   }
   
   /**

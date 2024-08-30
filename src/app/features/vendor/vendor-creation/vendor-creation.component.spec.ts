@@ -113,25 +113,12 @@ describe('VendorCreationComponent', () => {
     },
   ];
 
-  const getValidationErrorResponse = () =>({
-    error: {
-      errors: {
-        error: [
-          {
-            message: '',
-          },
-        ],
-      },
-      message: 'Error occurred',
-    },
-  });
-
- const getUniqueNameErrorResponse = () =>({
-  error: {
+  const getUniqueNameErrorResponse = () =>({
+   error: {
     errors: {},
     message: 'A general error occurred',
-  },
- });
+   },
+  });
 
   const setMockSpy = (
     vendorService: VendorService, router: Router, messageService: MessageService
@@ -182,12 +169,12 @@ describe('VendorCreationComponent', () => {
     expect(spyObj.updateVendorSpy).toHaveBeenCalled();
   });
 
-  it('should display validation errors when a user updates data without meeting the required conditions.', () => {
+  it('should show error if vendor name is not unique when a user updates data', () => {
     const { component, spyObj } = setup();
     component.isEdit = true;
     component.selectedVendorId = 1;
     component.addVendorForm = getVendorServiceFormMock();
-    const errorResponse = getValidationErrorResponse();
+    const errorResponse = getUniqueNameErrorResponse();
     spyObj.updateVendorSpy.mockReturnValue(throwError(() => errorResponse));
     component.submitVendor();
     expect(spyObj.updateVendorSpy).toHaveBeenCalled();
@@ -201,16 +188,7 @@ describe('VendorCreationComponent', () => {
     expect(spyObj.addVendorSpy).toHaveBeenCalled();
   });
 
-  it('Should display validation errors when a user submits form without meeting the required conditions.', () => {
-    const { component, spyObj } = setup();
-    component.addVendorForm = getVendorServiceFormMock();
-    const errorResponse = getValidationErrorResponse();
-    spyObj.addVendorSpy.mockReturnValue(throwError(() => errorResponse));
-    component.submitVendor();
-    expect(spyObj.messageServiceSpy).toHaveBeenCalled();
-  });
-
-  it('should show error if vendor name is not unique during vendor form submission', () => {
+  it('should show error if vendor name is not unique when user submits the form', () => {
     const { component, spyObj } = setup();
     component.addVendorForm = getVendorServiceFormMock();
     const errorResponse = getUniqueNameErrorResponse();
