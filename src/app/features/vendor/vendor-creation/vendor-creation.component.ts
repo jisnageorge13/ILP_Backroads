@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { phonePattern, urlPattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
@@ -9,6 +9,7 @@ import {
 import { VendorService } from '../services/vendor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
 /**  LLD
  * This component is to add new vendors and update existing vendors.
@@ -54,6 +55,7 @@ import { MessageService } from 'primeng/api';
   templateUrl: './vendor-creation.component.html',
   styleUrl: './vendor-creation.component.scss',
 })
+
 export class VendorCreationComponent implements OnInit {
   addVendorForm!: FormGroup;
   isEdit = false;
@@ -63,7 +65,9 @@ export class VendorCreationComponent implements OnInit {
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
-  
+  confirmationMessage='';
+
+  @ViewChild('confirmDialog') confirmDialog!: ConfirmDialogComponent;
   constructor(
     private readonly fb: FormBuilder,
     private vendorService: VendorService,
@@ -213,9 +217,17 @@ export class VendorCreationComponent implements OnInit {
   }
 
   /**
+   * method to show confirmation dialog box.
+   */
+  showConfirmDialog(): void {
+   this.confirmationMessage="Are you sure you want to cancel the changes?";
+   this.confirmDialog.showConfirmDialog();
+  }
+
+  /**
    * method to go back to vendor listing page when user clicks 'yes' .
    */
-  handleConfirm(): void {
+  handleConfirmResponse(): void {
     this.router.navigate(['']);
   }
 }

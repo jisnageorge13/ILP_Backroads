@@ -113,10 +113,28 @@ describe('VendorCreationComponent', () => {
     },
   ];
 
+  const getValidationErrorResponse = () =>({
+    error: {
+      errors: {
+        error: [
+          {
+            message: '',
+          },
+        ],
+      },
+      message: 'Error occurred',
+    },
+  });
+
+ const getUniqueNameErrorResponse = () =>({
+  error: {
+    errors: {},
+    message: 'A general error occurred',
+  },
+ });
+
   const setMockSpy = (
-    vendorService: VendorService,
-    router: Router,
-    messageService: MessageService
+    vendorService: VendorService, router: Router, messageService: MessageService
   ) => {
     const getMarketsSpy = jest.spyOn(vendorService, 'getMarkets').mockImplementation(() => of(getMarkets()));
     const getServicesSpy = jest.spyOn(vendorService, 'getServices').mockImplementation(() => of(getService()));
@@ -152,11 +170,10 @@ describe('VendorCreationComponent', () => {
     const { component } = setup();
     urlValue.url = 'vendor/edit/1';
     component.ngOnInit();
-    component.fetchVendorData();
     expect(component.addVendorForm.get('vendorName')?.value).toBe('Vendor 1');
   });
 
-  it('should update the vendor data when update form is submitted', () => {
+  it('should update the vendor data when user submits the updated form', () => {
     const { component, spyObj } = setup();
     component.isEdit = true;
     component.selectedVendorId = 1;
@@ -165,29 +182,18 @@ describe('VendorCreationComponent', () => {
     expect(spyObj.updateVendorSpy).toHaveBeenCalled();
   });
 
-  it('should show error during updating the vendor data', () => {
+  it('should display validation errors when a user updates data without meeting the required conditions.', () => {
     const { component, spyObj } = setup();
     component.isEdit = true;
     component.selectedVendorId = 1;
     component.addVendorForm = getVendorServiceFormMock();
-    const errorResponse = {
-      error: {
-        errors: {
-          error: [
-            {
-              message: '',
-            },
-          ],
-        },
-        message: 'Error occurred',
-      },
-    };
+    const errorResponse = getValidationErrorResponse();
     spyObj.updateVendorSpy.mockReturnValue(throwError(() => errorResponse));
     component.submitVendor();
     expect(spyObj.updateVendorSpy).toHaveBeenCalled();
   });
 
-  it('should add the vendor data when form is submitted', () => {
+  it('should add the vendor data when user submits the form', () => {
     const { component, spyObj } = setup();
     component.isEdit = false;
     component.addVendorForm = getVendorServiceFormMock();
@@ -195,21 +201,10 @@ describe('VendorCreationComponent', () => {
     expect(spyObj.addVendorSpy).toHaveBeenCalled();
   });
 
-  it('should display error when they are present during vendor form submission.', () => {
+  it('Should display validation errors when a user submits form without meeting the required conditions.', () => {
     const { component, spyObj } = setup();
     component.addVendorForm = getVendorServiceFormMock();
-    const errorResponse = {
-      error: {
-        errors: {
-          error: [
-            {
-              message: '',
-            },
-          ],
-        },
-        message: 'Error occurred',
-      },
-    };
+    const errorResponse = getValidationErrorResponse();
     spyObj.addVendorSpy.mockReturnValue(throwError(() => errorResponse));
     component.submitVendor();
     expect(spyObj.messageServiceSpy).toHaveBeenCalled();
@@ -218,12 +213,7 @@ describe('VendorCreationComponent', () => {
   it('should show error if vendor name is not unique during vendor form submission', () => {
     const { component, spyObj } = setup();
     component.addVendorForm = getVendorServiceFormMock();
-    const errorResponse = {
-      error: {
-        errors: {},
-        message: 'A general error occurred',
-      },
-    };
+    const errorResponse = getUniqueNameErrorResponse();
     spyObj.addVendorSpy.mockReturnValue(throwError(() => errorResponse));
     component.submitVendor();
     expect(spyObj.messageServiceSpy).toHaveBeenCalled();

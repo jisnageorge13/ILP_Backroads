@@ -8,5 +8,4 @@ import { NavigationStart, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'ILP_Backroads';
-  constructor(private router: Router) {}
 }

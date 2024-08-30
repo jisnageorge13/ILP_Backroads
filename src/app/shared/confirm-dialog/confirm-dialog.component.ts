@@ -8,9 +8,11 @@ import { ConfirmationService } from 'primeng/api';
   `,
   styleUrl: './confirm-dialog.component.css',
 })
+
 export class ConfirmDialogComponent {
-  @Input() header: string = 'Confirmation';
-  @Input() icon: string = 'pi pi-exclamation-triangle';
+  @Input() header = 'Confirmation';
+  @Input() icon = 'pi pi-exclamation-triangle';
+  @Input() message = '';
   @Output() onConfirm: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private confirmationService: ConfirmationService) {}
@@ -18,9 +20,9 @@ export class ConfirmDialogComponent {
   /**
    * method to confirmation dialog box and its contents.
    */
-  showConfirmDialog(message: string): void {
+  showConfirmDialog(): void {
     this.confirmationService.confirm({
-      message: message,
+      message: this.message,
       accept: () => {
         this.onConfirm.emit();
       }
