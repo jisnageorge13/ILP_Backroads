@@ -35,6 +35,7 @@ import { IVendor } from '../models/vendor.model';
 })
 export class VendorViewComponent {
   vendor!: IVendor;
+  selectedVendorId!:number
 
   constructor(
     private route: ActivatedRoute,
@@ -49,9 +50,9 @@ export class VendorViewComponent {
    */
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const id = Number(params.get('id'));
-      if (id) {
-        this.getVendorById(id);
+      this.selectedVendorId = Number(this.route.snapshot.paramMap.get('id'));
+      if (this.selectedVendorId) {
+        this.getVendorById(this.selectedVendorId);
       }
     });
   }
@@ -95,7 +96,7 @@ export class VendorViewComponent {
   }
 
   /**
-   * method to show success message.
+   * Method to show success message after approving a vendor.
    */
   showSuccess(message: string): void {
     this.getVendorById(this.vendor.id);

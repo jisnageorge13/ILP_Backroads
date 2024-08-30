@@ -18,11 +18,12 @@ import { TableModule } from 'primeng/table';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { VendorViewComponent } from './vendor-view/vendor-view.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { VendorService } from './services/vendor.service';
 
 
 @NgModule({
   declarations: [VendorListingComponent, VendorCreationComponent, VendorViewComponent],
   imports: [CommonModule, SharedModule, VendorRoutingModule, TableModule, ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService,VendorService],
 })
 export class VendorModule {}

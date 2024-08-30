@@ -4,10 +4,11 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
   declarations: [
-    ErrorMessageComponent
+    ErrorMessageComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    
   ],
   exports: [
     ErrorMessageComponent
