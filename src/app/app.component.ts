@@ -9,13 +9,4 @@ import { NavigationStart, Router } from '@angular/router';
 export class AppComponent {
   title = 'ILP_Backroads';
   constructor(private router: Router) {}
-  ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        if (event.navigationTrigger === 'popstate') {
-          this.router.navigate(['']);
-        }
-      }
-    });
-  }
 }

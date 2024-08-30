@@ -1,4 +1,3 @@
-import { ButtonModule } from 'primeng/button';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {
@@ -14,17 +13,9 @@ import { VendorService } from '../services/vendor.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { IDropDownFields } from '../models/vendor.model';
-import { ToastModule } from 'primeng/toast';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputGroupModule } from 'primeng/inputgroup';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { DropdownModule } from 'primeng/dropdown';
 import { RouterTestingModule } from '@angular/router/testing';
-import { url } from 'inspector';
-import { subscribe } from 'diagnostics_channel';
-// Mock data
+import { VendorModule } from 'src/app/features/vendor/vendor.module';
 
 describe('VendorCreationComponent', () => {
   beforeEach(async () => {
@@ -33,14 +24,8 @@ describe('VendorCreationComponent', () => {
       imports: [
         ReactiveFormsModule,
         HttpClientTestingModule,
-        ToastModule,
         SharedModule,
-        InputTextModule,
-        InputGroupModule,
-        MultiSelectModule,
-        ButtonModule,
-        InputGroupAddonModule,
-        DropdownModule,
+        VendorModule,
         RouterTestingModule,
       ],
       providers: [
@@ -66,6 +51,7 @@ describe('VendorCreationComponent', () => {
       ],
     }).compileComponents();
   });
+
   const setup = () => {
     const fixture = TestBed.createComponent(VendorCreationComponent);
     const component = fixture.componentInstance;
@@ -75,6 +61,7 @@ describe('VendorCreationComponent', () => {
     const spyObj = setMockSpy(vendorService, router, messageService);
     return { fixture, component, router, spyObj, vendorService };
   };
+
   const getVendorData = () => ({
     id: 1,
     name: 'Vendor 1',
@@ -88,7 +75,6 @@ describe('VendorCreationComponent', () => {
     markets: [{ id: 1, name: 'India' }],
   });
 
-  // Mock service and form
   const getVendorServiceFormMock = (): FormGroup => {
     return new FormGroup({
       vendorName: new FormControl('Vendor A'),
@@ -101,6 +87,7 @@ describe('VendorCreationComponent', () => {
       service: new FormControl(1),
     });
   };
+
   const returnResponse = () => ({
     name: 'Vendor A',
     state: 'California',
@@ -131,27 +118,13 @@ describe('VendorCreationComponent', () => {
     router: Router,
     messageService: MessageService
   ) => {
-    const getMarketsSpy = jest
-      .spyOn(vendorService, 'getMarkets')
-      .mockImplementation(() => of(getMarkets()));
-    const getServicesSpy = jest
-      .spyOn(vendorService, 'getServices')
-      .mockImplementation(() => of(getService()));
-    const getVendorByIdSpy = jest
-      .spyOn(vendorService, 'getVendorById')
-      .mockImplementation(() => of(getVendorData()));
-    const addVendorSpy = jest
-      .spyOn(vendorService, 'addVendor')
-      .mockImplementation(() => of(returnResponse()));
-    const updateVendorSpy = jest
-      .spyOn(vendorService, 'updateVendor')
-      .mockImplementation(() => of(returnResponse()));
-    const routerSpy = jest
-      .spyOn(router, 'navigate')
-      .mockImplementation(() => Promise.resolve(true));
-    const messageServiceSpy = jest
-      .spyOn(messageService, 'add')
-      .mockImplementation(() => {});
+    const getMarketsSpy = jest.spyOn(vendorService, 'getMarkets').mockImplementation(() => of(getMarkets()));
+    const getServicesSpy = jest.spyOn(vendorService, 'getServices').mockImplementation(() => of(getService()));
+    const getVendorByIdSpy = jest.spyOn(vendorService, 'getVendorById').mockImplementation(() => of(getVendorData()));
+    const addVendorSpy = jest.spyOn(vendorService, 'addVendor').mockImplementation(() => of(returnResponse()));
+    const updateVendorSpy = jest.spyOn(vendorService, 'updateVendor').mockImplementation(() => of(returnResponse()));
+    const routerSpy = jest.spyOn(router, 'navigate').mockImplementation(() => Promise.resolve(true));
+    const messageServiceSpy = jest.spyOn(messageService, 'add').mockImplementation(() => {});
     return {
       getMarketsSpy,
       getServicesSpy,
@@ -169,13 +142,13 @@ describe('VendorCreationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create vendor form on component initialization', () => {
+  it('should create vendor form when component initializes', () => {
     const { component } = setup();
     component.ngOnInit();
     expect(component.addVendorForm).toBeDefined();
   });
 
-  it('should fetch vendor data and bind to form when editing', () => {
+  it('should populate data when user open edit screen', () => {
     const { component } = setup();
     urlValue.url = 'vendor/edit/1';
     component.ngOnInit();
@@ -183,7 +156,7 @@ describe('VendorCreationComponent', () => {
     expect(component.addVendorForm.get('vendorName')?.value).toBe('Vendor 1');
   });
 
-  it('should update the vendor data during update form submission', () => {
+  it('should update the vendor data when update form is submitted', () => {
     const { component, spyObj } = setup();
     component.isEdit = true;
     component.selectedVendorId = 1;
@@ -214,7 +187,7 @@ describe('VendorCreationComponent', () => {
     expect(spyObj.updateVendorSpy).toHaveBeenCalled();
   });
 
-  it('should add the vendor data during  form submission', () => {
+  it('should add the vendor data when form is submitted', () => {
     const { component, spyObj } = setup();
     component.isEdit = false;
     component.addVendorForm = getVendorServiceFormMock();
@@ -222,7 +195,7 @@ describe('VendorCreationComponent', () => {
     expect(spyObj.addVendorSpy).toHaveBeenCalled();
   });
 
-  it('should show error during vendor form submission', () => {
+  it('should display error when they are present during vendor form submission.', () => {
     const { component, spyObj } = setup();
     component.addVendorForm = getVendorServiceFormMock();
     const errorResponse = {
@@ -238,8 +211,6 @@ describe('VendorCreationComponent', () => {
       },
     };
     spyObj.addVendorSpy.mockReturnValue(throwError(() => errorResponse));
-    component.handleError(errorResponse);
-    component.showError('message');
     component.submitVendor();
     expect(spyObj.messageServiceSpy).toHaveBeenCalled();
   });
@@ -254,10 +225,7 @@ describe('VendorCreationComponent', () => {
       },
     };
     spyObj.addVendorSpy.mockReturnValue(throwError(() => errorResponse));
-    component.handleError(errorResponse);
-    component.showError('message');
     component.submitVendor();
     expect(spyObj.messageServiceSpy).toHaveBeenCalled();
   });
 });
- 

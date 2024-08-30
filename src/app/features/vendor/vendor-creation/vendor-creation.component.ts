@@ -211,4 +211,11 @@ export class VendorCreationComponent implements OnInit {
   showSuccess(message : string): void {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
   }
+
+  /**
+   * method to go back to vendor listing page when user clicks 'yes' .
+   */
+  handleConfirm(): void {
+    this.router.navigate(['']);
+  }
 }

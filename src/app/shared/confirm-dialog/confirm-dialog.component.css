@@ -1,0 +1,13 @@
+  ::ng-deep .p-confirm-dialog-reject {
+    background-color: white;
+    color: red;
+  }
+   
+  ::ng-deep .p-confirm-dialog .p-dialog-content i {
+    color: orange;
+  }
+  ::ng-deep .p-dialog-footer .p-element {
+    margin-right: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+  }
