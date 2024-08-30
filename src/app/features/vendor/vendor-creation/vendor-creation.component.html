@@ -181,10 +181,12 @@
           class="cancel-btn">
           Cancel
         </button>
-        <app-confirm-dialog 
-         #confirmDialog 
-         (onConfirm)="handleConfirmResponse()" 
-         [message]="confirmationMessage">
-       </app-confirm-dialog>
+        @if(isViewConfirmModal)
+        {
+         <app-confirm-dialog 
+           (onConfirm)="handleConfirmResponse()" 
+           [message]="confirmationMessage">
+         </app-confirm-dialog>
+        }
       </div>
     </form>

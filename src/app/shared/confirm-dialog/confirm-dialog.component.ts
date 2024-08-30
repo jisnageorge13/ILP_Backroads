@@ -18,14 +18,18 @@ export class ConfirmDialogComponent {
   constructor(private confirmationService: ConfirmationService) {}
 
   /**
-   * method to confirmation dialog box and its contents.
+   * Method to display confirmation dialog box and its contents.
    */
-  showConfirmDialog(): void {
+  ngOnInit()
+  {   
     this.confirmationService.confirm({
-      message: this.message,
-      accept: () => {
+    message: this.message,
+    accept: () => {
         this.onConfirm.emit();
       }
     });
   }
-}
+  }
+
+
+

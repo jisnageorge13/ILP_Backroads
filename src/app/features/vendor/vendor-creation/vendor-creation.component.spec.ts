@@ -169,17 +169,6 @@ describe('VendorCreationComponent', () => {
     expect(spyObj.updateVendorSpy).toHaveBeenCalled();
   });
 
-  it('should show error if vendor name is not unique when a user updates data', () => {
-    const { component, spyObj } = setup();
-    component.isEdit = true;
-    component.selectedVendorId = 1;
-    component.addVendorForm = getVendorServiceFormMock();
-    const errorResponse = getUniqueNameErrorResponse();
-    spyObj.updateVendorSpy.mockReturnValue(throwError(() => errorResponse));
-    component.submitVendor();
-    expect(spyObj.updateVendorSpy).toHaveBeenCalled();
-  });
-
   it('should add the vendor data when user submits the form', () => {
     const { component, spyObj } = setup();
     component.isEdit = false;

@@ -1,15 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { phonePattern, urlPattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  IVendorCreation,
-  IDropDownFields,
-  IVendorData,
-} from '../models/vendor.model';
+import { IVendorCreation, IDropDownFields, IVendorData } from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
 /**  LLD
  * This component is to add new vendors and update existing vendors.
@@ -66,8 +61,7 @@ export class VendorCreationComponent implements OnInit {
   services!: IDropDownFields[];
   selectedVendorId!: number;
   confirmationMessage='';
-  
-  @ViewChild('confirmDialog') confirmDialog!: ConfirmDialogComponent;
+  isViewConfirmModal=false
 
   constructor(
     private readonly fb: FormBuilder,
@@ -135,7 +129,7 @@ export class VendorCreationComponent implements OnInit {
   }
 
   /**
-   * method to populate the form with retrieved deatails of vendor.
+   * Method to populate the form with retrieved deatails of vendor.
    */
   bindVendorDetails(): void {
     if (this.vendorData) {
@@ -174,7 +168,6 @@ export class VendorCreationComponent implements OnInit {
           this.showSuccess("Vendor Updated Successfully");
           this.router.navigate(['/vendor/view/' + this.selectedVendorId]);
         },
-        (error) => this.handleError(error)
       );
     } else {
       this.vendorService.addVendor(vendorData).subscribe(
@@ -182,44 +175,35 @@ export class VendorCreationComponent implements OnInit {
           this.showSuccess("Vendor Added Successfully");
           this.router.navigate(['/vendor/view/' + response.id]);
         },
-        (error) => this.handleError(error)
+        (error) => this.showError(error.error.message)
       );
     }
   }
 
   /**
-   * method to handle the errors during clicking submit button .
-   */
-  handleError(error: any): void {
-    if (error.error && error.error.message) {
-      this.showError(error.error.message);
-    } 
-  }
-  
-  /**
-   * method to show error message .
+   * Method to show error message .
    */
   showError(message : string): void {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
 
   /**
-   * method to show success message .
+   * Method to show success message .
    */
   showSuccess(message : string): void {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
   }
 
   /**
-   * method to show confirmation dialog box.
+   * Method to show confirmation dialog box.
    */
   showConfirmDialog(): void {
+   this.isViewConfirmModal=true;
    this.confirmationMessage="Are you sure you want to cancel the changes?";
-   this.confirmDialog.showConfirmDialog();
   }
 
   /**
-   * method to go back to vendor listing page when user clicks 'yes' .
+   * Method to go back to vendor listing page when user clicks 'yes' .
    */
   handleConfirmResponse(): void {
     this.router.navigate(['']);
