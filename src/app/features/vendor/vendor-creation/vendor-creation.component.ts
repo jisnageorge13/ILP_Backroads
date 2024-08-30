@@ -60,8 +60,8 @@ export class VendorCreationComponent implements OnInit {
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
-  confirmationMessage='';
-  isViewConfirmModal=false
+  confirmationMessage = '';
+  isViewConfirmModal = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -198,8 +198,8 @@ export class VendorCreationComponent implements OnInit {
    * Method to show confirmation dialog box.
    */
   showConfirmDialog(): void {
-   this.isViewConfirmModal=true;
-   this.confirmationMessage="Are you sure you want to cancel the changes?";
+   this.isViewConfirmModal = true;
+   this.confirmationMessage = "Are you sure you want to cancel the changes?";
   }
 
   /**

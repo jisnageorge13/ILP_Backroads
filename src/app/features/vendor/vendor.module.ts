@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { VendorListingComponent } from './vendor-listing/vendor-listing.component';
 import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorCreationComponent } from './vendor-creation/vendor-creation.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
