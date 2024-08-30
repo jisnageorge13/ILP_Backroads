@@ -61,7 +61,7 @@ export class VendorCreationComponent implements OnInit {
   services!: IDropDownFields[];
   selectedVendorId!: number;
   confirmationMessage = '';
-  isViewConfirmModal = false;
+  isViewConfirmationModal = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -197,15 +197,15 @@ export class VendorCreationComponent implements OnInit {
   /**
    * Method to show confirmation dialog box.
    */
-  showConfirmDialog(): void {
-   this.isViewConfirmModal = true;
+  showConfirmationPopUp(): void {
+   this.isViewConfirmationModal = true;
    this.confirmationMessage = "Are you sure you want to cancel the changes?";
   }
 
   /**
    * Method to go back to vendor listing page when user clicks 'yes'.
    */
-  handleConfirmResponse(): void {
+  handleConfirmationApproval(): void {
     this.router.navigate(['']);
   }
 }

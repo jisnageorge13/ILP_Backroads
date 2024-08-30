@@ -3,15 +3,13 @@ import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-confirm-dialog',
-  template: `
-    <p-confirmDialog [header]="header" [icon]="icon"></p-confirmDialog>
-  `,
+  template: `<p-confirmDialog></p-confirmDialog>`,
   styleUrl: './confirm-dialog.component.css',
 })
 
 export class ConfirmDialogComponent {
-  @Input() header = 'Confirmation';
-  @Input() icon = 'pi pi-exclamation-triangle';
+  @Input() dialogHeader = 'Confirmation';
+  @Input() dialogIcon = 'pi pi-exclamation-triangle';
   @Input() message = '';
   @Output() onConfirm: EventEmitter<void> = new EventEmitter<void>();
 
@@ -23,13 +21,15 @@ export class ConfirmDialogComponent {
   ngOnInit()
   {   
     this.confirmationService.confirm({
-    message: this.message,
-    accept: () => {
+     header: this.dialogHeader,
+     icon: this.dialogIcon,
+     message: this.message,
+     accept: () => {
         this.onConfirm.emit();
-      }
+     }
     });
   }
-  }
+ }
 
 
 

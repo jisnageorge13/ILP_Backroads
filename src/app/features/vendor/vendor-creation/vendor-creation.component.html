@@ -177,14 +177,14 @@
         <button
           id="cancel-btn"
           type="button"
-          (click)="showConfirmDialog()"
+          (click)="showConfirmationPopUp()"
           class="cancel-btn">
           Cancel
         </button>
-        @if(isViewConfirmModal)
+        @if(isViewConfirmationModal)
         {
          <app-confirm-dialog 
-           (onConfirm)="handleConfirmResponse()" 
+           (onConfirm)="handleConfirmationApproval()" 
            [message]="confirmationMessage">
          </app-confirm-dialog>
         }
