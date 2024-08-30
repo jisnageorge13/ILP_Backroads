@@ -129,7 +129,7 @@ export class VendorCreationComponent implements OnInit {
   }
 
   /**
-   * Method to populate the form with retrieved deatails of vendor.
+   * Method to populate the form with retrieved details of vendor.
    */
   bindVendorDetails(): void {
     if (this.vendorData) {
@@ -147,7 +147,7 @@ export class VendorCreationComponent implements OnInit {
   }
 
   /**
-   * Submits the vendor data entered in the form .
+   * Submits the vendor data entered in the form.
    */
   submitVendor(): void {
     const formValue = this.addVendorForm.getRawValue();
@@ -181,14 +181,14 @@ export class VendorCreationComponent implements OnInit {
   }
 
   /**
-   * Method to show error message .
+   * Method to show error message.
    */
   showError(message : string): void {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
 
   /**
-   * Method to show success message .
+   * Method to show success message.
    */
   showSuccess(message : string): void {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
@@ -203,7 +203,7 @@ export class VendorCreationComponent implements OnInit {
   }
 
   /**
-   * Method to go back to vendor listing page when user clicks 'yes' .
+   * Method to go back to vendor listing page when user clicks 'yes'.
    */
   handleConfirmResponse(): void {
     this.router.navigate(['']);
