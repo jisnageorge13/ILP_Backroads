@@ -50,7 +50,6 @@ import { MessageService } from 'primeng/api';
   templateUrl: './vendor-creation.component.html',
   styleUrl: './vendor-creation.component.scss',
 })
-
 export class VendorCreationComponent implements OnInit {
   addVendorForm!: FormGroup;
   isEdit = false;

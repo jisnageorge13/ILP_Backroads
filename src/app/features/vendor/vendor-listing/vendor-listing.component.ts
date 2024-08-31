@@ -3,7 +3,6 @@ import { IVendor } from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
 import { Router } from '@angular/router';
 
-
 /**
  * VendorListingComponent
  * This component is responsible for listing all the vendors in the system.

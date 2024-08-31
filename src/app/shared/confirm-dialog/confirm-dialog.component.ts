@@ -6,7 +6,6 @@ import { ConfirmationService } from 'primeng/api';
   template: `<p-confirmDialog></p-confirmDialog>`,
   styleUrl: './confirm-dialog.component.css',
 })
-
 export class ConfirmDialogComponent {
   @Input() dialogHeader = 'Confirmation';
   @Input() dialogIcon = 'pi pi-exclamation-triangle';

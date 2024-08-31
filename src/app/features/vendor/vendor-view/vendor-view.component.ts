@@ -95,7 +95,7 @@ export class VendorViewComponent {
   }
 
   /**
-   * method to show success message.
+   * Method to show success message.
    */
   showSuccess(message: string): void {
     this.getVendorById(this.vendor.id);
