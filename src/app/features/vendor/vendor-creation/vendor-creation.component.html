@@ -181,7 +181,7 @@
           class="cancel-btn">
           Cancel
         </button>
-        @if(isViewConfirmationModal)
+        @if(isConfirmPopupVisible)
         {
          <app-confirm-dialog 
            (onConfirm)="handleConfirmationApproval()" 
