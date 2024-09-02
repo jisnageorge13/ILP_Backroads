@@ -8,7 +8,7 @@ interface ICommonVendorFields {
 }
 
 export interface IVendorCreation extends ICommonVendorFields {
-  id?:number
+  id?: number
   serviceId: number;
   marketIds: number[];
 }
@@ -24,6 +24,6 @@ export interface IVendorData extends ICommonVendorFields {
 }
 
 export interface IVendor extends IVendorData {
-  id:number;
+  id: number;
   isApproved: boolean;
 }

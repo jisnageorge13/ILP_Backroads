@@ -3,8 +3,7 @@
     <form
       class="add-vendor-page"
       [formGroup]="addVendorForm"
-      (ngSubmit)="submitVendor()"
-    >
+      (ngSubmit)="submitVendor()">
       <div class="form-heading">
         @if(isEdit) {<h2>Edit vendor</h2>} 
         @else {<h2>New vendor</h2>}
@@ -12,8 +11,7 @@
       <div class="form-body">
         <div>
           <label for="vendorName" class="vendorName"
-            >Vendor Name<span class="requiredSymbol">*</span></label
-          >
+            >Vendor Name<span class="requiredSymbol">*</span></label>
           <input
             pInputText
             id="vendorName"
@@ -24,9 +22,7 @@
             required
             [class.invalidInput]="
               addVendorForm.get('vendorName')?.invalid &&
-              addVendorForm.get('vendorName')?.touched
-            "
-          />
+              addVendorForm.get('vendorName')?.touched"/>
           <app-error-message
             [control]="addVendorForm.get('vendorName')"
             message="Name Required"
@@ -40,14 +36,12 @@
                 formControlName="state"
                 [options]="states"
                 placeholder="Select State"
-                id="state"
-              />
+                id="state"/>
             </div>
           </div>
           <div class="vendor-place">
             <label id="country" class="selectedCity"
-              >Country<span class="requiredSymbol">*</span></label
-            >
+              >Country<span class="requiredSymbol">*</span></label>
             <div class="card flex justify-content-center">
               <p-dropdown
                 formControlName="country"
@@ -59,8 +53,7 @@
                     addVendorForm.get('country')?.invalid &&
                     addVendorForm.get('country')?.touched &&
                     addVendorForm.get('country')?.hasError('required')
-                }"
-              />
+                }"/>
             </div>
             <app-error-message
               [control]="addVendorForm.get('country')"
@@ -87,14 +80,13 @@
                     addVendorForm.get('markets')?.invalid &&
                     addVendorForm.get('markets')?.touched &&
                     addVendorForm.get('markets')?.hasError('required')
-                }"
-              >
+                }">
               </p-multiSelect>
             </div>
             <app-error-message
               [control]="addVendorForm.get('markets')"
-              message="Market is Required"
-            ></app-error-message>
+              message="Market is Required">
+            </app-error-message>
           </div>
           <div class="service-category">
             <label for="service">
@@ -114,22 +106,21 @@
                     addVendorForm.get('service')?.invalid &&
                     addVendorForm.get('service')?.touched &&
                     addVendorForm.get('service')?.hasError('required')
-                }"
-              ></p-dropdown>
+                }">
+              </p-dropdown>
             </div>
             <app-error-message
               [control]="addVendorForm.get('service')"
-              message="Service is Requires"
-            ></app-error-message>
+              message="Service is Required">
+            </app-error-message>
           </div>
         </div>
         <div class="contact-info">
           <p>General Contact Info</p>
           <div class="contact">
             <div class="contact-options">
-              <label for="email"
-                >Email<span class="requiredSymbol">*</span></label
-              >
+              <label for="email">
+                Email<span class="requiredSymbol">*</span></label>
               <input
                 pInputText
                 type="email"
@@ -139,10 +130,8 @@
                 formControlName="email"
                 [class.invalidInput]="
                   addVendorForm.get('email')?.invalid &&
-                  addVendorForm.get('email')?.touched
-                "
-                required
-              />
+                  addVendorForm.get('email')?.touched"
+                required/>
               <app-error-message
                 [control]="addVendorForm.get('email')"
                 message="Inavlid Email Address"
@@ -151,8 +140,7 @@
             <div class="phone-website">
               <div class="contact-options">
                 <label for="phone">
-                  Phone<span class="requiredSymbol">*</span></label
-                >
+                  Phone<span class="requiredSymbol">*</span></label>
                 <p-inputGroup>
                   <input
                     formControlName="phone"
@@ -161,9 +149,7 @@
                     placeholder="Enter Number"
                     [class.invalidInput]="
                       addVendorForm.get('phone')?.invalid &&
-                      addVendorForm.get('phone')?.touched
-                    "
-                  />
+                      addVendorForm.get('phone')?.touched"/>
                 </p-inputGroup>
                 <app-error-message [control]="addVendorForm.get('phone')" message="Invalid Phone"></app-error-message>
               </div>
@@ -174,8 +160,7 @@
                   type="text"
                   id="website"
                   placeholder="Enter Website"
-                  formControlName="website"
-                />
+                  formControlName="website"/>
                 <app-error-message [control]="addVendorForm.get('website')" message="Inavlid Website URL"></app-error-message>
               </div>
             </div>
@@ -188,15 +173,20 @@
           id="submit-btn"
           label="Submit"
           [disabled]="addVendorForm.invalid"
-          class="submit-btn"
-        />
+          class="submit-btn"/>
         <button
           id="cancel-btn"
           type="button"
-          [routerLink]="['/ ']"
-          class="cancel-btn"
-        >
+          (click)="showConfirmationPopUp()"
+          class="cancel-btn">
           Cancel
         </button>
+        @if(isConfirmPopupVisible)
+        {
+         <app-confirm-dialog 
+           (onConfirm)="handleConfirmationApproval()" 
+           [message]="confirmationMessage">
+         </app-confirm-dialog>
+        }
       </div>
     </form>
