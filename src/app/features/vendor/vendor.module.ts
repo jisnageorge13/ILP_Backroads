@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { VendorListingComponent } from './vendor-listing/vendor-listing.component';
 import { VendorRoutingModule } from './vendor-routing.module';
 import { VendorCreationComponent } from './vendor-creation/vendor-creation.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -19,11 +19,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { VendorViewComponent } from './vendor-view/vendor-view.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { VendorService } from './services/vendor.service';
-
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TagModule } from 'primeng/tag';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [VendorListingComponent, VendorCreationComponent, VendorViewComponent],
-  imports: [CommonModule, SharedModule, VendorRoutingModule, TableModule, ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
+  imports: [CommonModule, SharedModule, VendorRoutingModule, TableModule, ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule,OverlayPanelModule,BadgeModule],
   providers: [ConfirmationService, MessageService,VendorService],
 })
 export class VendorModule {}

@@ -34,6 +34,9 @@ import { IVendor } from '../models/vendor.model';
   styleUrl: './vendor-view.component.scss',
 })
 export class VendorViewComponent {
+getTooltipText(): string|import("@angular/core").TemplateRef<HTMLElement>|undefined {
+throw new Error('Method not implemented.');
+}
   vendor!: IVendor;
   selectedVendorId!:number
 

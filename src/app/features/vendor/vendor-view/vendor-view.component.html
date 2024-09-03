@@ -3,9 +3,9 @@
 <p-toast />
 <div class="home">
   <div class="nav"></div>
-  <div class="header">
+  <div class="header-name">
     <h1>
-      {{ vendor.name }}
+      {{ vendor.name | titlecase }}
       <span *ngIf="!vendor.isApproved" class="status-label pending">
         PENDING
       </span>
@@ -43,10 +43,12 @@
       <div class="info-row">
         <div class="info-item">
           <small>Address</small>
-          <p>{{ vendor.country + ', ' + vendor.stateProvinceRegion }}</p>
+          <p>
+            {{ vendor.country + ',' + vendor.stateProvinceRegion }}
+          </p>
         </div>
       </div>
-      <div class="info-row">
+      <div class="info-row vendor-email">
         <div class="info-item">
           <small>Email</small>
           <p>{{ vendor.email }}</p>
@@ -55,27 +57,40 @@
           <small>Phone</small>
           <p>{{ vendor.phone }}</p>
         </div>
-        <div class="info-item">
+        <div class="info-item vendor-website">
           <small>Website</small>
-          @if(vendor.website) {
           <p>
-            <a [href]="vendor.website" target="_blank"
-              >{{ vendor.website | slice : 0 : 50 }}...</a
-            >
+            <a [attr.href]="vendor.website" target="_blank">
+              {{ vendor.website | truncate : 20 }}
+            </a>
           </p>
-          } @else {
-          <p>---</p>
-          }
         </div>
         <div class="info-item market">
           <small>Market</small><br />
-          <ng-container *ngFor="let market of vendor.markets; let i = index">
+          <ng-container>
+            {{ (vendor.markets | listItems :1).transformedList }}
             <span
-              >{{ market.name
-              }}<span *ngIf="i < vendor.markets.length - 1">, </span></span
+              *ngIf="vendor.markets.length > 1;"
+              (mouseenter)="op.toggle($event)"
+              (mouseleave)="op.hide()"
+              [style.cursor]="'pointer'"
             >
+                <span class="surface-border">+{{ (vendor.markets|listItems).length}}</span>
+            </span>
+            <ng-template #simpleDisplay>
+              <span>{{ vendor.markets | listItems }}</span>
+            </ng-template>
+            <p-overlayPanel #op [showCloseIcon]="false">
+              <ng-template pTemplate="content">
+                <ul>
+                  <li *ngFor="let market of vendor.markets">
+                    {{ market.name }}
+                  </li>
+                </ul>
+              </ng-template>
+            </p-overlayPanel>
           </ng-container>
-        </div>
+        </div> 
         <div class="info-item service-category">
           <small>Service Category</small>
           <p>{{ vendor.service.name }}</p>

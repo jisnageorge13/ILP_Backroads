@@ -2,33 +2,26 @@
   width: 100%;
 }
 
-.header {
+.header-name {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
-  padding-top: 2rem;
   margin-left: 1rem;
   padding-right: 1rem;
-}
-
-.nav {
-  height: 3rem;
-  border: 1px solid #d1d5db;
-  background-color: #1a4870;
 }
 
 .basic-info {
   display: flex;
   align-items: center;
   border-bottom: 3px solid;
-  border-image: linear-gradient(to left, #ccc 85%, #09b5fe 20%);
+  border-image: linear-gradient(to left, #ccc 85%, #1a4870 20%);
   border-image-slice: 1;
   margin: 1rem 0;
 }
 
 .basic-info h5 {
-  margin: 1rem;
+  margin-top: 1px;
   padding-left: 1rem;
   font-weight: bold;
 }
@@ -54,7 +47,7 @@
 
 .buttons {
   display: flex;
-  gap: 10px;
+  gap: 1px;
   height: 2rem;
 }
 
@@ -99,8 +92,6 @@
 .flex-row .p-col-12 {
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
-  gap: 10px;
 }
 
 .flex-row .p-col-12 span {
@@ -114,7 +105,6 @@
 .info-item {
   flex: 1 1 45%;
   margin-right: 0.5rem;
-  padding: 0.5rem 0;
   box-sizing: border-box;
   color: black;
 }
@@ -151,10 +141,25 @@
 
 .market {
   grid-column: 1 / span 1;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: square;
+  color: #031f37;
 }
 
 .service-category {
   grid-column: 2 / span 1;
+}
+
+.surface-border {
+  font-size: small;
+  border-radius: 0.3rem;
+  padding: 0.1em;
+  color: #1057c2 !important;
+  font-size: small;
+  font-weight: bold;
 }
 
 ::ng-deep .p-button {
@@ -173,6 +178,14 @@
 
 ::ng-deep .p-confirm-dialog .p-dialog-content i {
   color: orange;
+}
+
+::ng-deep .p-overlaypanel .p-overlaypanel-content {
+  padding: 0.2rem;
+  padding-bottom: 0rem !important;
+  margin-right: 0.5em;
+  background-color: #fff;
+  width: 5rem;
 }
 
 @media (max-width: 768px) {
