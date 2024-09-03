@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { phonePattern, urlPattern } from "../config/vendor-config";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { phonePattern, urlPattern } from '../config/vendor-config';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IVendorCreation,
   IDropDownFields,
   IVendorData,
-} from "../models/vendor.model";
-import { VendorService } from "../services/vendor.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { MessageService } from "primeng/api";
-import { LoadingService } from "src/app/shared/service/loading.service";
+} from '../models/vendor.model';
+import { VendorService } from '../services/vendor.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { LoadingService } from 'src/app/shared/service/loading.service';
 
 /**  LLD
  * This component is to add new vendors and update existing vendors.
@@ -185,12 +185,14 @@ export class VendorCreationComponent implements OnInit {
 
     if (this.isEdit) {
       this.vendorService
-        .updateVendor(this.selectedVendorId, vendorData).subscribe((response) => {
+        .updateVendor(this.selectedVendorId, vendorData)
+        .subscribe((response) => {
           this.showSuccess("Vendor Updated Successfully");
           this.router.navigate(["/vendor/view/" + this.selectedVendorId]);
         });
     } else {
-      this.vendorService.addVendor(vendorData).subscribe((response) => {
+      this.vendorService.addVendor(vendorData).subscribe(
+        (response) => {
           this.showSuccess("Vendor Added Successfully");
           this.router.navigate(["/vendor/view/" + response.id]);
         },
@@ -207,7 +209,10 @@ export class VendorCreationComponent implements OnInit {
     if (!this.isEdit) {
       return false;
     }
-    return ( JSON.stringify(this.addVendorForm.getRawValue()) === JSON.stringify(this.initialData));
+    return (
+      JSON.stringify(this.addVendorForm.getRawValue()) ===
+      JSON.stringify(this.initialData)
+    );
   }
 
   /**

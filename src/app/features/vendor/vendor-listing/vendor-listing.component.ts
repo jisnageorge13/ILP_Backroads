@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { IVendor } from "../models/vendor.model";
-import { VendorService } from "../services/vendor.service";
-import { Router } from "@angular/router";
-import { LoadingService } from "src/app/shared/service/loading.service";
+import { Component, OnInit } from '@angular/core';
+import { IVendor } from '../models/vendor.model';
+import { VendorService } from '../services/vendor.service';
+import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/shared/service/loading.service';
 
 /**
  * VendorListingComponent

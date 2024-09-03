@@ -10,9 +10,9 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonLoaderDirective } from './ui/button-loader.directive';
 @NgModule({
   declarations: [
+    LoaderComponent,
     ErrorMessageComponent,
     ConfirmDialogComponent,
-    LoaderComponent,
     BreadcrumbComponent,
     ButtonLoaderDirective,
   ],
@@ -22,9 +22,9 @@ import { ButtonLoaderDirective } from './ui/button-loader.directive';
     BreadcrumbModule
   ],
   exports: [
+    LoaderComponent,
     ErrorMessageComponent,
     ConfirmDialogComponent,
-    LoaderComponent,
     BreadcrumbComponent,
     ButtonLoaderDirective,
   ],

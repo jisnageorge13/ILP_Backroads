@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output, OnInit } from "@angular/core";
-import { ConfirmationService } from "primeng/api";
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: "app-confirm-dialog",

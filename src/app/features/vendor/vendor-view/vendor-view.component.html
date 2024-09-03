@@ -1,7 +1,7 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle">
 </p-confirmDialog>
 <p-toast />
-<div class="home">
+<div class="home" *ngIf="vendor">
   <div class="header-name">
     <h1>
       {{ vendor.name | titlecase}}
