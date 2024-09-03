@@ -1,38 +1,20 @@
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle">
 </p-confirmDialog>
-<p-toast/>
+<p-toast />
 <div class="home">
-  <div class="nav"></div>
-  <div class="header">
+  <div class="header-name">
     <h1>
-      {{ vendor.name }}
+      {{ vendor.name | titlecase}}
       <span *ngIf="!vendor.isApproved" class="status-label pending">
         PENDING
       </span>
     </h1>
     <div class="buttons">
-      <button
-        pButton
-        id="edit-profile-button"
-        type="button"
-        label="Edit Profile"
-        icon="pi pi-pencil"
-        [rounded]="true"
-        [outlined]="true"
-        (click)="navigateToEdit(vendor.id)"
-      ></button>
+      <button pButton id="edit-profile-button" type="button" label="Edit Profile" icon="pi pi-pencil" [rounded]="true" [outlined]="true" (click)="navigateToEdit(vendor.id)" ></button>
       @if(!vendor.isApproved)
       {
-      <button
-        pButton
-        id="approve-vendor-button"
-        type="button"
-        label="Approve Vendor"
-        icon="pi pi-check"
-        class="p-button-primary approve-btn"
-        (click)="confirmApproval()"
-      ></button>
-     }
+      <button  id="approve-vendor-button" type="button" icon="pi pi-check" class="submit-btn approve-btn" (click)="confirmApproval()" [appButtonLoader]="isButtonLoading">Approve Vendor</button>
+      }
     </div>
   </div>
   <div class="basic-info">
@@ -60,23 +42,19 @@
           <small>Website</small>
           @if(vendor.website)
           {
-            <p>
-              <a [href]="vendor.website" target="_blank"
-                >{{ vendor.website | slice : 0 : 50 }}...</a
-              >
-            </p>
+          <p>
+            <a [href]="vendor.website" target="_blank">{{ vendor.website | slice : 0 : 50 }}...</a>
+          </p>
           }
-           @else {
-            <p>---</p>
-           }
+          @else {
+          <p>---</p>
+          }
         </div>
         <div class="info-item market">
           <small>Market</small><br />
           <ng-container *ngFor="let market of vendor.markets; let i = index">
-            <span
-              >{{ market.name
-              }}<span *ngIf="i < vendor.markets.length - 1">, </span></span
-            >
+            <span>{{ market.name
+              }}<span *ngIf="i < vendor.markets.length - 1">, </span></span>
           </ng-container>
         </div>
         <div class="info-item service-category">

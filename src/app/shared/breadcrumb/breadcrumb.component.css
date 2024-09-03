@@ -1,0 +1,9 @@
+::ng-deep .p-breadcrumb 
+{
+    height: 3rem !important;
+    padding: 0rem;
+}
+::ng-deep ol
+{
+    margin-top: 1rem !important;
+}

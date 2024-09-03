@@ -5,11 +5,10 @@ import { VendorCreationComponent } from './vendor-creation/vendor-creation.compo
 import { VendorViewComponent } from './vendor-view/vendor-view.component';
 
 const routes: Routes = [
-  { path: '', component: VendorListingComponent },
-  { path: 'creation', component: VendorCreationComponent },
-  { path: 'view/:id', component: VendorViewComponent },
-  { path: 'edit/:id', component: VendorCreationComponent },
-  { path: '', redirectTo: 'listing', pathMatch: 'full' },
+  { path: '',  component: VendorListingComponent, pathMatch: 'full', data: { breadcrumb: '' } },
+  { path: 'creation', component: VendorCreationComponent, data: { breadcrumb: 'Create Vendor' } },
+  { path: 'view/:id', component: VendorViewComponent, data: { breadcrumb: 'View Vendor' } },
+  { path: 'edit/:id', component: VendorCreationComponent, data: { breadcrumb: 'Edit Vendor' } },
 ];
 
 @NgModule({
