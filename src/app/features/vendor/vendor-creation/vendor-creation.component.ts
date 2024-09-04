@@ -60,7 +60,7 @@ export class VendorCreationComponent implements OnInit {
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
-  confirmationMessage = "";
+  confirmationMessage! : string;
   isConfirmPopupVisible = false;
   initialData?: IVendorCreation;
   isButtonLoading = false;
@@ -86,7 +86,7 @@ export class VendorCreationComponent implements OnInit {
       this.selectedVendorId = Number(this.route.snapshot.paramMap.get("id"));
       this.fetchVendorData();
     }
-    this.confirmationMessage =this.constants.confirmCancelMessage ;
+    this.confirmationMessage = this.constants.confirmCancelMessage ;
   }
 
   /**

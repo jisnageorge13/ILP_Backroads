@@ -113,6 +113,9 @@
     <button id="cancel-btn" type="button" (click)="showConfirmationPopUp()" class="cancel-btn" >
       Cancel
     </button>
-      <app-confirm-dialog [confirmModal]="isConfirmPopupVisible" (confirm)="handleConfirmationApproval()" (reject)="handleRejection()" [message]="confirmationMessage"></app-confirm-dialog>
+    @if(isConfirmPopupVisible)
+    {
+      <app-confirm-dialog  (confirm)="handleConfirmationApproval()" (reject)="handleRejection()" [message]="confirmationMessage"></app-confirm-dialog>
+    }
   </div>
 </form>

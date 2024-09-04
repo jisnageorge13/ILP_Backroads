@@ -1,27 +1,24 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-confirm-dialog',
-  template: `<p-confirmDialog ></p-confirmDialog>`,
+  template: `<p-confirmDialog></p-confirmDialog>`,
   styleUrl: './confirm-dialog.component.css',
 })
-export class ConfirmDialogComponent  {
-  @Input() visible = false;
+export class ConfirmDialogComponent implements OnInit  {
   @Input() dialogHeader = "Confirmation";
   @Input() dialogIcon = "pi pi-exclamation-triangle";
-  @Input() message = "";
+  @Input() message! : string;
   @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
   @Output() reject: EventEmitter<void> = new EventEmitter<void>();
-  
+
   constructor(private confirmationService: ConfirmationService) {}
 
   /**
    * Method to display confirmation dialog box and its contents.
    */
-  @Input() set confirmModal(visible: boolean) {
-    if(visible)
-    {
+  ngOnInit() {
       this.confirmationService.confirm({ header: this.dialogHeader, icon: this.dialogIcon, message: this.message,
         accept: () => {
           this.confirm.emit();
@@ -30,6 +27,5 @@ export class ConfirmDialogComponent  {
           this.reject.emit();
         },
       });
-    }
   }
 }
