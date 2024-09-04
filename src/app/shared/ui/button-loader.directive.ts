@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Renderer2, Input } from '@angular/core';
 
 @Directive({
-  selector: "[appButtonLoader]",
+  selector: '[appButtonLoader]',
 })
 export class ButtonLoaderDirective {
   private originalContent: string | null = null;
