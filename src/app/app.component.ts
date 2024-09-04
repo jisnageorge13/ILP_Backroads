@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'ILP_Backroads';
   isLoading = false;
 
-  constructor(private loadingService: LoadingService, private cdr: ChangeDetectorRef) {}
+  constructor(private loadingService: LoadingService) {}
 
   ngOnInit() {
     this.loadingService.loading$.subscribe((isLoading:boolean) => {
