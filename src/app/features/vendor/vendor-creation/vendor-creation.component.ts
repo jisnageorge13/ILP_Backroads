@@ -125,9 +125,7 @@ export class VendorCreationComponent implements OnInit {
    */
   fetchVendorData(): void {
     if (this.selectedVendorId) {
-      this.vendorService
-        .getVendorById(this.selectedVendorId)
-        .subscribe((data: IVendorData) => {
+      this.vendorService.getVendorById(this.selectedVendorId).subscribe((data: IVendorData) => {
           this.vendorData = data;
           this.bindVendorDetails();
         });
@@ -172,14 +170,12 @@ export class VendorCreationComponent implements OnInit {
 
     if (this.isEdit) {
       this.vendorService
-        .updateVendor(this.selectedVendorId, vendorData)
-        .subscribe((response) => {
+        .updateVendor(this.selectedVendorId, vendorData).subscribe((response) => {
           this.showSuccess("Vendor Updated Successfully");
           this.router.navigate(["/vendor/view/" + this.selectedVendorId]);
         });
     } else {
-      this.vendorService.addVendor(vendorData).subscribe(
-        (response) => {
+      this.vendorService.addVendor(vendorData).subscribe((response) => {
           this.showSuccess("Vendor Added Successfully");
           this.router.navigate(["/vendor/view/" + response.id]);
         },
