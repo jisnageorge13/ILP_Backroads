@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-confirm-dialog',
-  template: `<p-confirmDialog [visible]="visible" header="Confirmation" icon="pi pi-exclamation-triangle" [message]="message" (accept)="confirmChange()" (reject)="rejectChange()"> </p-confirmDialog>`,
+  template: `<p-confirmDialog [visible]="visible"  (onHide)="visible = false"  header="Confirmation" icon="pi pi-exclamation-triangle" [message]="message" (accept)="confirmChange()" (reject)="rejectChange()"> </p-confirmDialog>`,
   styleUrl: './confirm-dialog.component.css',
 })
 export class ConfirmDialogComponent  { 
@@ -13,7 +12,6 @@ export class ConfirmDialogComponent  {
   @Output() confirm: EventEmitter<void> = new EventEmitter();
   @Output() reject: EventEmitter<void> = new EventEmitter();
 
-  
   /**
    * Method to handle when accept case occur
    * @returns { void }

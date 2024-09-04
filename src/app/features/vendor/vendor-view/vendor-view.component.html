@@ -53,8 +53,7 @@
         <div class="info-item market">
           <small>Market</small><br />
           <ng-container *ngFor="let market of vendor.markets; let i = index">
-            <span>{{ market.name
-              }}<span *ngIf="i < vendor.markets.length - 1">, </span></span>
+            <span>{{ market.name }}<span *ngIf="i < vendor.markets.length - 1">, </span></span>
           </ng-container>
         </div>
         <div class="info-item service-category">
