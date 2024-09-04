@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { VendorService } from '../services/vendor.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IVendor } from '../models/vendor.model';
+import { LoadingService } from 'src/app/shared/service/loading.service';
+import { Constants } from '../config/vendor-config';
 
 /**  LLD
 
@@ -10,7 +12,7 @@ import { IVendor } from '../models/vendor.model';
 
  * It displays the following information:
  * In the header section,Displays the name of the vendor and if the vendor is not yet approved a pending status label will be shown besides the name .
- * Includes action buttons for "Edit Profile" and "Approve Vendor."
+ * Includes action buttons for 'Edit Profile' and 'Approve Vendor.'
  * 
  * In the content section the folowing details are displayed
  * email
@@ -33,21 +35,24 @@ import { IVendor } from '../models/vendor.model';
   templateUrl: './vendor-view.component.html',
   styleUrl: './vendor-view.component.scss',
 })
-export class VendorViewComponent {
+export class VendorViewComponent implements OnInit {
   vendor!: IVendor;
-
+  isButtonLoading = false;
   constructor(
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private vendorService: VendorService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private loadingService: LoadingService,
+    private constants: Constants,
   ) {}
 
   /**
    * On component initialization, fetches the vendor details
    */
   ngOnInit(): void {
+    this.loadingService.showLoader();
     this.route.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
       if (id) {
@@ -69,8 +74,8 @@ export class VendorViewComponent {
    * Method to show confirm pop up to approve the vendor.
    */
   confirmApproval(): void {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to approve this vendor?',
+    this.isButtonLoading = true;
+    this.confirmationService.confirm({ message: this.constants.confirmApprovalMessage,
       accept: () => {
         this.approveVendor();
       },
@@ -98,6 +103,7 @@ export class VendorViewComponent {
    * Method to show success message.
    */
   showSuccess(message: string): void {
+    this.isButtonLoading = false;
     this.getVendorById(this.vendor.id);
     this.messageService.add({severity: 'success',summary: 'Success',detail: `${message}`,});
   }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { phonePattern, urlPattern } from '../config/vendor-config';
+import { Constants } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IVendorCreation, IDropDownFields, IVendorData } from '../models/vendor.model';
+import {IVendorCreation, IDropDownFields, IVendorData,} from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { LoadingService } from 'src/app/shared/service/loading.service';
 
 /**  LLD
  * This component is to add new vendors and update existing vendors.
@@ -36,13 +37,13 @@ import { MessageService } from 'primeng/api';
  *    - Cancelling the changes made and going back to the Vendor Listing page.
  *
  * Submit:
- *    - When the user clicks on the "Submit for approval" button, user will be directed to the View Profile page after saving the new vendor data.
+ *    - When the user clicks on the 'Submit for approval' button, user will be directed to the View Profile page after saving the new vendor data.
  *
  * Update:
- *    - When the user clicks on the "Update" button (only visible when editing an existing vendor), user will be directed to the View Profile page after saving the updated vendor data.
+ *    - When the user clicks on the 'Update' button (only visible when editing an existing vendor), user will be directed to the View Profile page after saving the updated vendor data.
  *
  * Cancel:
- *    - When the user clicks on the "Cancel" button, user will be directed back to the Vendor Listing page without saving any changes.
+ *    - When the user clicks on the 'Cancel' button, user will be directed back to the Vendor Listing page without saving any changes.
  */
 
 @Component({
@@ -55,22 +56,28 @@ export class VendorCreationComponent implements OnInit {
   isEdit = false;
   vendorData?: IVendorData;
   countries: string[] = ['USA', 'Germany', 'Australia', 'Brazil', 'India'];
-  states: string[] = ['California','Berlin','Sydney','Rio de Janeiro','Kerala',];
+  states: string[] = ['California', 'Berlin', 'Sydney', 'Rio de Janeiro', 'Kerala',];
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
-  confirmationMessage = '';
+  confirmationMessage! : string;
   isConfirmPopupVisible = false;
-
+  initialData?: IVendorCreation;
+  isButtonLoading = false;
+  
   constructor(
     private readonly fb: FormBuilder,
     private vendorService: VendorService,
     private router: Router,
     private route: ActivatedRoute,
-    private messageService :MessageService,
+    private messageService: MessageService,
+    private loadingService: LoadingService,
+    private constants: Constants
   ) {}
 
+  
   ngOnInit() {
+    this.loadingService.showLoader();
     this.isEdit = this.router.url.includes('edit');
     this.fetchMarkets();
     this.fetchServices();
@@ -79,6 +86,7 @@ export class VendorCreationComponent implements OnInit {
       this.selectedVendorId = Number(this.route.snapshot.paramMap.get('id'));
       this.fetchVendorData();
     }
+    this.confirmationMessage = this.constants.confirmCancelMessage ;
   }
 
   /**
@@ -86,13 +94,13 @@ export class VendorCreationComponent implements OnInit {
    */
   createAddVendorForm(): void {
     this.addVendorForm = this.fb.group({
-      vendorName: [{value:'', disabled: this.isEdit }, [Validators.required, Validators.maxLength(100)]],
+      vendorName: [{ value: '', disabled: this.isEdit }, [Validators.required, Validators.maxLength(100)], ],
       state: [''],
       country: ['', Validators.required],
       markets: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(phonePattern)]],
-      website: ['', Validators.pattern(urlPattern)],
+      phone: ['', [Validators.required, Validators.pattern(this.constants.phonePattern)]],
+      website: ['', Validators.pattern(this.constants.urlPattern)],
       service: ['', Validators.required],
     });
   }
@@ -142,6 +150,7 @@ export class VendorCreationComponent implements OnInit {
         website: this.vendorData.website,
         service: this.vendorData.service.id,
       });
+      this.initialData = this.addVendorForm.getRawValue();
     }
   }
 
@@ -149,6 +158,7 @@ export class VendorCreationComponent implements OnInit {
    * Submits the vendor data entered in the form.
    */
   submitVendor(): void {
+    this.isButtonLoading = true;
     const formValue = this.addVendorForm.getRawValue();
     const vendorData: IVendorCreation = {
       name: formValue.vendorName,
@@ -160,18 +170,15 @@ export class VendorCreationComponent implements OnInit {
       serviceId: formValue.service,
       marketIds: formValue.markets,
     };
-  
+
     if (this.isEdit) {
-      this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe(
-        (response) => {
-          this.showSuccess("Vendor Updated Successfully");
+      this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe((response) => {
+          this.showSuccess('Vendor Updated Successfully');
           this.router.navigate(['/vendor/view/' + this.selectedVendorId]);
-        },
-      );
+        });
     } else {
-      this.vendorService.addVendor(vendorData).subscribe(
-        (response) => {
-          this.showSuccess("Vendor Added Successfully");
+      this.vendorService.addVendor(vendorData).subscribe((response) => {
+          this.showSuccess('Vendor Added Successfully');
           this.router.navigate(['/vendor/view/' + response.id]);
         },
         (error) => this.showError(error.error.message)
@@ -180,31 +187,53 @@ export class VendorCreationComponent implements OnInit {
   }
 
   /**
+   * Checking the value of form changed during edit
+   * @returns {boolean}
+   */
+  isFormChanged(): boolean {
+    if (!this.isEdit) {
+      return false;
+    }
+    return (
+      JSON.stringify(this.addVendorForm.getRawValue()) === JSON.stringify(this.initialData)
+    );
+  }
+
+  /**
    * Method to show error message.
    */
-  showError(message : string): void {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+  showError(message: string): void {
+    this.isButtonLoading = false;
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: message,});
   }
 
   /**
    * Method to show success message.
    */
-  showSuccess(message : string): void {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
+  showSuccess(message: string): void {
+    this.isButtonLoading = false;
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: message,});
   }
 
   /**
    * Method to show confirmation dialog box.
    */
   showConfirmationPopUp(): void {
-   this.isConfirmPopupVisible = true;
-   this.confirmationMessage = "Are you sure you want to cancel the changes?";
+    this.isConfirmPopupVisible = true;
   }
 
   /**
    * Method to go back to vendor listing page when user clicks 'yes'.
    */
   handleConfirmationApproval(): void {
+    this.isConfirmPopupVisible = false;
     this.router.navigate(['']);
+  }
+
+  /**
+   * Method to go handle reject from confirmation popup.
+   */
+  handleRejection(): void {
+    this.isConfirmPopupVisible = false;
   }
 }

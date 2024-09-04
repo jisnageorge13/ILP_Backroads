@@ -2,20 +2,14 @@
   width: 100%;
 }
 
-.header {
+.header-name {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
-  padding-top: 2rem;
+  margin-top: 1rem;
   margin-left: 1rem;
   padding-right: 1rem;
-}
-
-.nav {
-  height: 3rem;
-  border: 1px solid #d1d5db;
-  background-color: #1a4870;
 }
 
 .basic-info {
@@ -28,7 +22,7 @@
 }
 
 .basic-info h5 {
-  margin: 1rem;
+  margin-top: 1px;
   padding-left: 1rem;
   font-weight: bold;
 }
@@ -53,8 +47,11 @@
 }
 
 .buttons {
+  width: 42%;
   display: flex;
-  gap: 10px;
+  justify-content: end;
+  align-items: end;
+  gap: 1px;
   height: 2rem;
 }
 
@@ -67,6 +64,9 @@
   margin-left: 0.5rem;
   border-radius: 8px;
   background-color: #1a4870;
+  width: 30%;
+  color: white;
+  height: 2.1rem;
 }
 
 .content {
@@ -99,8 +99,6 @@
 .flex-row .p-col-12 {
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
-  gap: 10px;
 }
 
 .flex-row .p-col-12 span {
@@ -114,7 +112,6 @@
 .info-item {
   flex: 1 1 45%;
   margin-right: 0.5rem;
-  padding: 0.5rem 0;
   box-sizing: border-box;
   color: black;
 }
