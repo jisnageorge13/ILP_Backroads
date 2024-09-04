@@ -4,6 +4,7 @@ import { VendorService } from '../services/vendor.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IVendor } from '../models/vendor.model';
 import { LoadingService } from 'src/app/shared/service/loading.service';
+import { Constants } from '../config/vendor-config';
 
 /**  LLD
 
@@ -43,7 +44,8 @@ export class VendorViewComponent implements OnInit {
     private vendorService: VendorService,
     private router: Router,
     private messageService: MessageService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private constants: Constants,
   ) {}
 
   /**
@@ -73,7 +75,7 @@ export class VendorViewComponent implements OnInit {
    */
   confirmApproval(): void {
     this.isButtonLoading = true;
-    this.confirmationService.confirm({ message: 'Are you sure you want to approve this vendor?',
+    this.confirmationService.confirm({ message: this.constants.confirmApprovalMessage,
       accept: () => {
         this.approveVendor();
       },

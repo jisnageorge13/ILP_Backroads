@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { phonePattern, urlPattern } from '../config/vendor-config';
+import { Constants } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IVendorCreation, IDropDownFields, IVendorData,} from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
@@ -60,7 +60,7 @@ export class VendorCreationComponent implements OnInit {
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
-  confirmationMessage = "Are you sure you want to cancel the changes?";
+  confirmationMessage = "";
   isConfirmPopupVisible = false;
   initialData?: IVendorCreation;
   isButtonLoading = false;
@@ -71,9 +71,11 @@ export class VendorCreationComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private messageService: MessageService,
-    private loadingService: LoadingService
-  ) { }
+    private loadingService: LoadingService,
+    private constants: Constants
+  ) {}
 
+  
   ngOnInit() {
     this.loadingService.showLoader();
     this.isEdit = this.router.url.includes("edit");
@@ -84,6 +86,7 @@ export class VendorCreationComponent implements OnInit {
       this.selectedVendorId = Number(this.route.snapshot.paramMap.get("id"));
       this.fetchVendorData();
     }
+    this.confirmationMessage =this.constants.confirmCancelMessage ;
   }
 
   /**
@@ -96,8 +99,8 @@ export class VendorCreationComponent implements OnInit {
       country: ["", Validators.required],
       markets: ["", Validators.required],
       email: ["", [Validators.required, Validators.email]],
-      phone: ["", [Validators.required, Validators.pattern(phonePattern)]],
-      website: ["", Validators.pattern(urlPattern)],
+      phone: ["", [Validators.required, Validators.pattern(this.constants.phonePattern)]],
+      website: ["", Validators.pattern(this.constants.urlPattern)],
       service: ["", Validators.required],
     });
   }
@@ -232,6 +235,5 @@ export class VendorCreationComponent implements OnInit {
    */
   handleRejection(): void {
     this.isConfirmPopupVisible = false;
-    console.log(this.isConfirmPopupVisible);
   }
 }
