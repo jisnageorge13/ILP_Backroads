@@ -36,8 +36,6 @@ import { Directive, ElementRef, Renderer2, Input } from '@angular/core';
 export class ButtonLoaderDirective {
   private originalContent: string | null = null;
   isLoading = false;
-  constructor(private el: ElementRef, private renderer: Renderer2) { }
-
   @Input() set appButtonLoader(isLoading: boolean) {
     if (isLoading) {
       if (this.originalContent === null) {
@@ -52,4 +50,7 @@ export class ButtonLoaderDirective {
       this.renderer.removeAttribute(this.el.nativeElement, 'disabled');
     }
   }
+
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
+  
 }
