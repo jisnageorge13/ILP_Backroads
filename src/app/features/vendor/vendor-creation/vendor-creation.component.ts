@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { phonePattern, urlPattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IVendorCreation, IDropDownFields, IVendorData,} from '../models/vendor.model';
@@ -60,11 +60,11 @@ export class VendorCreationComponent implements OnInit {
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
-  confirmationMessage = "";
+  confirmationMessage = "Are you sure you want to cancel the changes?";
   isConfirmPopupVisible = false;
   initialData?: IVendorCreation;
   isButtonLoading = false;
-
+  
   constructor(
     private readonly fb: FormBuilder,
     private vendorService: VendorService,
@@ -217,13 +217,13 @@ export class VendorCreationComponent implements OnInit {
    */
   showConfirmationPopUp(): void {
     this.isConfirmPopupVisible = true;
-    this.confirmationMessage = "Are you sure you want to cancel the changes?";
   }
 
   /**
    * Method to go back to vendor listing page when user clicks 'yes'.
    */
   handleConfirmationApproval(): void {
+    this.isConfirmPopupVisible = false;
     this.router.navigate([""]);
   }
 
@@ -231,6 +231,7 @@ export class VendorCreationComponent implements OnInit {
    * Method to go handle reject from confirmation popup.
    */
   handleRejection(): void {
-    this.isConfirmPopupVisible = false
+    this.isConfirmPopupVisible = false;
+    console.log(this.isConfirmPopupVisible);
   }
 }

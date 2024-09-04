@@ -101,7 +101,7 @@ export class VendorViewComponent implements OnInit {
    * Method to show success message.
    */
   showSuccess(message: string): void {
-    this.isButtonLoading=false;
+    this.isButtonLoading = false;
     this.getVendorById(this.vendor.id);
     this.messageService.add({severity: 'success',summary: 'Success',detail: `${message}`,});
   }

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoadingService } from './shared/service/loading.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private loadingService: LoadingService) {}
 
   ngOnInit() {
-    this.loadingService.loading$.subscribe((isLoading:boolean) => {
+    this.loadingService.loading$.subscribe((isLoading: boolean) => {
       this.isLoading = isLoading;
     });
   }

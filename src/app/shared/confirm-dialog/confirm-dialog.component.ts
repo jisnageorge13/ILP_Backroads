@@ -1,33 +1,35 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-confirm-dialog',
-  template: `<p-confirmDialog></p-confirmDialog>`,
+  template: `<p-confirmDialog [visible]="visible" header="Confirmation" icon="pi pi-exclamation-triangle" [message]="message" (accept)="confirmChange()" (reject)="rejectChange()"> </p-confirmDialog>`,
   styleUrl: './confirm-dialog.component.css',
 })
-export class ConfirmDialogComponent  {
-  @Input() dialogHeader = "Confirmation";
-  @Input() dialogIcon = "pi pi-exclamation-triangle";
-  @Input() message = "";
-  @Output() confirm: EventEmitter<void> = new EventEmitter<void>();
-  @Output() reject: EventEmitter<void> = new EventEmitter<void>();
-  constructor(private confirmationService: ConfirmationService) {}
+export class ConfirmDialogComponent  { 
+
+  @Input() visible = false;
+  @Input() message = '';
+  @Output() confirm: EventEmitter<void> = new EventEmitter();
+  @Output() reject: EventEmitter<void> = new EventEmitter();
+
+  
+  /**
+   * Method to handle when accept case occur
+   * @returns { void }
+   */
+  confirmChange(): void {
+    this.confirm.emit();
+    this.visible = false;
+  }
 
   /**
-   * method to display confirmation dialog box and its contents.
+   * Method to handle when reject case occur
+   * @returns { void }
    */
-  @Input() set confirmDialog(isview: boolean) {
-    if(isview)
-    {
-      this.confirmationService.confirm({ header: this.dialogHeader, icon: this.dialogIcon, message: this.message,
-        accept: () => {
-          this.confirm.emit();
-        },
-        reject: () => {
-          this.reject.emit();
-        },
-      });
-    }
-}
+  rejectChange(): void {
+    console.log("reject")
+    this.reject.emit();
+    this.visible = false;
+  }
 }

@@ -52,7 +52,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   /**
-   * method to get the path and label of current path
+   * Method to get the path and label of current path
    * @param { ActivatedRoute } route
    * @returns { MenuItem[] }
    */
@@ -76,7 +76,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   /**
-   * method to update the breadcrumbt array with current path
+   * Method to update the breadcrumbt array with current path
    * @param { MenuItem[] } breadcrumbs
    * @param { MenuItem[] } newVendorListing
    */
@@ -96,7 +96,7 @@ export class BreadcrumbComponent implements OnInit {
     }
   }
   /**
-   * method to navigate using the breadcrumb
+   * Method to navigate using the breadcrumb
    * @param { string } item
    */
   onBreadcrumbClick(item: string) {
