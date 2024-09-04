@@ -26,6 +26,7 @@ import { filter, distinctUntilChanged, map } from "rxjs/operators";
  * - updateBreadcrumbs(breadcrumbs: MenuItem[], newVendorListing: MenuItem[]): MenuItem[] - Updates the breadcrumb list by comparing with new breadcrumbs.
  * - onBreadcrumbClick(item: string): Navigates based on the breadcrumb item clicked by the user.
  */
+
 export class BreadcrumbComponent implements OnInit {
   breadcrumbItems: MenuItem[] = [];
   home!: MenuItem;
@@ -51,7 +52,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   /**
-   * Get the path and label of current path
+   * method to get the path and label of current path
    * @param { ActivatedRoute } route
    * @returns { MenuItem[] }
    */
@@ -75,7 +76,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   /**
-   * Update the breadcrumbt array with current path
+   * method to update the breadcrumbt array with current path
    * @param { MenuItem[] } breadcrumbs
    * @param { MenuItem[] } newVendorListing
    */
@@ -95,7 +96,7 @@ export class BreadcrumbComponent implements OnInit {
     }
   }
   /**
-   * navigate using the breadcrumb
+   * method to navigate using the breadcrumb
    * @param { string } item
    */
   onBreadcrumbClick(item: string) {

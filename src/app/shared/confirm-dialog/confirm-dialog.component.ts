@@ -18,10 +18,7 @@ export class ConfirmDialogComponent implements OnInit {
    * On component initialization, display confirmation dialog box and its contents.
    */
   ngOnInit() {
-    this.confirmationService.confirm({
-      header: this.dialogHeader,
-      icon: this.dialogIcon,
-      message: this.message,
+    this.confirmationService.confirm({ header: this.dialogHeader, icon: this.dialogIcon, message: this.message,
       accept: () => {
         this.confirm.emit();
       },

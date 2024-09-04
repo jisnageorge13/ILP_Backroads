@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { phonePattern, urlPattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  IVendorCreation,
-  IDropDownFields,
-  IVendorData,
-} from '../models/vendor.model';
+import {IVendorCreation,IDropDownFields,IVendorData,} from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -51,22 +47,16 @@ import { LoadingService } from 'src/app/shared/service/loading.service';
  */
 
 @Component({
-  selector: "app-vendor-creation",
-  templateUrl: "./vendor-creation.component.html",
-  styleUrl: "./vendor-creation.component.scss",
+  selector: 'app-vendor-creation',
+  templateUrl: './vendor-creation.component.html',
+  styleUrl: './vendor-creation.component.scss',
 })
 export class VendorCreationComponent implements OnInit {
   addVendorForm!: FormGroup;
   isEdit = false;
   vendorData?: IVendorData;
   countries: string[] = ["USA", "Germany", "Australia", "Brazil", "India"];
-  states: string[] = [
-    "California",
-    "Berlin",
-    "Sydney",
-    "Rio de Janeiro",
-    "Kerala",
-  ];
+  states: string[] = ["California", "Berlin", "Sydney", "Rio de Janeiro", "Kerala",];
   markets!: IDropDownFields[];
   services!: IDropDownFields[];
   selectedVendorId!: number;
@@ -82,7 +72,7 @@ export class VendorCreationComponent implements OnInit {
     private route: ActivatedRoute,
     private messageService: MessageService,
     private loadingService: LoadingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadingService.showLoader();
@@ -101,10 +91,7 @@ export class VendorCreationComponent implements OnInit {
    */
   createAddVendorForm(): void {
     this.addVendorForm = this.fb.group({
-      vendorName: [
-        { value: "", disabled: this.isEdit },
-        [Validators.required, Validators.maxLength(100)],
-      ],
+      vendorName: [{ value: "", disabled: this.isEdit },[Validators.required, Validators.maxLength(100)],],
       state: [""],
       country: ["", Validators.required],
       markets: ["", Validators.required],
@@ -210,8 +197,7 @@ export class VendorCreationComponent implements OnInit {
       return false;
     }
     return (
-      JSON.stringify(this.addVendorForm.getRawValue()) ===
-      JSON.stringify(this.initialData)
+      JSON.stringify(this.addVendorForm.getRawValue()) === JSON.stringify(this.initialData)
     );
   }
 
@@ -220,11 +206,7 @@ export class VendorCreationComponent implements OnInit {
    */
   showError(message: string): void {
     this.isButtonLoading = false;
-    this.messageService.add({
-      severity: "error",
-      summary: "Error",
-      detail: message,
-    });
+    this.messageService.add({ severity: "error", summary: "Error", detail: message,});
   }
 
   /**
@@ -232,11 +214,7 @@ export class VendorCreationComponent implements OnInit {
    */
   showSuccess(message: string): void {
     this.isButtonLoading = false;
-    this.messageService.add({
-      severity: "success",
-      summary: "Success",
-      detail: message,
-    });
+    this.messageService.add({ severity: "success", summary: "Success", detail: message,});
   }
 
   /**

@@ -21,9 +21,9 @@ import { LoadingService } from 'src/app/shared/service/loading.service';
  */
 
 @Component({
-  selector: "app-vendor-listing",
-  templateUrl: "./vendor-listing.component.html",
-  styleUrl: "./vendor-listing.component.scss",
+  selector: 'app-vendor-listing',
+  templateUrl: './vendor-listing.component.html',
+  styleUrl: './vendor-listing.component.scss',
 })
 export class VendorListingComponent implements OnInit {
   vendors!: IVendor[];

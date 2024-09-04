@@ -2,14 +2,17 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
+
 .header {
     height: 3rem;
     border: 0.063rem solid #d1d5db;
     background-color: #1a4870;
-  }
-a{
+}
+
+a {
     text-decoration: none !important;
 }
+
 .cancel-btn {
     border-radius: .5rem;
     border: 0.063rem solid red;
@@ -18,9 +21,9 @@ a{
     font-weight: bold;
     height: 3.125rem;
     width: 5rem;
-  }
-  
-  .submit-btn {
+}
+
+.submit-btn {
     border-radius: .5rem;
     border: 0.063rem solid rgb(0, 145, 255);
     background-color: white;
@@ -28,5 +31,4 @@ a{
     font-weight: bold;
     height: 3.125rem;
     width: 5rem;
-  }
-  
+}
