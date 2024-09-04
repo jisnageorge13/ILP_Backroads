@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Constants } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {IVendorCreation, IDropDownFields, IVendorData,} from '../models/vendor.model';
@@ -78,12 +78,12 @@ export class VendorCreationComponent implements OnInit {
   
   ngOnInit() {
     this.loadingService.showLoader();
-    this.isEdit = this.router.url.includes("edit");
+    this.isEdit = this.router.url.includes('edit');
     this.fetchMarkets();
     this.fetchServices();
     this.createAddVendorForm();
     if (this.isEdit) {
-      this.selectedVendorId = Number(this.route.snapshot.paramMap.get("id"));
+      this.selectedVendorId = Number(this.route.snapshot.paramMap.get('id'));
       this.fetchVendorData();
     }
     this.confirmationMessage = this.constants.confirmCancelMessage ;
@@ -174,12 +174,12 @@ export class VendorCreationComponent implements OnInit {
     if (this.isEdit) {
       this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe((response) => {
           this.showSuccess("Vendor Updated Successfully");
-          this.router.navigate(["/vendor/view/" + this.selectedVendorId]);
+          this.router.navigate(['/vendor/view/' + this.selectedVendorId]);
         });
     } else {
       this.vendorService.addVendor(vendorData).subscribe((response) => {
           this.showSuccess("Vendor Added Successfully");
-          this.router.navigate(["/vendor/view/" + response.id]);
+          this.router.navigate(['/vendor/view/' + response.id]);
         },
         (error) => this.showError(error.error.message)
       );
@@ -227,7 +227,7 @@ export class VendorCreationComponent implements OnInit {
    */
   handleConfirmationApproval(): void {
     this.isConfirmPopupVisible = false;
-    this.router.navigate([""]);
+    this.router.navigate(['']);
   }
 
   /**

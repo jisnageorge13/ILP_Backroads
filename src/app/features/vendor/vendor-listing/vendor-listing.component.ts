@@ -53,6 +53,6 @@ export class VendorListingComponent implements OnInit {
    * Method to get the list of vendors
    */
   navigateToView(event: IVendor): void {
-    this.router.navigate(["/vendor/view/" + event.id]);
+    this.router.navigate(['/vendor/view/' + event.id]);
   }
 }

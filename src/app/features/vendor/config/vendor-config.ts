@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root', 
 })
 export class Constants {
-    public phonePattern: RegExp;
-    public urlPattern: RegExp;
-    public confirmCancelMessage  :string;
-    public confirmApprovalMessage  :string;
+    phonePattern: RegExp;
+    urlPattern: RegExp;
+    confirmCancelMessage  :string;
+    confirmApprovalMessage  :string;
   
     constructor() {
       this.phonePattern = /^[1-9][0-9]{9}$/;
