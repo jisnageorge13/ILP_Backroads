@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { phonePattern, urlPattern } from '../config/vendor-config';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {IVendorCreation,IDropDownFields,IVendorData,} from '../models/vendor.model';
+import {IVendorCreation, IDropDownFields, IVendorData,} from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -169,8 +169,7 @@ export class VendorCreationComponent implements OnInit {
     };
 
     if (this.isEdit) {
-      this.vendorService
-        .updateVendor(this.selectedVendorId, vendorData).subscribe((response) => {
+      this.vendorService.updateVendor(this.selectedVendorId, vendorData).subscribe((response) => {
           this.showSuccess("Vendor Updated Successfully");
           this.router.navigate(["/vendor/view/" + this.selectedVendorId]);
         });

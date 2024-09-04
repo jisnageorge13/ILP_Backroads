@@ -73,8 +73,7 @@ export class VendorViewComponent implements OnInit {
    */
   confirmApproval(): void {
     this.isButtonLoading=true;
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to approve this vendor?',
+    this.confirmationService.confirm({ message: 'Are you sure you want to approve this vendor?',
       accept: () => {
         this.approveVendor();
       },

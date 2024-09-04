@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 
 @Component({
-  selector: "app-confirm-dialog",
+  selector: 'app-confirm-dialog',
   template: `<p-confirmDialog></p-confirmDialog>`,
-  styleUrl: "./confirm-dialog.component.css",
+  styleUrl: './confirm-dialog.component.css',
 })
 export class ConfirmDialogComponent implements OnInit {
   @Input() dialogHeader = "Confirmation";
