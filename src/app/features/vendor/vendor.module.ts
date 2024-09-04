@@ -13,7 +13,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { FloatLabelModule } from "primeng/floatlabel"
+import { FloatLabelModule } from 'primeng/floatlabel'
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { VendorViewComponent } from './vendor-view/vendor-view.component';

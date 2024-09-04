@@ -43,7 +43,7 @@ export class ButtonLoaderDirective {
       if (this.originalContent === null) {
         this.originalContent = this.el.nativeElement.innerHTML;
       }
-      this.renderer.setProperty(this.el.nativeElement, 'innerHTML', `<i class="pi pi-spin pi-spinner"></i>`);
+      this.renderer.setProperty(this.el.nativeElement, 'innerHTML', `<i class='pi pi-spin pi-spinner'></i>`);
       this.renderer.setAttribute(this.el.nativeElement, 'disabled', 'true');
     } else {
       if (this.originalContent !== null) {

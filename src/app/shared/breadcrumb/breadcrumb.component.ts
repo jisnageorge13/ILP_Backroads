@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
-import { MenuItem } from "primeng/api";
-import { filter, distinctUntilChanged, map } from "rxjs/operators";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { MenuItem } from 'primeng/api';
+import { filter, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
-  selector: "app-breadcrumb",
-  templateUrl: "./breadcrumb.component.html",
-  styleUrls: ["./breadcrumb.component.scss"],
+  selector: 'app-breadcrumb',
+  templateUrl: './breadcrumb.component.html',
+  styleUrls: ['./breadcrumb.component.scss'],
 })
 
 /**
@@ -30,12 +30,12 @@ import { filter, distinctUntilChanged, map } from "rxjs/operators";
 export class BreadcrumbComponent implements OnInit {
   breadcrumbItems: MenuItem[] = [];
   home!: MenuItem;
-  url = "";
+  url = '';
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.home = { icon: "pi pi-home", routerLink: "" };
+    this.home = { icon: 'pi pi-home', routerLink: '' };
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -62,11 +62,11 @@ export class BreadcrumbComponent implements OnInit {
     for (const child of children) {
       const segment = child.snapshot.url
         .map((segment) => segment.path)
-        .join("/");
+        .join('/');
       if (segment) {
         this.url += `/${segment}`;
       }
-      const label = child.snapshot.data["breadcrumb"];
+      const label = child.snapshot.data['breadcrumb'];
       if (label) {
         this.breadcrumbItems.push({ label, routerLink: this.url });
       }
@@ -100,14 +100,14 @@ export class BreadcrumbComponent implements OnInit {
    * @param { string } item
    */
   onBreadcrumbClick(item: string) {
-    const segments = item.split("/");
+    const segments = item.split('/');
     const lastIndex = segments.length - 1;
     const secondLastIndex = lastIndex - 1;
     if (!item) {
       this.breadcrumbItems = [];
     }
     this.router.navigate([
-      "/vendor/" + segments[secondLastIndex] + "/" + segments[lastIndex],
+      '/vendor/' + segments[secondLastIndex] + '/' + segments[lastIndex],
     ]);
   }
 }

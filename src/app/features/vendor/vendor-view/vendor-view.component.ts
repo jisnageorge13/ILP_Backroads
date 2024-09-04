@@ -12,7 +12,7 @@ import { Constants } from '../config/vendor-config';
 
  * It displays the following information:
  * In the header section,Displays the name of the vendor and if the vendor is not yet approved a pending status label will be shown besides the name .
- * Includes action buttons for "Edit Profile" and "Approve Vendor."
+ * Includes action buttons for 'Edit Profile' and 'Approve Vendor.'
  * 
  * In the content section the folowing details are displayed
  * email
