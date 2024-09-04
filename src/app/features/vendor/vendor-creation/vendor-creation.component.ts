@@ -91,7 +91,7 @@ export class VendorCreationComponent implements OnInit {
    */
   createAddVendorForm(): void {
     this.addVendorForm = this.fb.group({
-      vendorName: [{ value: "", disabled: this.isEdit },[Validators.required, Validators.maxLength(100)],],
+      vendorName: [{ value: "", disabled: this.isEdit }, [Validators.required, Validators.maxLength(100)], ],
       state: [""],
       country: ["", Validators.required],
       markets: ["", Validators.required],
