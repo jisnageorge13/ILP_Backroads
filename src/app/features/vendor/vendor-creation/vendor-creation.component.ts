@@ -226,4 +226,11 @@ export class VendorCreationComponent implements OnInit {
   handleConfirmationApproval(): void {
     this.router.navigate([""]);
   }
+
+  /**
+   * Method to go handle reject from confirmation popup.
+   */
+  handleRejection(): void {
+    this.isConfirmPopupVisible = false
+  }
 }

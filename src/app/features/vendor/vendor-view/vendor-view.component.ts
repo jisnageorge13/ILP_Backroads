@@ -36,7 +36,7 @@ import { LoadingService } from 'src/app/shared/service/loading.service';
 })
 export class VendorViewComponent implements OnInit {
   vendor!: IVendor;
-  isButtonLoading=false;
+  isButtonLoading = false;
   constructor(
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
@@ -72,7 +72,7 @@ export class VendorViewComponent implements OnInit {
    * Method to show confirm pop up to approve the vendor.
    */
   confirmApproval(): void {
-    this.isButtonLoading=true;
+    this.isButtonLoading = true;
     this.confirmationService.confirm({ message: 'Are you sure you want to approve this vendor?',
       accept: () => {
         this.approveVendor();
