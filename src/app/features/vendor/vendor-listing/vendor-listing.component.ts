@@ -3,7 +3,6 @@ import { IVendor } from '../models/vendor.model';
 import { VendorService } from '../services/vendor.service';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/shared/service/loading.service';
-
 /**
  * VendorListingComponent
  * This component is responsible for listing all the vendors in the system.
@@ -27,6 +26,11 @@ import { LoadingService } from 'src/app/shared/service/loading.service';
 })
 export class VendorListingComponent implements OnInit {
   vendors!: IVendor[];
+  searchValue: string | undefined;
+  originalData!: IVendor[];
+  totalRecords!: number;
+  page!: number;
+  row!: number;
 
   constructor(
     private vendorService: VendorService,
@@ -36,15 +40,23 @@ export class VendorListingComponent implements OnInit {
 
   ngOnInit() {
     this.loadingService.showLoader();
-    this.fetchVendors();
   }
 
+  onPageChange(first?: number, rows?: number | null): void {
+    if (first !== undefined && rows !== undefined && rows !== null) {
+       this.page = first / rows;
+       this.row = rows
+      this.fetchVendors(this.page + 1, rows, '');
+    } 
+  }
+ 
   /**
    * Method to get the list of vendors
    */
-  fetchVendors(): void {
-    this.vendorService.getVendors().subscribe((vendors: IVendor[]) => {
-      this.vendors = vendors;
+  fetchVendors(pageNumber: number,pageSize: number,searchTerm: string): void {
+    this.vendorService.getVendors(pageNumber,pageSize,searchTerm).subscribe((response) => {
+      this.vendors = response.vendors;
+      this.totalRecords = response.totalItems;
       this.vendors.sort((a, b) => a.name.localeCompare(b.name));
     });
   }
@@ -54,5 +66,14 @@ export class VendorListingComponent implements OnInit {
    */
   navigateToView(event: IVendor): void {
     this.router.navigate(['/vendor/view/' + event.id]);
+  }
+
+  /**
+   * Method to search a vendor by name
+   */
+  filterGlobal(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const value = inputElement.value;
+    this.fetchVendors(this.page + 1, this.row, value);
   }
 }

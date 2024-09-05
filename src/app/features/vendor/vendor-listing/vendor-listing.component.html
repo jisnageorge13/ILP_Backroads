@@ -13,13 +13,34 @@
   <div class="card">
     <p-table
       [value]="vendors"
+      dataKey="id"
       [paginator]="true"
       [rows]="5"
-      [tableStyle]="{ 'min-width': '50rem' }"
+      [totalRecords]="totalRecords"
+      [lazyLoadOnInit]="true"
+      [lazy]="true"
+      (onLazyLoad)="onPageChange($event.first, $event.rows)"
       [rowsPerPageOptions]="[5, 10, 20]"
-      (onRowSelect)="navigateToView($event.data)"
+      [tableStyle]="{ 'min-width': '50rem' }"
       selectionMode="single"
+      [globalFilterFields]="['name']"
+      (onRowSelect)="navigateToView($event.data)"
+      [responsive]="true"
     >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+          <p-iconField iconPosition="left" class="ml-auto">
+              <p-inputIcon>
+                  <i class="pi pi-search"></i>
+              </p-inputIcon>
+              <input 
+                pInputText 
+                type="text" 
+                (keydown.enter)="filterGlobal($event)"
+                placeholder="Search keyword" />
+          </p-iconField>
+      </div>
+  </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th class="col-3">Vendor Name</th>
