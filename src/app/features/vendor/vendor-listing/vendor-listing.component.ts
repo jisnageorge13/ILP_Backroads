@@ -26,7 +26,6 @@ import { LoadingService } from 'src/app/shared/service/loading.service';
 })
 export class VendorListingComponent implements OnInit {
   vendors!: IVendor[];
-  searchValue: string | undefined;
   originalData!: IVendor[];
   totalRecords!: number;
   page!: number;
@@ -53,8 +52,8 @@ export class VendorListingComponent implements OnInit {
   /**
    * Method to get the list of vendors
    */
-  fetchVendors(pageNumber: number,pageSize: number,searchTerm: string): void {
-    this.vendorService.getVendors(pageNumber,pageSize,searchTerm).subscribe((response) => {
+  fetchVendors(pageNumber: number, pageSize: number, searchTerm: string): void {
+    this.vendorService.getVendors(pageNumber, pageSize, searchTerm).subscribe((response) => {
       this.vendors = response.vendors;
       this.totalRecords = response.totalItems;
       this.vendors.sort((a, b) => a.name.localeCompare(b.name));

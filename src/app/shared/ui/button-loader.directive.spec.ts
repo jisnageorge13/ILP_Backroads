@@ -3,7 +3,7 @@ import { ButtonLoaderDirective } from './button-loader.directive';
 import { Component, Renderer2 } from '@angular/core';
 
 @Component({
-  template: `<button [appButtonLoader]="isLoading">Submit</button>`,
+  template: `<button [appButtonLoader]='isLoading'>Submit</button>`,
 })
 class TestButtonComponent {
   isLoading = false;

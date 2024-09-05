@@ -33,7 +33,7 @@ constructor(private http: HttpClient) {}
 /**
  * Method to fetch vendors 
  */
-  getVendors(pageNumber: number,pageSize: number,searchTerm: string): Observable<{ totalItems: number; vendors: IVendor[] }> {
+  getVendors(pageNumber: number, pageSize: number, searchTerm: string): Observable<{ totalItems: number; vendors: IVendor[] }> {
     return this.http.get<{ totalItems: number; vendors: IVendor[] }>(`${this.baseUrl}/Vendor/GetVendors?PageNumber=${pageNumber}&PageSize=${pageSize}&SearchQuery=${searchTerm}`);
   }
 
