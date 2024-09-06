@@ -58,7 +58,7 @@ export class BreadcrumbComponent implements OnInit {
    */
   buildBreadcrumb(route: ActivatedRoute): MenuItem[] {
     const children: ActivatedRoute[] = route.children;
-
+    console.log(children)
     for (const child of children) {
       const segment = child.snapshot.url
         .map((segment) => segment.path)

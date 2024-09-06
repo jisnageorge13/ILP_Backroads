@@ -41,6 +41,12 @@ export class VendorListingComponent implements OnInit {
     this.loadingService.showLoader();
   }
 
+  /**
+   * Method to check for pagination occurs
+   * @param { number } first
+   * @param { number | null } rows
+   * @returns { void }
+   */
   onPageChange(first?: number, rows?: number | null): void {
     if (first !== undefined && rows !== undefined && rows !== null) {
        this.page = first / rows;
@@ -70,7 +76,7 @@ export class VendorListingComponent implements OnInit {
   /**
    * Method to search a vendor by name
    */
-  filterGlobal(event: Event) {
+  searchVendor(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const value = inputElement.value;
     this.fetchVendors(this.page + 1, this.row, value);

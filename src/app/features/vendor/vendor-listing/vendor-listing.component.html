@@ -35,8 +35,9 @@
               </p-inputIcon>
               <input 
                 pInputText 
+                id="search"
                 type="text" 
-                (keydown.enter)="filterGlobal($event)"
+                (keydown.enter)="searchVendor($event)"
                 placeholder="Search keyword" />
           </p-iconField>
       </div>
