@@ -1,11 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { VendorCreationComponent } from './vendor-creation.component';
@@ -185,4 +180,47 @@ describe('VendorCreationComponent', () => {
     component.submitVendor();
     expect(spyObj.messageServiceSpy).toHaveBeenCalled();
   });
+
+  it('Should return false when isEdit is false', () => {
+    const { component } = setup();
+    component.isEdit = false;
+    component.addVendorForm = getVendorServiceFormMock();
+    component.initialData = component.addVendorForm.getRawValue();
+    expect(component.isFormChanged()).toBe(false);
+  });
+
+  it('Should indicate no changes have been made when the form values are the same as they were initially', () => {
+    const { component } = setup();
+    component.isEdit = true;
+    component.addVendorForm = getVendorServiceFormMock();
+    component.initialData = component.addVendorForm.getRawValue();
+    expect(component.isFormChanged()).toBe(true);
+  });
+
+  it('Should indicate changes have been made when the form values are modified after filling them in', () => {
+    const { component } = setup();
+    component.isEdit = true;
+    component.addVendorForm = getVendorServiceFormMock();
+    component.initialData = component.addVendorForm.getRawValue();
+    component.addVendorForm.patchValue({ vendorName: 'Changed Vendor' });
+    expect(component.isFormChanged()).toBe(false);
+  });
+
+  it('should show confirmation popup when user clicks on cancel button', () => {
+    const { component } = setup();
+    component.showConfirmationPopUp();
+    expect(component.isConfirmPopupVisible).toBe(true);
+  });
+
+  it('should navigate to vendor listing screen when user clicks on yes in the confirmation popup for cancel button', () => {
+    const { component, spyObj } = setup();
+    component.handleConfirmationApproval();
+    expect(spyObj.routerSpy).toHaveBeenCalledWith(['']);
+  });
+
+  it('should stop showing cnofirmation popip when user clicks on "No" button', () => {
+    const { component } = setup();
+    component.handleRejection()
+    expect(component.isConfirmPopupVisible).toBe(false);
+  })
 });

@@ -58,7 +58,6 @@ export class BreadcrumbComponent implements OnInit {
    */
   buildBreadcrumb(route: ActivatedRoute): MenuItem[] {
     const children: ActivatedRoute[] = route.children;
-
     for (const child of children) {
       const segment = child.snapshot.url
         .map((segment) => segment.path)
@@ -81,7 +80,7 @@ export class BreadcrumbComponent implements OnInit {
    * @param { MenuItem[] } newVendorListing
    */
   updateBreadcrumbs(breadcrumbs: MenuItem[], newVendorListing: MenuItem[]) {
-    const newVendorLabel = newVendorListing[newVendorListing.length - 1].label;
+    const newVendorLabel = newVendorListing[newVendorListing.length - 1]?.label;
     if (newVendorLabel === undefined) {
       return breadcrumbs;
     }
@@ -95,6 +94,7 @@ export class BreadcrumbComponent implements OnInit {
       return breadcrumbs;
     }
   }
+
   /**
    * Method to navigate using the breadcrumb
    * @param { string } item

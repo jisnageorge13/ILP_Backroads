@@ -1,5 +1,3 @@
-<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle">
-</p-confirmDialog>
 <p-toast />
 <div class="home" *ngIf="vendor">
   <div class="header-name">
@@ -11,9 +9,13 @@
     </h1>
     <div class="buttons">
       <button pButton id="edit-profile-button" type="button" label="Edit Profile" icon="pi pi-pencil" [rounded]="true" [outlined]="true" (click)="navigateToEdit(vendor.id)" ></button>
+      @if(isConfirmPopupVisible)
+      {
+        <app-confirm-dialog  (confirm)="handleConfirmationApproval()" (reject)="handleRejection()" [message]="confirmationMessage"></app-confirm-dialog>
+      }
       @if(!vendor.isApproved)
       {
-      <button  id="approve-vendor-button" type="button" icon="pi pi-check" class="submit-btn approve-btn" (click)="confirmApproval()" [appButtonLoader]="isButtonLoading">Approve Vendor</button>
+      <button  id="approve-vendor-button" type="button" icon="pi pi-check" class="submit-btn approve-btn" (click)="showConfirmationPopUp()" [appButtonLoader]="isButtonLoading">Approve Vendor</button>
       }
     </div>
   </div>

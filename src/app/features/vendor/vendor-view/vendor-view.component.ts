@@ -38,6 +38,9 @@ import { Constants } from '../config/vendor-config';
 export class VendorViewComponent implements OnInit {
   vendor!: IVendor;
   isButtonLoading = false;
+  isConfirmPopupVisible = false;
+  confirmationMessage!: string;
+
   constructor(
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
@@ -52,6 +55,7 @@ export class VendorViewComponent implements OnInit {
    * On component initialization, fetches the vendor details
    */
   ngOnInit(): void {
+    this.confirmationMessage = this.constants.confirmApprovalMessage;
     this.loadingService.showLoader();
     this.route.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
@@ -71,27 +75,6 @@ export class VendorViewComponent implements OnInit {
   }
 
   /**
-   * Method to show confirm pop up to approve the vendor.
-   */
-  confirmApproval(): void {
-    this.isButtonLoading = true;
-    this.confirmationService.confirm({ message: this.constants.confirmApprovalMessage,
-      accept: () => {
-        this.approveVendor();
-      },
-    });
-  }
-
-  /**
-   * Method to approve the vendor by updating their status to approved.
-   */
-  approveVendor(): void {
-    this.vendorService.approveVendor(this.vendor.id).subscribe(() => {
-      this.showSuccess('Vendor Approved Successfully');
-    });
-  }
-
-  /**
    * Navigates to the edit vendor profile page.
    * @param id - The ID of the vendor to be edited.
    */
@@ -106,5 +89,29 @@ export class VendorViewComponent implements OnInit {
     this.isButtonLoading = false;
     this.getVendorById(this.vendor.id);
     this.messageService.add({severity: 'success',summary: 'Success',detail: `${message}`,});
+  }
+
+  /**
+   * Method to show confirmation dialog box.
+   */
+  showConfirmationPopUp(): void {
+    this.isConfirmPopupVisible = true;
+  }
+
+  /**
+   * Method to go back to vendor listing page when user clicks 'yes'.
+   */
+  handleConfirmationApproval(): void {
+    this.isConfirmPopupVisible = false;
+    this.vendorService.approveVendor(this.vendor.id).subscribe(() => {
+      this.showSuccess('Vendor Approved Successfully');
+    });
+  }
+
+  /**
+   * Method to go handle reject from confirmation popup.
+   */
+  handleRejection(): void {
+    this.isConfirmPopupVisible = false;
   }
 }
