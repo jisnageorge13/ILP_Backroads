@@ -26,7 +26,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { BadgeModule } from 'primeng/badge';
 @NgModule({
   declarations: [VendorListingComponent, VendorCreationComponent, VendorViewComponent],
-  imports: [CommonModule, InputIconModule, IconFieldModule, SharedModule, VendorRoutingModule, TableModule, ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule,OverlayPanelModule,BadgeModule],
+  imports: [CommonModule, InputIconModule, IconFieldModule, SharedModule, VendorRoutingModule, TableModule, ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule, OverlayPanelModule, BadgeModule],
   providers: [
     ConfirmationService, 
     MessageService,
