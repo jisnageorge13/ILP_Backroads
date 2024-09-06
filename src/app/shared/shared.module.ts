@@ -8,6 +8,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonLoaderDirective } from './ui/button-loader.directive';
+import { TruncateTextDirective } from './ui/truncation.directive';
+
 @NgModule({
   declarations: [
     LoaderComponent,
@@ -15,6 +17,7 @@ import { ButtonLoaderDirective } from './ui/button-loader.directive';
     ConfirmDialogComponent,
     BreadcrumbComponent,
     ButtonLoaderDirective,
+    TruncateTextDirective
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,7 @@ import { ButtonLoaderDirective } from './ui/button-loader.directive';
     ConfirmDialogComponent,
     BreadcrumbComponent,
     ButtonLoaderDirective,
+    TruncateTextDirective
   ],
   providers: [ConfirmationService]
 })

@@ -22,9 +22,11 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loadingInterceptor } from 'src/app/interceptors/loading.interceptor';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { BadgeModule } from 'primeng/badge';
 @NgModule({
   declarations: [VendorListingComponent, VendorCreationComponent, VendorViewComponent],
-  imports: [CommonModule, InputIconModule, IconFieldModule, SharedModule, VendorRoutingModule, TableModule, ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
+  imports: [CommonModule, InputIconModule, IconFieldModule, SharedModule, VendorRoutingModule, TableModule, ToastModule, FormsModule, FloatLabelModule, ReactiveFormsModule, DropdownModule, ConfirmDialogModule, ToastModule, ButtonModule, MultiSelectModule, InputTextModule, InputGroupModule, InputGroupAddonModule, OverlayPanelModule, BadgeModule],
   providers: [
     ConfirmationService, 
     MessageService,
