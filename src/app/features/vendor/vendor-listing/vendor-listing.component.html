@@ -53,16 +53,52 @@
       <ng-template pTemplate="body" let-vendor>
         <tr [pSelectableRow]="vendor">
           <td>
-            {{ vendor.name }}
-            <span *ngIf="!vendor.isApproved" class="pending-tag">Pending</span>
+           <div class="vendor-name-container">
+              <span appTruncateText [text]="vendor.name" [overlayPanel]="op1"></span>
+              <span *ngIf="!vendor.isApproved" class="pending-tag">Pending</span>
+            </div>
+            <p-overlayPanel #op1>
+              <ng-template pTemplate="content">
+                {{ vendor.name }}
+              </ng-template>
+            </p-overlayPanel>
           </td>
           <td>
-            <ng-container *ngFor="let market of vendor.markets; let i = index">
-              {{ market.name }}<span *ngIf="i < vendor.markets.length - 1">, </span>
-            </ng-container>
+            <div class="info-item market">
+              <span appTruncateText [text]="vendor.markets[0]?.name" [overlayPanel]="op2" [isMarket]="true" [additionalItemsCount]="vendor.markets.length - 1"></span>
+              <span *ngIf="vendor.markets.length > 1" [style.cursor]="'pointer'">
+                <p-badge
+                  class="count-badge small-badge"
+                  [value]="'+' + (vendor.markets.length - 1)"
+                  (mouseenter)="op2.show($event, $event.target)"
+                  (mouseleave)="op2.hide()"
+                ></p-badge>
+              </span>
+              <p-overlayPanel #op2 [showCloseIcon]="false">
+                <ng-template pTemplate="content">
+                  <ul>
+                    <li *ngFor="let market of vendor.markets.slice(1)">{{ market.name }}</li>
+                  </ul>
+                </ng-template>
+              </p-overlayPanel>
+            </div>
           </td>
-          <td>{{ vendor.service.name }}</td>
-          <td>{{ vendor.email }}</td>
+          <td>
+            <span appTruncateText [text]="vendor.service.name" [overlayPanel]="op3"></span>
+            <p-overlayPanel #op3>
+              <ng-template pTemplate="content">
+                {{ vendor.service.name }}
+              </ng-template>
+            </p-overlayPanel>
+          </td>
+          <td>
+            <span appTruncateText [text]="vendor.email" [overlayPanel]="op4"></span>
+            <p-overlayPanel #op4>
+              <ng-template pTemplate="content">
+                {{ vendor.email }}
+              </ng-template>
+            </p-overlayPanel>
+          </td>
         </tr>
       </ng-template>
     </p-table>
